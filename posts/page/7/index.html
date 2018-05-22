@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> Posts - magicluo.com|罗先桥的博客|Cloud Native|Microservices</title>
+  <meta name="description" content="magicluo.com|罗先桥的博客|Cloud Native|Microservices" />
+  <meta property="og:title" content="Posts" />
+  <meta name="twitter:title" content="Posts" />
+  <meta name="author" content="Laurence Luo(罗先桥)"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@magicluo0755" />
+  <meta name="twitter:creator" content="@magicluo0755" />
+  <meta property="og:url" content="https://laurenceluo.io/posts/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Laurence Luo" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://laurenceluo.io/posts/" />
+  <link rel="alternate" href="https://laurenceluo.io/index.xml" type="application/rss+xml" title="Laurence Luo">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://laurenceluo.io/css/main.css" />
+  <link rel="stylesheet" href="https://laurenceluo.io/css/search.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?11f7d254cfa4e0ca44b175c66d379ecc";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<link rel="stylesheet" href="https://laurenceluo.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://laurenceluo.io/">Laurence Luo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Cloud-Native</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/container">container</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/devops">DevOps</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/serverless">Serverless</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Microservices</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/spring-cloud">spring cloud</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/service-mesh">service mesh</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/istio">istio</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">iPaaS</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/camel">Apache-Camel</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/mule">Mule ESB</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="cooking" href="/categories/cooking">cooking</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  <header class="header-section ">
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="page-heading">
+              <h1>Posts</h1>
+              <hr class="small">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    
+  <div class="container" role="main">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/docker-cli-to-kubectl/">
+                <h2 class="post-title">docker用户过渡到kubectl命令行指南</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on September 16, 2017
+              </p>
+              <div class="post-entry">
+                
+                  对于没有使用过 kubernetes 的 docker 用户，如何快速掌握 kubectl 命令？kubectl 跟 docker 命令之间有什么区别和联系？ 在本文中，我们将向 docker-cli 用户介绍 Kubernetes 命令行如何与 api 进行交
+                  <a href="https://laurenceluo.io/posts/docker-cli-to-kubectl/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/kubernetes/">kubernetes</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/docker/">docker</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/high-level-cloud-native-from-kevin-hoffman/">
+                <h2 class="post-title">High Level Cloud Native From Kevin Hoffman</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on September 15, 2017
+              </p>
+              <div class="post-entry">
+                
+                  Kevin Hoffman(From Capital One, twitter @KevinHoffman was making a speech on TalkingData T11 Smart Data Summit. He addressed that 15 Factors of Cloud Native which based on Heroku&rsquo;s original Twelve-Factor App, but he add more 3 another factors on it. Let&rsquo;s have a look at the 15 factors of Cloud Native. 1. One codebase, one App Single version-controlled codebase, many deploys Multiple apps should not share code Microservices need separate
+                  <a href="https://laurenceluo.io/posts/high-level-cloud-native-from-kevin-hoffman/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/cloud-native/">cloud-native</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/running-spark-with-kubernetes-native-scheduler/">
+                <h2 class="post-title">运行支持kubernetes原生调度的spark程序-Spark on Kubernetes</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on September 14, 2017
+              </p>
+              <div class="post-entry">
+                
+                  TL;DR 关于 Spark on kubernetes 的详细信息和最新进展请见 jimmysong.io - spark-on-k8s 我们之前就在 kubernetes 中运行过 standalone 方式的 spark 集群，见 Spark standalone on kubernetes。 目前运行支持 kubernetes 原生调度的 spark 程序
+                  <a href="https://laurenceluo.io/posts/running-spark-with-kubernetes-native-scheduler/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/kubernetes/">kubernetes</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/spark/">spark</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/big-data/">big-data</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/3-things-every-cto-should-know-about-kubernetes/">
+                <h2 class="post-title">每位CTO都该知道的关于kubernetes的三件事</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on September 10, 2017
+              </p>
+              <div class="post-entry">
+                
+                  Kubernetes 是一个自动发布、扩缩容和管理容器化应用的开源软件。 尽管kubernetes非常强大，有如此多有用的技术特性，但是工具从来都不会被隔离起来单
+                  <a href="https://laurenceluo.io/posts/3-things-every-cto-should-know-about-kubernetes/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/kubernetes/">kubernetes</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/enable-github-pages-https-with-cloudflare/">
+                <h2 class="post-title">使用Cloudflare为Github Pages博客开启https支持</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on September 3, 2017
+              </p>
+              <div class="post-entry">
+                
+                  实在受不了无耻的运营商劫持，如下图： 总是在我的网站页面上植入广告，尤其是在微信中打开我的网站链接然后选择在浏览器中打开的时候，最近总是植入广
+                  <a href="https://laurenceluo.io/posts/enable-github-pages-https-with-cloudflare/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/github-pages/">github-pages</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/kubectl-user-authentication-authorization/">
+                <h2 class="post-title">kubectl的用户认证授权</h2>
+
+                
+                  <h3 class="post-subtitle">
+                    使用kubeconfig或者token进行权限认证
+                  </h3>
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on August 31, 2017
+              </p>
+              <div class="post-entry">
+                
+                  当我们安装好集群后，如果想要把 kubectl 命令交给用户使用，就不得不对用户的身份进行认证和对其权限做出限制。 下面以创建一个 devuser 用户并将其绑定到 dev 和 test 两个
+                  <a href="https://laurenceluo.io/posts/kubectl-user-authentication-authorization/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/kubernetes/">kubernetes</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/migrating-hadoop-yarn-to-kubernetes/">
+                <h2 class="post-title">迁移传统应用到Kubernetes步骤详解——以Hadoop YARN为例</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on August 21, 2017
+              </p>
+              <div class="post-entry">
+                
+                  前言 本文已归档到 kubernetes-handbook 【第三章用户指南】的【在Kubernetes中开发部署应用】小节中，一切更新以 GitHub 为准。 本文档不是说明如何在 kubernetes 中开发和部署应
+                  <a href="https://laurenceluo.io/posts/migrating-hadoop-yarn-to-kubernetes/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/kubernetes/">kubernetes</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/hadoop/">hadoop</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/yarn/">yarn</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/domain-name-jimmysong-io/">
+                <h2 class="post-title">即日起更换域名为jimmysong.io</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on August 18, 2017
+              </p>
+              <div class="post-entry">
+                
+                  即日起我有了自己的独立域名 jimmysong.io，网站依然托管在 GitHub 上，原来的网址 https://jimmysong.io 依然可以访问。 为什么使用 .io 作为后缀呢？因为这是 The First Step to Cloud
+                  <a href="https://laurenceluo.io/posts/domain-name-jimmysong-io/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/kubernetes-tls-bootstrapping/">
+                <h2 class="post-title">Kubernetes TLS bootstrap引导程序</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on August 16, 2017
+              </p>
+              <div class="post-entry">
+                
+                  按照 kubernetes-handbook 安装 kubernetes 集群的第一步是什么？没错，创建 TLS 证书和秘钥！作为第一步已经这么繁琐和容易出错，很多人就望而却步了，单纯的按照说明执行命令而不了解
+                  <a href="https://laurenceluo.io/posts/kubernetes-tls-bootstrapping/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/kubernetes/">kubernetes</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/cloud-native-python/">
+                <h2 class="post-title">Cloud Native Python</h2>
+
+                
+                  <h3 class="post-subtitle">
+                    使用Python和React构建云原生应用
+                  </h3>
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on August 15, 2017
+              </p>
+              <div class="post-entry">
+                
+                  继 Cloud Native Go 之后又一本关于 Cloud Native 的力作已经登上了我的写作日程，这次是基于 Python 构建微服务和云原生 Web 应用程序，书名叫作 Cloud Native Python。 下面是它的英文原
+                  <a href="https://laurenceluo.io/posts/cloud-native-python/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/cloud-native/">cloud-native</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/book/">book</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/python/">python</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/microservices/">microservices</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+        </div>
+        
+          <ul class="pager main-pager">
+            
+              <li class="previous">
+                <a href="/posts/page/6">&larr; Newer Posts</a>
+              </li>
+            
+            
+              <li class="next">
+                <a href="/posts/page/8">Older Posts &rarr;</a>
+              </li>
+            
+          </ul>
+        
+      </div>
+    <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+
+<ul class="pagination">
+    
+    <li>
+        <a href="/posts/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li
+    >
+    <a href="/posts/page/6/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    ><a href="/posts/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    ><a href="/posts/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    ><a href="/posts/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    ><a href="/posts/page/6/">6</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    class="active"><a href="/posts/page/7/">7</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    ><a href="/posts/page/8/">8</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    ><a href="/posts/page/15/">15</a></li>
+    
+    
+    <li
+    >
+    <a href="/posts/page/8/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li>
+        <a href="/posts/page/15/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
+</ul>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xqluo2004@163.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/magicluo0755" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/magicluo0755" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/magicluo0755" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://laurenceluo.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://magicluo.com">Laurence Luo(罗先桥)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://laurenceluo.io/">Laurence Luo</a>
+          
+        </p>
+		
+
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

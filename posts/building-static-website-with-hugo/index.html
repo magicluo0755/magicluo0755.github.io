@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> Hugo handbook - magicluo.com|罗先桥的博客|Cloud Native|Microservices</title>
+  <meta name="description" content="magicluo.com|罗先桥的博客|Cloud Native|Microservices" />
+  <meta property="og:title" content="Hugo handbook" />
+  <meta name="twitter:title" content="Hugo handbook" />
+  <meta name="description" content="本手册将指导你如何使用Hugo构建静态网站用于个人博客或者项目展示，使用gitbook生成hugo handbook">
+  <meta property="og:description" content="本手册将指导你如何使用Hugo构建静态网站用于个人博客或者项目展示，使用gitbook生成hugo handbook">
+  <meta name="twitter:description" content="本手册将指导你如何使用Hugo构建静态网站用于个人博客或者项目展示，使用gitbook生成hugo handbook">
+  <meta name="author" content="Laurence Luo(罗先桥)"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@magicluo0755" />
+  <meta name="twitter:creator" content="@magicluo0755" />
+  <meta property="og:url" content="https://laurenceluo.io/posts/building-static-website-with-hugo/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Laurence Luo" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://laurenceluo.io/posts/building-static-website-with-hugo/" />
+  <link rel="alternate" href="https://laurenceluo.io/index.xml" type="application/rss+xml" title="Laurence Luo">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://laurenceluo.io/css/main.css" />
+  <link rel="stylesheet" href="https://laurenceluo.io/css/search.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?11f7d254cfa4e0ca44b175c66d379ecc";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<link rel="stylesheet" href="https://laurenceluo.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://laurenceluo.io/">Laurence Luo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Cloud-Native</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/container">container</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/devops">DevOps</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/serverless">Serverless</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Microservices</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/spring-cloud">spring cloud</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/service-mesh">service mesh</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/istio">istio</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">iPaaS</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/camel">Apache-Camel</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/mule">Mule ESB</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="cooking" href="/categories/cooking">cooking</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://res.cloudinary.com/jimmysong/image/upload/images/2017101501.jpg" data-img-desc-1="杭州萧山机场快速路 Oct 15,2017"></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img">
+        
+        
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-md-offset-0">
+                
+                <div class="post-heading">
+                
+                  
+                     <h1>Hugo handbook</h1>
+                     
+                     
+                  
+                  
+                  
+                    
+                      <hr class="small">
+                      <span class="post-subheading">静态网站构建手册-使用Hugo构建个人博客Gitbook</span>
+                    
+                  
+                  
+                    <span class="post-meta">
+  
+  Posted on October 16, 2017
+  
+  
+</span>
+
+
+                  
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">Hugo handbook</h1>
+                
+                  
+                    <h2 align="center" class="posts-subheading">静态网站构建手册-使用Hugo构建个人博客Gitbook</h2>
+                  
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Mon Oct 16, 2017</h4>
+    </section>
+    <h5 id="wc">600 Words|Read in about 2 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://laurenceluo.io/tags/hugo/">hugo</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/website/">website</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/blog/">blog</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/gitbook/">gitbook</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/go/">go</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    
+  </aside>
+  
+
+
+                <p>很多人问我 <a href="https://jimmysong.io">jimmysong.io</a> 这个网站是怎么做出来的，我想有必要写本书给大家普及下静态网站构建的知识还有Hugo这个利器。</p>
+
+<p>本手册将指导你如何使用<a href="https://gohugo.io/">Hugo</a>构建静态网站用于个人博客或者项目展示。</p>
+
+<p>手把手教你如何从0开始构建一个静态网站，这不需要有太多的编程和开发经验和时间投入，也基本不需要多少成本（除了个性化域名），使用GitHub和Hugo模板即可快速构建和上线一个网站。</p>
+
+<p>Github地址：<a href="https://github.com/rootsongjc/hugo-handbook">https://github.com/rootsongjc/hugo-handbook</a></p>
+
+<p>Gitbook访问地址：<a href="https://jimmysong.io/hugo-handbook">https://jimmysong.io/hugo-handbook</a></p>
+
+<p><strong>初步规划如下内容</strong></p>
+
+<ul>
+<li>1. 前言</li>
+<li>2. 静态网站构建原理</li>
+<li>3. 静态网站构建工具简介
+
+<ul>
+<li>2.1 Jekyll</li>
+<li>2.2 Hexo</li>
+<li>2.3 Hugo</li>
+</ul></li>
+<li>4. Hugo网站构建
+
+<ul>
+<li>4.1 安装Hugo</li>
+<li>4.1 网站文档组织形式</li>
+<li>4.2 主题使用说明</li>
+<li>4.3 文章内容管理</li>
+<li>4.4 Template使用说明</li>
+<li>4.5 自动化构建</li>
+</ul></li>
+<li>5. 网站构建流程详解
+
+<ul>
+<li>5.1 创建GitHub账户</li>
+<li>5.2 申请域名</li>
+<li>5.3 网站构建环境配置</li>
+<li>5.4 模板选择与调试</li>
+<li>5.5 静态文件存储</li>
+<li>5.6 网站统计工具</li>
+<li>5.7 站内搜索插件</li>
+<li>5.7 网站评论插件</li>
+<li>5.8 社交化分享工具</li>
+<li>5.9 网站安全性</li>
+<li>5.10 搜索引擎优化</li>
+</ul></li>
+<li>6. BeautifulHugo主题使用说明
+
+<ul>
+<li>6.1 主题发展历程</li>
+<li>6.2 主题配置</li>
+<li>6.3 插件说明</li>
+<li>6.4 问题记录</li>
+</ul></li>
+<li>7. 后记</li>
+</ul>
+
+<p>将随着时间的推移，也随着我的网站的改进而不断的完善本书内容，敬请期待。</p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://laurenceluo.io/posts/using-heapster-to-get-object-metrics/" data-toggle="tooltip" data-placement="top" title="使用Heapster获取kubernetes集群对象的metric数据">&larr; Previous Post</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://laurenceluo.io/posts/cloud-native-slides-share/" data-toggle="tooltip" data-placement="top" title="Cloud Native幻灯片图书资料等汇总">Next Post &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/jimmysong-io-change-log/">jimmysong.io网站更新日志</a></li>
+                    
+                    <li><a href="/posts/deploy-applications-in-kubernetes/">适用于kubernetes的应用开发与部署流程详解</a></li>
+                    
+                    <li><a href="/posts/exploring-kubernetes-env-with-docker/">Kubernetes中的服务发现与docker容器间的环境变量传递源码探究</a></li>
+                    
+                    <li><a href="/posts/kubernetes-client-go-sample/">kubernetes client-go包使用示例</a></li>
+                    
+                    <li><a href="/posts/cloud-native-go/">Cloud Native Go - 基于Go和React的web云原生应用构建指南</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Mon Oct 16, 2017</h4>
+    </section>
+    <h5 id="wc">600 Words|Read in about 2 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://laurenceluo.io/tags/hugo/">hugo</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/website/">website</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/blog/">blog</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/gitbook/">gitbook</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/go/">go</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+                
+                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<aside id=comments>
+    
+    
+    
+    
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjI4Ni8xMjgyMQ==">
+    	<script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+           if (typeof LivereTower === 'function') { return; }
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    	</script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    
+</aside>
+</div>
+
+                
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xqluo2004@163.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/magicluo0755" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/magicluo0755" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/magicluo0755" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://laurenceluo.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://magicluo.com">Laurence Luo(罗先桥)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://laurenceluo.io/">Laurence Luo</a>
+          
+        </p>
+		
+
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

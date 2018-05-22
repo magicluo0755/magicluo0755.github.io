@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> 使用API blueprint创建API文档 - magicluo.com|罗先桥的博客|Cloud Native|Microservices</title>
+  <meta name="description" content="magicluo.com|罗先桥的博客|Cloud Native|Microservices" />
+  <meta property="og:title" content="使用API blueprint创建API文档" />
+  <meta name="twitter:title" content="使用API blueprint创建API文档" />
+  <meta name="description" content="在进行微服务开发的过程中，为了保证最终开发的系统跟最初的设计保持一致，约定RESTful接口之间的调用方法，我们需要将API设计文档化，因此">
+  <meta property="og:description" content="在进行微服务开发的过程中，为了保证最终开发的系统跟最初的设计保持一致，约定RESTful接口之间的调用方法，我们需要将API设计文档化，因此">
+  <meta name="twitter:description" content="在进行微服务开发的过程中，为了保证最终开发的系统跟最初的设计保持一致，约定RESTful接口之间的调用方法，我们需要将API设计文档化，因此">
+  <meta name="author" content="Laurence Luo(罗先桥)"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@magicluo0755" />
+  <meta name="twitter:creator" content="@magicluo0755" />
+  <meta property="og:url" content="https://laurenceluo.io/posts/creating-api-document-with-api-blueprint/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Laurence Luo" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://laurenceluo.io/posts/creating-api-document-with-api-blueprint/" />
+  <link rel="alternate" href="https://laurenceluo.io/index.xml" type="application/rss+xml" title="Laurence Luo">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://laurenceluo.io/css/main.css" />
+  <link rel="stylesheet" href="https://laurenceluo.io/css/search.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?11f7d254cfa4e0ca44b175c66d379ecc";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<link rel="stylesheet" href="https://laurenceluo.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://laurenceluo.io/">Laurence Luo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Cloud-Native</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/container">container</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/devops">DevOps</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/serverless">Serverless</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Microservices</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/spring-cloud">spring cloud</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/service-mesh">service mesh</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/istio">istio</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">iPaaS</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/camel">Apache-Camel</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/mule">Mule ESB</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="cooking" href="/categories/cooking">cooking</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">使用API blueprint创建API文档</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri Jun 23, 2017</h4>
+    </section>
+    <h5 id="wc">900 Words|Read in about 2 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://laurenceluo.io/tags/devops/">devops</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/design/">design</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/tools/">tools</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#api-blueprint-是什么">API Blueprint 是什么</a></li>
+<li><a href="#生成静态页面和进行冒烟测试">生成静态页面和进行冒烟测试</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<p>在进行微服务开发的过程中，为了保证最终开发的系统跟最初的设计保持一致，约定RESTful接口之间的调用方法，我们需要将API设计文档化，因此我们引入了API Blueprint。</p>
+
+<h2 id="api-blueprint-是什么">API Blueprint 是什么</h2>
+
+<p><a href="https://apiblueprint.org/">API Blueprint</a> 用来编写API文档的一种标记语言，类似于Markdown，因为是纯文本的，所以方便共享编辑，具体的语法规则可以在 <a href="https://apiblueprint.org/documentation/">API Blueprint documentation</a> 查看，配合一些开源的工具可以把接口文档渲染成 html 再搭配一个静态服务器，方便于分享。</p>
+
+<p>另外，配合一些工具，可以直接生成一个 mock data 数据，这样只要和后端的同学约定好接口格式，那么前端再开发的时候可以使用 mock data 数据来做测试，等到后端写好接口之后再做联调就可以了。</p>
+
+<p>我们以<a href="https://jimmysong.io/cloud-native-go">Cloud Native Go</a>书中的<a href="https://github.com/rootsongjc/gogo-service">gogo-service</a>示例里的<code>apiary.apib</code>文件为例。</p>
+
+<p>该文件实际上是一个Markdown格式的文件，Github中原生支持该文件，使用<a href="https://typora.io">Typora</a>打开后是这样子。</p>
+
+<p><img src="https://res.cloudinary.com/jimmysong/image/upload/images/apiary-api-blueprint.jpg" alt="apiary.apib文件" /></p>
+
+<p>在Visual Studio Code中有个API Element extension对于API Blueprint文件的支持也比较好。</p>
+
+<h2 id="生成静态页面和进行冒烟测试">生成静态页面和进行冒烟测试</h2>
+
+<p>我们分别使用开源的<a href="https://github.com/danielgtaylor/aglio">aglio</a>和<a href="https://github.com/Aconex/drakov">drakov</a>来生成静态页面和进行冒烟测试。</p>
+
+<p><a href="https://github.com/danielgtaylor/aglio">aglio</a> 是一个可以根据 api-blueprint 的文档生成静态 HTML 页面的工具。</p>
+
+<p>其生成的工具不是简单的 markdown 到 html 的转换, 而是可以生成类似 rdoc 这样的拥有特定格式风格的查询文档。</p>
+
+<p>在本地安装有node环境的情况下，使用下面的命令安装和使用aglio。</p>
+
+<pre><code class="language-bash">$ npm install -g aglio
+$ aglio -i apiary.apib -o api.html
+</code></pre>
+
+<p>打开api.html文件后，如图：</p>
+
+<p><img src="https://res.cloudinary.com/jimmysong/image/upload/images/api-blueprint-html.jpg" alt="使用aglio生成的API文档" /></p>
+
+<p>安装和使用drakov。</p>
+
+<pre><code class="language-bash">$ npm install -g drakov
+$ drakov -f apiary.apib -p 3000
+[INFO] No configuration files found
+[INFO] Loading configuration from CLI
+   DRAKOV STARTED   
+[LOG] Setup Route: GET /matches List All Matches
+[LOG] Setup Route: POST /matches Start a New Match
+[LOG] Setup Route: GET /matches/:match_id Get Match Details
+[LOG] Setup Route: GET /matches/:match_id Get Current Liberties for Match
+[LOG] Setup Route: GET /matches/:match_id Get Current Chains for Match
+[LOG] Setup Route: GET /matches/:match_id/moves Get a Sequential List of All Moves Performed in a Match
+[LOG] Setup Route: POST /matches/:match_id/moves Make a Move
+   Drakov 1.0.4      Listening on port 3000
+</code></pre>
+
+<p>通过<code>http://localhost:3000</code>就可以对该应用进行冒烟测试了。</p>
+
+<p>例如查询有哪些match：</p>
+
+<pre><code class="language-bash">$ curl http://localhost:3000/matches
+[
+    {
+        &quot;id&quot; : &quot;5a003b78-409e-4452-b456-a6f0dcee05bd&quot;,
+        &quot;started_at&quot;: 13231239123391,
+        &quot;turn&quot; : 27,
+        &quot;gridsize&quot; : 19,
+        &quot;playerWhite&quot; : &quot;bob&quot;,
+        &quot;playerBlack&quot; : &quot;alfred&quot;
+    }
+]
+</code></pre>
+
+<p>另外通过<a href="https://apiary.io">Apiary</a>这个网站，我们可以直接以上的所有功能，还可以同时在页面上进行mock test，生成多种语言的code example。如图：</p>
+
+<p><img src="https://res.cloudinary.com/jimmysong/image/upload/images/apiary-gogo-service.jpg" alt="Apiary页面" /></p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://laurenceluo.io/posts/continuous-integration-with-wercker/" data-toggle="tooltip" data-placement="top" title="使用Wercker进行持续构建与发布">&larr; Previous Post</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://laurenceluo.io/posts/kubernetes-pod-cheetsheet/" data-toggle="tooltip" data-placement="top" title="Kubernetes Pod Cheat Sheet——Pod数据结构参考图">Next Post &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/fabric8-introduction/">开源微服务管理平台fabric8简介</a></li>
+                    
+                    <li><a href="/posts/picture-process/">两款图片处理工具——Google Guetzli和基于AI的Deep Photo Style Transfer</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri Jun 23, 2017</h4>
+    </section>
+    <h5 id="wc">900 Words|Read in about 2 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://laurenceluo.io/tags/devops/">devops</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/design/">design</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/tools/">tools</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+                
+                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<aside id=comments>
+    
+    
+    
+    
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjI4Ni8xMjgyMQ==">
+    	<script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+           if (typeof LivereTower === 'function') { return; }
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    	</script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    
+</aside>
+</div>
+
+                
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xqluo2004@163.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/magicluo0755" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/magicluo0755" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/magicluo0755" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://laurenceluo.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://magicluo.com">Laurence Luo(罗先桥)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://laurenceluo.io/">Laurence Luo</a>
+          
+        </p>
+		
+
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

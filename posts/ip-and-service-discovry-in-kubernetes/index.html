@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> Kubernetes中的IP和服务发现体系 - magicluo.com|罗先桥的博客|Cloud Native|Microservices</title>
+  <meta name="description" content="magicluo.com|罗先桥的博客|Cloud Native|Microservices" />
+  <meta property="og:title" content="Kubernetes中的IP和服务发现体系" />
+  <meta name="twitter:title" content="Kubernetes中的IP和服务发现体系" />
+  <meta name="description" content="Cluster IP 即Service的IP，通常在集群内部使用Service Name来访问服务，用户不需要知道该IP地址，kubedns会自动根据servi">
+  <meta property="og:description" content="Cluster IP 即Service的IP，通常在集群内部使用Service Name来访问服务，用户不需要知道该IP地址，kubedns会自动根据servi">
+  <meta name="twitter:description" content="Cluster IP 即Service的IP，通常在集群内部使用Service Name来访问服务，用户不需要知道该IP地址，kubedns会自动根据servi">
+  <meta name="author" content="Laurence Luo(罗先桥)"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@magicluo0755" />
+  <meta name="twitter:creator" content="@magicluo0755" />
+  <meta property="og:url" content="https://laurenceluo.io/posts/ip-and-service-discovry-in-kubernetes/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Laurence Luo" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://laurenceluo.io/posts/ip-and-service-discovry-in-kubernetes/" />
+  <link rel="alternate" href="https://laurenceluo.io/index.xml" type="application/rss+xml" title="Laurence Luo">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://laurenceluo.io/css/main.css" />
+  <link rel="stylesheet" href="https://laurenceluo.io/css/search.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?11f7d254cfa4e0ca44b175c66d379ecc";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<link rel="stylesheet" href="https://laurenceluo.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://laurenceluo.io/">Laurence Luo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Cloud-Native</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/container">container</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/devops">DevOps</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/serverless">Serverless</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Microservices</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/spring-cloud">spring cloud</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/service-mesh">service mesh</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/istio">istio</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">iPaaS</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/camel">Apache-Camel</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/mule">Mule ESB</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="cooking" href="/categories/cooking">cooking</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://res.cloudinary.com/jimmysong/image/upload/images/20151108011.jpg" data-img-desc-1="路边的野花@朝阳公园 Nov 8,2015"></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img">
+        
+        
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-md-offset-0">
+                
+                <div class="post-heading">
+                
+                  
+                     <h1>Kubernetes中的IP和服务发现体系</h1>
+                     
+                    <span class="post-meta">
+  
+  Posted on April 24, 2017
+  
+  
+</span>
+
+
+                    
+                  
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">Kubernetes中的IP和服务发现体系</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Mon Apr 24, 2017</h4>
+    </section>
+    <h5 id="wc">500 Words|Read in about 1 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://laurenceluo.io/tags/kubernetes/">kubernetes</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#cluster-ip">Cluster IP</a></li>
+<li><a href="#pod-ip">Pod IP</a></li>
+<li><a href="#主机-node-ip">主机/Node IP</a></li>
+<li><a href="#服务发现">服务发现</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<h2 id="cluster-ip">Cluster IP</h2>
+
+<p>即Service的IP，通常在集群内部使用Service Name来访问服务，用户不需要知道该IP地址，kubedns会自动根据service name解析到服务的IP地址，将流量分发给Pod。</p>
+
+<p><strong>Service Name才是对外暴露服务的关键。</strong></p>
+
+<p>在kubeapi的配置中指定该地址范围。</p>
+
+<p><strong>默认配置</strong></p>
+
+<pre><code class="language-ini">--service-cluster-ip-range=10.254.0.0/16
+--service-node-port-range=30000-32767
+</code></pre>
+
+<h2 id="pod-ip">Pod IP</h2>
+
+<p>通过配置flannel的<code>network</code>和<code>subnet</code>来实现。</p>
+
+<p><strong>默认配置</strong></p>
+
+<pre><code class="language-ini">FLANNEL_NETWORK=172.30.0.0/16
+FLANNEL_SUBNET=172.30.46.1/24
+</code></pre>
+
+<p>Pod的IP地址<u>不固定</u>，当pod重启时IP地址会变化。</p>
+
+<p><strong>该IP地址也是用户无需关心的。</strong></p>
+
+<p>但是Flannel会在本地生成相应IP段的虚拟网卡，为了防止和集群中的其他IP地址冲突，需要规划IP段。</p>
+
+<h2 id="主机-node-ip">主机/Node IP</h2>
+
+<p>物理机的IP地址，即kubernetes管理的物理机的IP地址。</p>
+
+<pre><code class="language-bash">$ kubectl get nodes
+NAME           STATUS    AGE       VERSION
+172.20.0.113   Ready     12d       v1.6.0
+172.20.0.114   Ready     12d       v1.6.0
+172.20.0.115   Ready     12d       v1.6.0
+</code></pre>
+
+<h2 id="服务发现">服务发现</h2>
+
+<p><strong>集群内部的服务发现</strong></p>
+
+<p>通过DNS即可发现，kubends是kubernetes的一个插件，不同服务之间可以直接使用service name访问。</p>
+
+<p>通过<code>sericename:port</code>即可调用服务。</p>
+
+<p><strong>服务外部的服务发现</strong></p>
+
+<p>通过Ingress来实现，我们是用的<strong>Traefik</strong>来实现。</p>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://jimmysong.io/posts/kubernetes-ingress-resource/">Ingress解析</a></p>
+
+<p><a href="https://jimmysong.io/posts/traefik-ingress-installation/">Kubernetes Traefik Ingress安装试用</a></p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://laurenceluo.io/posts/kubernetes-rbac-support/" data-toggle="tooltip" data-placement="top" title="Kubernetes中的RBAC支持">&larr; Previous Post</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://laurenceluo.io/posts/distributed-load-testing-using-kubernetes/" data-toggle="tooltip" data-placement="top" title="运用kubernetes进行分布式负载测试">Next Post &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/kubernetes-rbac-support/">Kubernetes中的RBAC支持</a></li>
+                    
+                    <li><a href="/posts/traefik-ingress-installation/">Kubernetes traefik ingress安装试用</a></li>
+                    
+                    <li><a href="/posts/kubernetes-ingress-resource/">Kubernetes ingress解析</a></li>
+                    
+                    <li><a href="/posts/kubernetes-handbook-startup/">Kubernetes Handbook发起</a></li>
+                    
+                    <li><a href="/posts/kubernetes-installation-document/">Kubernetes1.6集群部署完全指南——二进制文件部署开启TLS基于CentOS7发布</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Mon Apr 24, 2017</h4>
+    </section>
+    <h5 id="wc">500 Words|Read in about 1 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://laurenceluo.io/tags/kubernetes/">kubernetes</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+                
+                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<aside id=comments>
+    
+    
+    
+    
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjI4Ni8xMjgyMQ==">
+    	<script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+           if (typeof LivereTower === 'function') { return; }
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    	</script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    
+</aside>
+</div>
+
+                
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xqluo2004@163.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/magicluo0755" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/magicluo0755" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/magicluo0755" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://laurenceluo.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://magicluo.com">Laurence Luo(罗先桥)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://laurenceluo.io/">Laurence Luo</a>
+          
+        </p>
+		
+
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

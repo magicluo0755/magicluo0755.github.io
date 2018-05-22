@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> Book - magicluo.com|罗先桥的博客|Cloud Native|Microservices</title>
+  <meta name="description" content="magicluo.com|罗先桥的博客|Cloud Native|Microservices" />
+  <meta property="og:title" content="Book" />
+  <meta name="twitter:title" content="Book" />
+  <meta name="author" content="Laurence Luo(罗先桥)"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@magicluo0755" />
+  <meta name="twitter:creator" content="@magicluo0755" />
+  <meta property="og:url" content="https://laurenceluo.io/tags/book/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Laurence Luo" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://laurenceluo.io/tags/book/" />
+  <link rel="alternate" href="https://laurenceluo.io/index.xml" type="application/rss+xml" title="Laurence Luo">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://laurenceluo.io/css/main.css" />
+  <link rel="stylesheet" href="https://laurenceluo.io/css/search.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?11f7d254cfa4e0ca44b175c66d379ecc";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<link rel="stylesheet" href="https://laurenceluo.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://laurenceluo.io/">Laurence Luo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Cloud-Native</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/container">container</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/devops">DevOps</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/serverless">Serverless</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Microservices</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/spring-cloud">spring cloud</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/service-mesh">service mesh</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/istio">istio</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">iPaaS</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/camel">Apache-Camel</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/mule">Mule ESB</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="cooking" href="/categories/cooking">cooking</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  <header class="header-section ">
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="page-heading">
+              <h1>#Book</h1>
+              <hr class="small">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    
+  <div class="container" role="main">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/container-networking-from-docker-to-kubernetes-nginx/">
+                <h2 class="post-title">从 Docker 到 Kubernetes 中的容器网络图书资料分享</h2>
+
+                
+                  <h3 class="post-subtitle">
+                    资料来自 Nginx，O&#39;Reilly 出版
+                  </h3>
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on April 21, 2018
+              </p>
+              <div class="post-entry">
+                
+                  TL;DR 点此下载本书 PDF。 近日 Nginx 公司的 Michael Hausenblas 发布了一本关于 docker 和 kubernetes 中的容器网络的小册子。这份资料一共 72 页，是大家由浅入深的了解 Docker 和 Kubernetes 中的网络的很好的
+                  <a href="https://laurenceluo.io/posts/container-networking-from-docker-to-kubernetes-nginx/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/kubernetes/">kubernetes</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/book/">book</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/cloud-native-java/">
+                <h2 class="post-title">Cloud Native Java</h2>
+
+                
+                  <h3 class="post-subtitle">
+                    使用Java构建云原生应用
+                  </h3>
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on February 23, 2018
+              </p>
+              <div class="post-entry">
+                
+                  这是我翻译的第三本Cloud Native技术书，前两本分别是： Cloud Native Go Cloud Native Python 至今网上都还没有该书的详细目录，翻译过程中我顺便整理了下该书的详细
+                  <a href="https://laurenceluo.io/posts/cloud-native-java/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/cloud-native/">cloud-native</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/book/">book</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/how-to-translate-a-book/">
+                <h2 class="post-title">如何翻译一本外文书</h2>
+
+                
+                  <h3 class="post-subtitle">
+                    从图书引进到翻译出版全攻略
+                  </h3>
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on October 27, 2017
+              </p>
+              <div class="post-entry">
+                
+                  我是以下两本Cloud Native图书的译者： Cloud Native Go：已由电子工业出版社出版 Cloud Native Python：正在翻译中 同时我还参与了kubernetes
+                  <a href="https://laurenceluo.io/posts/how-to-translate-a-book/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/talk/">talk</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/book/">book</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/cloud-native-python/">
+                <h2 class="post-title">Cloud Native Python</h2>
+
+                
+                  <h3 class="post-subtitle">
+                    使用Python和React构建云原生应用
+                  </h3>
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on August 15, 2017
+              </p>
+              <div class="post-entry">
+                
+                  继 Cloud Native Go 之后又一本关于 Cloud Native 的力作已经登上了我的写作日程，这次是基于 Python 构建微服务和云原生 Web 应用程序，书名叫作 Cloud Native Python。 下面是它的英文原
+                  <a href="https://laurenceluo.io/posts/cloud-native-python/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/cloud-native/">cloud-native</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/book/">book</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/python/">python</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/microservices/">microservices</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/migrating-to-cloud-native-architecture/">
+                <h2 class="post-title">迁移到云原生应用架构指南</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on July 27, 2017
+              </p>
+              <div class="post-entry">
+                
+                  迁移到云原生应用架构 本书是 Migrating to Cloud Native Application Architectures 的中文版。 本书托管地址 - Github Gitbook 阅读地址 译者序 云时代的云原生应用大势已来，将传统的单体架构应用迁移到云原生
+                  <a href="https://laurenceluo.io/posts/migrating-to-cloud-native-architecture/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/cloud-native/">cloud-native</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/book/">book</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/book-kubernetes-management-design-patterns/">
+                <h2 class="post-title">记一本关于kubernetes management design patterns的书</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on July 20, 2017
+              </p>
+              <div class="post-entry">
+                
+                  书名： Kubernetes Management Design Patterns: With Docker, CoreOS Linux, and Other Platforms Amazon购买链接：链接 作者：Deepak Vohra 发行日期：2017年1月20日 出版社：Apress 页数：399 简介
+                  <a href="https://laurenceluo.io/posts/book-kubernetes-management-design-patterns/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/kubernetes/">kubernetes</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/book/">book</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/cloud-native-go/">
+                <h2 class="post-title">Cloud Native Go - 基于Go和React的web云原生应用构建指南</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on June 6, 2017
+              </p>
+              <div class="post-entry">
+                
+                  Kevin Hoffman和Dan Nemeth著的《Cloud Native Go - 基于Go和React的web云原生应用构建指南》已由电子工业出版社出版。 简介 Cloud Native G
+                  <a href="https://laurenceluo.io/posts/cloud-native-go/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/book/">book</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/go/">go</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/microservices/">microservices</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/cloud-native/">cloud-native</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/kubernetes-handbook-startup/">
+                <h2 class="post-title">Kubernetes Handbook发起</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on April 14, 2017
+              </p>
+              <div class="post-entry">
+                
+                  Kubernetes 是 Google 基于 Borg 开源的容器编排调度引擎，作为 CNCF（Cloud Native Computing Foundation）最重要的组件之一，它的目标不仅仅是一个编排系统，而是提
+                  <a href="https://laurenceluo.io/posts/kubernetes-handbook-startup/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/kubernetes/">kubernetes</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/book/">book</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/kubernetes-installation-document/">
+                <h2 class="post-title">Kubernetes1.6集群部署完全指南——二进制文件部署开启TLS基于CentOS7发布</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on April 13, 2017
+              </p>
+              <div class="post-entry">
+                
+                  这可能是目前为止最详细的kubernetes安装文档了。 经过几天的安装、调试、整理，今天该文档终于发布了。 你可以在这里看到文档和配置文件和我
+                  <a href="https://laurenceluo.io/posts/kubernetes-installation-document/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/kubernetes/">kubernetes</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/book/">book</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://laurenceluo.io/posts/cloud-computing-architecture-practice/">
+                <h2 class="post-title">云计算技术架构与实践（第二版）读后感</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                Posted on April 8, 2017
+              </p>
+              <div class="post-entry">
+                
+                  前言 最近（2017年3月）友人推荐了一本书，是华为的工程师写的《云计算架构与实践第二版》，正好在网上找到了这本书的pdf，分享给大家，点这里
+                  <a href="https://laurenceluo.io/posts/cloud-computing-architecture-practice/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://laurenceluo.io/tags/cloud-computing/">cloud-computing</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/book/">book</a>&nbsp;
+                  
+                    #<a href="https://laurenceluo.io/tags/huawei/">huawei</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+        </div>
+        
+          <ul class="pager main-pager">
+            
+            
+              <li class="next">
+                <a href="/tags/book/page/2">Older Posts &rarr;</a>
+              </li>
+            
+          </ul>
+        
+      </div>
+    <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+
+<ul class="pagination">
+    
+    <li>
+        <a href="/tags/book/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li
+    class="disabled">
+    <a href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    class="active"><a href="/tags/book/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    ><a href="/tags/book/page/2/">2</a></li>
+    
+    
+    <li
+    >
+    <a href="/tags/book/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li>
+        <a href="/tags/book/page/2/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
+</ul>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xqluo2004@163.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/magicluo0755" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/magicluo0755" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/magicluo0755" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://laurenceluo.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://magicluo.com">Laurence Luo(罗先桥)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://laurenceluo.io/">Laurence Luo</a>
+          
+        </p>
+		
+
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

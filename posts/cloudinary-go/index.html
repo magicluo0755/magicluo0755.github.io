@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> Cloudinary Go - magicluo.com|罗先桥的博客|Cloud Native|Microservices</title>
+  <meta name="description" content="magicluo.com|罗先桥的博客|Cloud Native|Microservices" />
+  <meta property="og:title" content="Cloudinary Go" />
+  <meta name="twitter:title" content="Cloudinary Go" />
+  <meta name="description" content="Cloudinary-go is a Go client library and CLI tool to upload static assets to Cloudinary service">
+  <meta property="og:description" content="Cloudinary-go is a Go client library and CLI tool to upload static assets to Cloudinary service">
+  <meta name="twitter:description" content="Cloudinary-go is a Go client library and CLI tool to upload static assets to Cloudinary service">
+  <meta name="author" content="Laurence Luo(罗先桥)"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@magicluo0755" />
+  <meta name="twitter:creator" content="@magicluo0755" />
+  <meta property="og:url" content="https://laurenceluo.io/posts/cloudinary-go/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Laurence Luo" />
+
+  <meta name="generator" content="Hugo 0.40.1" />
+  <link rel="canonical" href="https://laurenceluo.io/posts/cloudinary-go/" />
+  <link rel="alternate" href="https://laurenceluo.io/index.xml" type="application/rss+xml" title="Laurence Luo">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://laurenceluo.io/css/main.css" />
+  <link rel="stylesheet" href="https://laurenceluo.io/css/search.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?11f7d254cfa4e0ca44b175c66d379ecc";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<link rel="stylesheet" href="https://laurenceluo.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://laurenceluo.io/">Laurence Luo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Cloud-Native</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/container">container</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/devops">DevOps</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/serverless">Serverless</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Microservices</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/spring-cloud">spring cloud</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/service-mesh">service mesh</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/istio">istio</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">iPaaS</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://laurenceluo.io/categories/camel">Apache-Camel</a>
+                
+                
+                  <a href="https://laurenceluo.io/categories/mule">Mule ESB</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="cooking" href="/categories/cooking">cooking</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://res.cloudinary.com/jimmysong/image/upload/images/20171014010.jpg" data-img-desc-1="Beijing Capital Airport Oct 14,2017"></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img">
+        
+        
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-md-offset-0">
+                
+                <div class="post-heading">
+                
+                  
+                     <h1>Cloudinary Go</h1>
+                     
+                     
+                  
+                  
+                  
+                    
+                      <hr class="small">
+                      <span class="post-subheading">A Go client library and CLI tool to upload static assets to Cloudinary service</span>
+                    
+                  
+                  
+                    <span class="post-meta">
+  
+  Posted on October 29, 2017
+  
+  
+</span>
+
+
+                  
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">Cloudinary Go</h1>
+                
+                  
+                    <h2 align="center" class="posts-subheading">A Go client library and CLI tool to upload static assets to Cloudinary service</h2>
+                  
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Sun Oct 29, 2017</h4>
+    </section>
+    <h5 id="wc">500 Words|Read in about 2 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://laurenceluo.io/tags/go/">go</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/code/">code</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/cloudinary/">cloudinary</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#usage">Usage</a>
+<ul>
+<li><a href="#upload">Upload</a></li>
+<li><a href="#list">List</a></li>
+<li><a href="#delete">Delete</a></li>
+</ul></li>
+<li><a href="#note">Note</a>
+<ul>
+<li><a href="#publicid">PublicID</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<p><a href="https://github.com/rootsongjc/cloudinary-go">Cloudinary-go</a> is a Go client library and CLI tool to upload static assets to the <a href="http://www.cloudinary.com">Cloudinary</a> service.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Install the CLI tool and the library with:</p>
+
+<pre><code class="language-bash">go get github.com/rootsongjc/cloudinary-go/cloudinary
+</code></pre>
+
+<p>Or download the release binary from <a href="https://github.com/rootsongjc/cloudinary-go/releases">release</a>.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>Create a default configuration file named <code>${HOME}/.cloudinary.toml</code></p>
+
+<pre><code class="language-tom">[cloudinary]
+uri=cloudinary://api_key:api_secret@cloud_name # check your cloudinary dashboard to the the uri
+prepend = &quot;images&quot; # default cloudinary folder
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+
+<pre><code class="language-bash">A CLI tool to upload static assets to the Cloudinary service.
+
+Usage:
+  cloudinary [command]
+
+Available Commands:
+  help        Help about any command
+  ls          List files
+  put         Upload file
+  rm          Remove file
+
+Flags:
+      --config string   config file (default is $HOME/.cloudinary.toml)
+  -h, --help            help for cloudinary
+  -i, --image string    image filename or public id
+  -p, --path string     flle prepend path
+  -r, --raw string      raw filename or public id
+  -s, --simulate        simulate, do nothing (dry run)
+  -v, --verbose         verbose output
+
+Use &quot;cloudinary [command] --help&quot; for more information about a command.
+</code></pre>
+
+<p>Type <code>cloudinary</code> in the terminal to get some help.</p>
+
+<h3 id="upload">Upload</h3>
+
+<pre><code class="language-bash"># upload image file
+cloudinary put -i abc.jpg -p images
+# upload raw file
+cloudinary put -r abc.js -p js
+</code></pre>
+
+<p>As the local image uploaded to cloudinary, you will get a URL such like this:</p>
+
+<pre><code class="language-bash">cloudinary put -i cover.jpg
+Using config file: /Users/jimmy/.cloudinary.toml
+Warning: database not set (upload sync disabled)
+Default remote prepend path set to:  images/
+==&gt; PublicID: images/cover
+==&gt; Uploading as images
+2017/10/29 14:49:01 Uploading: cover.jpg
+2017/10/29 14:49:06 URL: https://res.cloudinary.com/jimmysong/image/upload/images/cover.jpg
+</code></pre>
+
+<p>The URL <code>https://res.cloudinary.com/jimmysong/image/upload/images/cover.jpg</code> represent the laster version of the image.</p>
+
+<p>You can use <code>ls</code> to get the upload version.</p>
+
+<h3 id="list">List</h3>
+
+<pre><code class="language-bash"># list all resources
+cloudinary ls
+# list specified static file details
+cloudinary ls -i abc -p images
+</code></pre>
+
+<p>List raw file details not support.</p>
+
+<p>Get the upload version.</p>
+
+<pre><code class="language-bash">cloudinary ls -i cover.jpg
+Using config file: /Users/jimmy/.cloudinary.toml
+Warning: database not set (upload sync disabled)
+Default remote prepend path set to:  images/
+==&gt; PublicID: images/cover
+==&gt; Image Details:
+public_id                      Format Version    Type  Size(KB) Width  Height Url
+images/cover                   jpg    1509259745 image 297      1800   2360   http://res.cloudinary.com/jimmysong/image/upload/v1509259745/images/cover.jpg
+</code></pre>
+
+<p><strong>Note</strong>: Whether You can specify the file name with extension name or not, that also works.</p>
+
+<h3 id="delete">Delete</h3>
+
+<pre><code class="language-bash"># delete image
+cloudinary delete -i abc -p images
+# delete raw resource
+cloudinary delete -r abc.js -p js
+</code></pre>
+
+<h2 id="note">Note</h2>
+
+<ol>
+<li>Cloudinary prepend path should not start with  a &ldquo;/&rdquo; root path</li>
+</ol>
+
+<h3 id="publicid">PublicID</h3>
+
+<ol>
+<li>PublicID of <strong>Image resource</strong> doesn&rsquo;t include their extension name</li>
+<li>PublicID of <strong>Raw resource</strong> include their extension name</li>
+<li>PublicID includes the prepend path</li>
+</ol>
+
+<p><strong>PublicID example</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Local file</th>
+<th>Prepend path</th>
+<th>PublicID</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>abc.jpg</td>
+<td>images</td>
+<td>images/abc</td>
+</tr>
+
+<tr>
+<td>abc.js</td>
+<td>js</td>
+<td>js/abc.js</td>
+</tr>
+</tbody>
+</table>
+
+<p>More information see <a href="https://cloudinary.com/documentation/image_upload_api_reference">Cloudinary Image upload API reference</a></p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://laurenceluo.io/posts/how-to-translate-a-book/" data-toggle="tooltip" data-placement="top" title="如何翻译一本外文书">&larr; Previous Post</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://laurenceluo.io/posts/kubernetes-dashboard-upgrade/" data-toggle="tooltip" data-placement="top" title="Kubernetes Dashboard中的身份认证详解">Next Post &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/static-website-storage/">个人网站中的静态文件云存储选择</a></li>
+                    
+                    <li><a href="/posts/building-static-website-with-hugo/">Hugo handbook</a></li>
+                    
+                    <li><a href="/posts/deploy-applications-in-kubernetes/">适用于kubernetes的应用开发与部署流程详解</a></li>
+                    
+                    <li><a href="/posts/exploring-kubernetes-env-with-docker/">Kubernetes中的服务发现与docker容器间的环境变量传递源码探究</a></li>
+                    
+                    <li><a href="/posts/kubernetes-client-go-sample/">kubernetes client-go包使用示例</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Sun Oct 29, 2017</h4>
+    </section>
+    <h5 id="wc">500 Words|Read in about 2 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://laurenceluo.io/tags/go/">go</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/code/">code</a> &nbsp;
+        
+        <a href="https://laurenceluo.io/tags/cloudinary/">cloudinary</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+                
+                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<aside id=comments>
+    
+    
+    
+    
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjI4Ni8xMjgyMQ==">
+    	<script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+           if (typeof LivereTower === 'function') { return; }
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    	</script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    
+</aside>
+</div>
+
+                
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xqluo2004@163.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/magicluo0755" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/magicluo0755" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/magicluo0755" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://laurenceluo.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://magicluo.com">Laurence Luo(罗先桥)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://laurenceluo.io/">Laurence Luo</a>
+          
+        </p>
+		
+
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

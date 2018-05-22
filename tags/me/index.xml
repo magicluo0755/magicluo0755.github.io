@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Me on Laurence Luo</title>
+    <link>https://laurenceluo.io/tags/me/</link>
+    <description>Recent content in Me on Laurence Luo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>xqluo2004@163.com (Laurence Luo(罗先桥))</managingEditor>
+    <webMaster>xqluo2004@163.com (Laurence Luo(罗先桥))</webMaster>
+    <lastBuildDate>Thu, 07 Dec 2017 12:11:29 +0800</lastBuildDate>
+    
+	<atom:link href="https://laurenceluo.io/tags/me/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>从Kubernetes到Cloud Native——云原生应用之路</title>
+      <link>https://laurenceluo.io/posts/archsummit-beijing-2017-from-kubernetes-to-cloud-native/</link>
+      <pubDate>Thu, 07 Dec 2017 12:11:29 +0800</pubDate>
+      <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
+      <guid>https://laurenceluo.io/posts/archsummit-beijing-2017-from-kubernetes-to-cloud-native/</guid>
+      <description>2017年，我们面临着架构变革的大时代，例如Kubernetes结束容器编排之争、Kafka发布1.0、Serverless逐渐发力、边缘计</description>
+    </item>
+    
+    <item>
+      <title>About me</title>
+      <link>https://laurenceluo.io/about/</link>
+      <pubDate>Sat, 20 May 2017 20:34:54 +0800</pubDate>
+      <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
+      <guid>https://laurenceluo.io/about/</guid>
+      <description>Info Laurence Luo（罗先桥） ShenZhen, China Major in Software Engineering Career Apusic Middware（金蝶中间件）current SIAT （中科院深圳研究院)</description>
+    </item>
+    
+  </channel>
+</rss>
