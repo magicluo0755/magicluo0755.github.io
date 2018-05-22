@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Picture on Laurence Luo</title>
-    <link>https://laurenceluo.io/tags/picture/</link>
+    <link>https://magicluo0755.github.io/tags/picture/</link>
     <description>Recent content in Picture on Laurence Luo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
@@ -10,15 +10,15 @@
     <webMaster>xqluo2004@163.com (Laurence Luo(罗先桥))</webMaster>
     <lastBuildDate>Sun, 02 Apr 2017 20:27:00 +0800</lastBuildDate>
     
-	<atom:link href="https://laurenceluo.io/tags/picture/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://magicluo0755.github.io/tags/picture/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>两款图片处理工具——Google Guetzli和基于AI的Deep Photo Style Transfer</title>
-      <link>https://laurenceluo.io/posts/picture-process/</link>
+      <link>https://magicluo0755.github.io/posts/picture-process/</link>
       <pubDate>Sun, 02 Apr 2017 20:27:00 +0800</pubDate>
       <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
-      <guid>https://laurenceluo.io/posts/picture-process/</guid>
+      <guid>https://magicluo0755.github.io/posts/picture-process/</guid>
       <description>前言 如果你看过美剧「硅谷」会记得剧中主角们所在的创业公司PiedPipper，他们就是靠自己发明的视频压缩算法来跟大公司Hooli竞争的，这</description>
     </item>
     

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rbac on Laurence Luo</title>
-    <link>https://laurenceluo.io/tags/rbac/</link>
+    <link>https://magicluo0755.github.io/tags/rbac/</link>
     <description>Recent content in Rbac on Laurence Luo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
@@ -10,15 +10,15 @@
     <webMaster>xqluo2004@163.com (Laurence Luo(罗先桥))</webMaster>
     <lastBuildDate>Fri, 21 Apr 2017 19:53:18 +0800</lastBuildDate>
     
-	<atom:link href="https://laurenceluo.io/tags/rbac/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://magicluo0755.github.io/tags/rbac/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Kubernetes中的RBAC支持</title>
-      <link>https://laurenceluo.io/posts/kubernetes-rbac-support/</link>
+      <link>https://magicluo0755.github.io/posts/kubernetes-rbac-support/</link>
       <pubDate>Fri, 21 Apr 2017 19:53:18 +0800</pubDate>
       <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
-      <guid>https://laurenceluo.io/posts/kubernetes-rbac-support/</guid>
+      <guid>https://magicluo0755.github.io/posts/kubernetes-rbac-support/</guid>
       <description>在Kubernetes1.6版本中新增角色访问控制机制（Role-Based Access，RBAC）让集群管理员可以针对特定使用者或服务账号</description>
     </item>
     

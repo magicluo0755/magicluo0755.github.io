@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Container on Laurence Luo</title>
-    <link>https://laurenceluo.io/categories/container/</link>
+    <link>https://magicluo0755.github.io/categories/container/</link>
     <description>Recent content in Container on Laurence Luo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
@@ -10,15 +10,15 @@
     <webMaster>xqluo2004@163.com (Laurence Luo(罗先桥))</webMaster>
     <lastBuildDate>Tue, 04 Apr 2017 00:19:04 +0800</lastBuildDate>
     
-	<atom:link href="https://laurenceluo.io/categories/container/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://magicluo0755.github.io/categories/container/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>容器技术在大数据场景下的应用——Yarn on Docker</title>
-      <link>https://laurenceluo.io/posts/yarn-on-docker/</link>
+      <link>https://magicluo0755.github.io/posts/yarn-on-docker/</link>
       <pubDate>Tue, 04 Apr 2017 00:19:04 +0800</pubDate>
       <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
-      <guid>https://laurenceluo.io/posts/yarn-on-docker/</guid>
+      <guid>https://magicluo0755.github.io/posts/yarn-on-docker/</guid>
       <description>作者：宋净超 TalkingData云计算及大数据工程师 前言 我已就该话题已在2016年上海Qcon上发表过演讲，点此观看。 另外InfoQ网站上</description>
     </item>
     

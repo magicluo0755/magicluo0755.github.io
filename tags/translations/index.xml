@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Translations on Laurence Luo</title>
-    <link>https://laurenceluo.io/tags/translations/</link>
+    <link>https://magicluo0755.github.io/tags/translations/</link>
     <description>Recent content in Translations on Laurence Luo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
@@ -10,15 +10,15 @@
     <webMaster>xqluo2004@163.com (Laurence Luo(罗先桥))</webMaster>
     <lastBuildDate>Mon, 19 Mar 2018 23:43:33 +0800</lastBuildDate>
     
-	<atom:link href="https://laurenceluo.io/tags/translations/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://magicluo0755.github.io/tags/translations/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>为什么我们需要Istio？</title>
-      <link>https://laurenceluo.io/posts/why-do-we-need-istio/</link>
+      <link>https://magicluo0755.github.io/posts/why-do-we-need-istio/</link>
       <pubDate>Mon, 19 Mar 2018 23:43:33 +0800</pubDate>
       <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
-      <guid>https://laurenceluo.io/posts/why-do-we-need-istio/</guid>
+      <guid>https://magicluo0755.github.io/posts/why-do-we-need-istio/</guid>
       <description>本文翻译自Istio Why do I need it? 译者Jimmy Song 我最近没有多少时间去玩k8s，并承认Istio到底给k8s带来了什么方面有点迷失了。这是否会增</description>
     </item>
     

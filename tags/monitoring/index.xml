@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Monitoring on Laurence Luo</title>
-    <link>https://laurenceluo.io/tags/monitoring/</link>
+    <link>https://magicluo0755.github.io/tags/monitoring/</link>
     <description>Recent content in Monitoring on Laurence Luo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
@@ -10,24 +10,24 @@
     <webMaster>xqluo2004@163.com (Laurence Luo(罗先桥))</webMaster>
     <lastBuildDate>Mon, 16 Oct 2017 17:34:08 +0800</lastBuildDate>
     
-	<atom:link href="https://laurenceluo.io/tags/monitoring/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://magicluo0755.github.io/tags/monitoring/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>使用Heapster获取kubernetes集群对象的metric数据</title>
-      <link>https://laurenceluo.io/posts/using-heapster-to-get-object-metrics/</link>
+      <link>https://magicluo0755.github.io/posts/using-heapster-to-get-object-metrics/</link>
       <pubDate>Mon, 16 Oct 2017 17:34:08 +0800</pubDate>
       <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
-      <guid>https://laurenceluo.io/posts/using-heapster-to-get-object-metrics/</guid>
+      <guid>https://magicluo0755.github.io/posts/using-heapster-to-get-object-metrics/</guid>
       <description>使用Heapster获取kubernetes集群对象的metric数据 Heapster作为kubernetes安装过程中默认安装的一个插件，</description>
     </item>
     
     <item>
       <title>在开启TLS的Kubernetes1.6集群上安装EFK</title>
-      <link>https://laurenceluo.io/posts/kubernetes-efk-installation-with-tls/</link>
+      <link>https://magicluo0755.github.io/posts/kubernetes-efk-installation-with-tls/</link>
       <pubDate>Thu, 13 Apr 2017 12:28:10 +0800</pubDate>
       <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
-      <guid>https://laurenceluo.io/posts/kubernetes-efk-installation-with-tls/</guid>
+      <guid>https://magicluo0755.github.io/posts/kubernetes-efk-installation-with-tls/</guid>
       <description>前言 这是和我一步步部署kubernetes集群项目(fork自opsnull)中的一篇文章，下文是结合我之前部署kubernetes的过程产</description>
     </item>
     

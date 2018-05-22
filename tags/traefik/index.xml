@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Traefik on Laurence Luo</title>
-    <link>https://laurenceluo.io/tags/traefik/</link>
+    <link>https://magicluo0755.github.io/tags/traefik/</link>
     <description>Recent content in Traefik on Laurence Luo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
@@ -10,24 +10,24 @@
     <webMaster>xqluo2004@163.com (Laurence Luo(罗先桥))</webMaster>
     <lastBuildDate>Tue, 09 May 2017 12:59:19 +0800</lastBuildDate>
     
-	<atom:link href="https://laurenceluo.io/tags/traefik/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://magicluo0755.github.io/tags/traefik/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>使用traefik和keepalived配置kubernetes的边缘节点</title>
-      <link>https://laurenceluo.io/posts/kubernetes-edge-node-configuration/</link>
+      <link>https://magicluo0755.github.io/posts/kubernetes-edge-node-configuration/</link>
       <pubDate>Tue, 09 May 2017 12:59:19 +0800</pubDate>
       <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
-      <guid>https://laurenceluo.io/posts/kubernetes-edge-node-configuration/</guid>
+      <guid>https://magicluo0755.github.io/posts/kubernetes-edge-node-configuration/</guid>
       <description>前言 为了配置kubernetes中的traefik ingress的高可用，对于kubernetes集群以外只暴露一个访问入口，需要使用kee</description>
     </item>
     
     <item>
       <title>Kubernetes traefik ingress安装试用</title>
-      <link>https://laurenceluo.io/posts/traefik-ingress-installation/</link>
+      <link>https://magicluo0755.github.io/posts/traefik-ingress-installation/</link>
       <pubDate>Thu, 20 Apr 2017 22:38:40 +0800</pubDate>
       <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
-      <guid>https://laurenceluo.io/posts/traefik-ingress-installation/</guid>
+      <guid>https://magicluo0755.github.io/posts/traefik-ingress-installation/</guid>
       <description>前言 昨天翻了下Ingress解析，然后安装试用了下traefik，过程已同步到kubernetes-handbook上，Github地址 In</description>
     </item>
     
