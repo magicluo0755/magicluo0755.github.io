@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Laurence Luo</title>
-    <link>http://magicluo.com/categories/</link>
+    <link>https://laurenceluo.io/categories/</link>
     <description>Recent content in Categories on Laurence Luo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <managingEditor>xqluo2004@163.com (Laurence Luo(罗先桥))</managingEditor>
     <webMaster>xqluo2004@163.com (Laurence Luo(罗先桥))</webMaster>
     
-	<atom:link href="http://magicluo.com/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://laurenceluo.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Cloud Native</title>
-      <link>http://magicluo.com/categories/cloud-native/</link>
+      <link>https://laurenceluo.io/categories/cloud-native/</link>
       <pubDate>Sat, 12 May 2018 23:27:49 +0800</pubDate>
       <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
-      <guid>http://magicluo.com/categories/cloud-native/</guid>
+      <guid>https://laurenceluo.io/categories/cloud-native/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Service Mesh</title>
-      <link>http://magicluo.com/categories/service-mesh/</link>
+      <link>https://laurenceluo.io/categories/service-mesh/</link>
       <pubDate>Sat, 28 Apr 2018 20:26:53 +0800</pubDate>
       <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
-      <guid>http://magicluo.com/categories/service-mesh/</guid>
+      <guid>https://laurenceluo.io/categories/service-mesh/</guid>
       <description></description>
     </item>
     
