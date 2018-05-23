@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kubernetes on Laurence Luo</title>
-    <link>https://magicluo.com/tags/kubernetes/</link>
+    <link>http://magicluo.com/tags/kubernetes/</link>
     <description>Recent content in Kubernetes on Laurence Luo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
@@ -10,15 +10,15 @@
     <webMaster>xqluo2004@163.com (Laurence Luo(罗先桥))</webMaster>
     <lastBuildDate>Sat, 28 Apr 2018 20:26:53 +0800</lastBuildDate>
     
-	<atom:link href="https://magicluo.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://magicluo.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>在 Kubernetes 中使用 Envoy mesh 教程</title>
-      <link>https://magicluo.com/posts/envoy-mesh-in-kubernetes-tutorial/</link>
+      <link>http://magicluo.com/posts/envoy-mesh-in-kubernetes-tutorial/</link>
       <pubDate>Sat, 28 Apr 2018 20:26:53 +0800</pubDate>
       <author>xqluo2004@163.com (Laurence Luo(罗先桥))</author>
-      <guid>https://magicluo.com/posts/envoy-mesh-in-kubernetes-tutorial/</guid>
+      <guid>http://magicluo.com/posts/envoy-mesh-in-kubernetes-tutorial/</guid>
       <description>本文是在 Kubernetes 集群中，使用 Envoy 来做 mesh，来为一个简单的使用 Python 编写的 Flask 应用程序做反向代理和负载均衡。 注：本教程中的示例来自 envoy-steps</description>
     </item>
     
