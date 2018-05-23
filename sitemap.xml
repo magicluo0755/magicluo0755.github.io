@@ -3,91 +3,91 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://laurenceluo.io/posts/introducing-cloud-native-programming-language-ballerina/</loc>
+    <loc>http://magicluo.com/posts/introducing-cloud-native-programming-language-ballerina/</loc>
     <lastmod>2018-05-12T23:27:49+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/posts/envoy-mesh-in-kubernetes-tutorial/</loc>
+    <loc>http://magicluo.com/posts/envoy-mesh-in-kubernetes-tutorial/</loc>
     <lastmod>2018-04-28T20:26:53+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/posts/envoy-archiecture-and-terminology/</loc>
+    <loc>http://magicluo.com/posts/envoy-archiecture-and-terminology/</loc>
     <lastmod>2018-04-27T17:16:50+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/about/</loc>
+    <loc>http://magicluo.com/about/</loc>
     <lastmod>2017-05-20T20:34:54+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/</loc>
+    <loc>http://magicluo.com/</loc>
     <lastmod>2018-05-12T23:27:49+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/tags/ballerina/</loc>
-    <lastmod>2018-05-12T23:27:49+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://laurenceluo.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://laurenceluo.io/tags/cloud-native/</loc>
+    <loc>http://magicluo.com/tags/ballerina/</loc>
     <lastmod>2018-05-12T23:27:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/categories/cloud-native/</loc>
+    <loc>http://magicluo.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://magicluo.com/tags/cloud-native/</loc>
     <lastmod>2018-05-12T23:27:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/tags/envoy/</loc>
+    <loc>http://magicluo.com/categories/cloud-native/</loc>
+    <lastmod>2018-05-12T23:27:49+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://magicluo.com/tags/envoy/</loc>
     <lastmod>2018-04-28T20:26:53+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/tags/kubernetes/</loc>
+    <loc>http://magicluo.com/tags/kubernetes/</loc>
     <lastmod>2018-04-28T20:26:53+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/tags/me/</loc>
+    <loc>http://magicluo.com/tags/me/</loc>
     <lastmod>2017-05-20T20:34:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/posts/</loc>
+    <loc>http://magicluo.com/posts/</loc>
     <lastmod>2018-05-12T23:27:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/tags/service-mesh/</loc>
+    <loc>http://magicluo.com/tags/service-mesh/</loc>
     <lastmod>2018-04-28T20:26:53+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/categories/service-mesh/</loc>
+    <loc>http://magicluo.com/categories/service-mesh/</loc>
     <lastmod>2018-04-28T20:26:53+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://laurenceluo.io/tags/</loc>
+    <loc>http://magicluo.com/tags/</loc>
     <lastmod>2018-05-12T23:27:49+08:00</lastmod>
     <priority>0</priority>
   </url>
