@@ -8,16 +8,6 @@
   </url>
   
   <url>
-    <loc>http://magicluo.com/posts/envoy-mesh-in-kubernetes-tutorial/</loc>
-    <lastmod>2018-04-28T20:26:53+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://magicluo.com/posts/envoy-archiecture-and-terminology/</loc>
-    <lastmod>2018-04-27T17:16:50+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://magicluo.com/about/</loc>
     <lastmod>2017-05-20T20:34:54+08:00</lastmod>
   </url>
@@ -51,18 +41,6 @@
   </url>
   
   <url>
-    <loc>http://magicluo.com/tags/envoy/</loc>
-    <lastmod>2018-04-28T20:26:53+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://magicluo.com/tags/kubernetes/</loc>
-    <lastmod>2018-04-28T20:26:53+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://magicluo.com/tags/me/</loc>
     <lastmod>2017-05-20T20:34:54+08:00</lastmod>
     <priority>0</priority>
@@ -71,18 +49,6 @@
   <url>
     <loc>http://magicluo.com/posts/</loc>
     <lastmod>2018-05-12T23:27:49+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://magicluo.com/tags/service-mesh/</loc>
-    <lastmod>2018-04-28T20:26:53+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://magicluo.com/categories/service-mesh/</loc>
-    <lastmod>2018-04-28T20:26:53+08:00</lastmod>
     <priority>0</priority>
   </url>
   
