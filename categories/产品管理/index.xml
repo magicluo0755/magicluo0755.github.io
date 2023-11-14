@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>产品管理 on LUO&#39;s Blog</title>
+    <title>产品管理 on Luo&#39;s Blog</title>
     <link>http://localhost:1313/categories/%E4%BA%A7%E5%93%81%E7%AE%A1%E7%90%86/</link>
-    <description>Recent content in 产品管理 on LUO&#39;s Blog</description>
+    <description>Recent content in 产品管理 on Luo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ezh</language>
+    <language>zh</language>
     <lastBuildDate>Tue, 09 Aug 2022 15:38:30 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E4%BA%A7%E5%93%81%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Puppet主题快速上手</title>
