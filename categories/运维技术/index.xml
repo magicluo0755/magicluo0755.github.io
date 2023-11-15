@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>博客 on Luo&#39;s Blog</title>
-    <link>http://localhost:1313/posts/</link>
-    <description>Recent content in 博客 on Luo&#39;s Blog</description>
+    <title>运维技术 on Luo&#39;s Blog</title>
+    <link>http://localhost:1313/categories/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/</link>
+    <description>Recent content in 运维技术 on Luo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 15 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>应用可观测性和监控</title>
       <link>http://localhost:1313/posts/observability-overview/</link>

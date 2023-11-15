@@ -1,454 +1,381 @@
 <!DOCTYPE html>
 <html lang="zh">
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title> Laurence&#39;s Blog - magicluo.com|老罗的博客|Cloud Native|Microservices</title>
-  <meta name="description" content="magicluo.com|老罗的博客|Cloud Native|Microservices" />
-  <meta property="og:title" content="Laurence&#39;s Blog" />
-  <meta name="twitter:title" content="Laurence&#39;s Blog" />
-  <meta name="description" content="Laurence Luo(老罗) is a product manager working at Aupsic Middware(金蝶中间件), also a Javaer/Gopher, open source enthusiast, Kubernetes, Hugo fans.">
-  <meta property="og:description" content="Laurence Luo(老罗) is a product manager working at Aupsic Middware(金蝶中间件), also a Javaer/Gopher, open source enthusiast, Kubernetes, Hugo fans.">
-  <meta name="twitter:description" content="Laurence Luo(老罗) is a product manager working at Aupsic Middware(金蝶中间件), also a Javaer/Gopher, open source enthusiast, Kubernetes, Hugo fans.">
-  <meta name="author" content="Laurence Luo(罗先桥)"/>
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@magicluo0755" />
-  <meta name="twitter:creator" content="@magicluo0755" />
-  <meta property="og:url" content="http://magicluo.com/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Laurence&#39;s Blog" />
+<head>
+	<meta name="generator" content="Hugo 0.115.3">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <meta name="generator" content="Hugo 0.40.3" />
-  <link rel="canonical" href="http://magicluo.com/" />
-  <link rel="alternate" href="http://magicluo.com/index.xml" type="application/rss+xml" title="Laurence&#39;s Blog">
-  <script src="http://res.cloudinary.com/magicluo0755/raw/upload/v1527093092/upload/assets/jquery-1.12.4.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <title></title>
+  <meta name="author" content="Laurence Luo">
+  <meta name="description" content="Home Index Content">
+  <meta name="keywords" content="blog,developer,personal">
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="中年产品大叔的随笔"/>
+
+  <meta property="og:title" content="" />
+<meta property="og:description" content="中年产品大叔的随笔" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:1313/" />
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css"  crossorigin="anonymous">
   
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="/sass/main.css">
+
+  <link rel="stylesheet" href="/zoomjs/zoom.min.css">
+
+  <script src=/js/lazysizes.min.js></script>
+
+  <link rel="alternate" type="application/json" href="/index.json" title="Luo's Blog" />
+  <link rel="alternate" type="application/rss+xml" href="/index.xml" title="Luo's Blog" />
   
-  <link rel="stylesheet" href="http://magicluo.com/css/main.css" />
-  <link rel="stylesheet" href="http://magicluo.com/css/search.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
   
-
-<meta name="baidu-site-verification" content="g8IYR9SNLF" />
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?11f7d254cfa4e0ca44b175c66d379ecc";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-    })();
-</script>
-
-<link rel="stylesheet" href="http://magicluo.com/css/prism.css" />
-
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
 
 </head>
 
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+
+
+<body ontouchstart="">
+  <nav class="navbar navbar-default navbar-custom navbar-fixed-top ">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">切换导航</span>
+    
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://magicluo.com/">Laurence&#39;s Blog</a>
+      <a class="navbar-brand" href="http://localhost:1313/">Luo&#39;s Blog</a>
     </div>
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
-        
+    
+    <div id="huxblog_navbar">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
           
-            <li>
-              <a title="首页" href="/">首页</a>
-              
-              
-            </li>
+          <li><a href="/" title="HOME">HOME</a></li>
           
-        
+          <li><a href="/archive/" title="ARCHIVE">ARCHIVE</a></li>
           
-            <li class="navlinks-container">
-              <a class="navlinks-parent" href="javascript:void(0)">云原生</a>
-              <div class="navlinks-children">
-                
-                
-                  <a href="http://magicluo.com/categories/container">Container</a>
-                
-                
-                  <a href="http://magicluo.com/categories/kubernetes">kubernetes</a>
-                
-                
-                  <a href="http://magicluo.com/categories/devops">DevOps</a>
-                
-                
-                  <a href="http://magicluo.com/categories/serverless">Serverless</a>
-                
-              </div>
-            </li>
+          <li><a href="/about/" title="ABOUT">ABOUT</a></li>
           
-        
-          
-            <li class="navlinks-container">
-              <a class="navlinks-parent" href="javascript:void(0)">微服务</a>
-              <div class="navlinks-children">
-                
-                
-                  <a href="http://magicluo.com/categories/spring-cloud">Architecture</a>
-                
-                
-                  <a href="http://magicluo.com/categories/framework">Framework</a>
-                
-                
-                  <a href="http://magicluo.com/categories/svcmesh">Service-Mesh</a>
-                
-              </div>
-            </li>
-          
-        
-          
-            <li class="navlinks-container">
-              <a class="navlinks-parent" href="javascript:void(0)">企业集成</a>
-              <div class="navlinks-children">
-                
-                
-                  <a href="http://magicluo.com/categories/camel">Apache-Camel</a>
-                
-                
-                  <a href="http://magicluo.com/categories/mule">Mule ESB</a>
-                
-              </div>
-            </li>
-          
-        
-          
-            <li class="navlinks-container">
-              <a class="navlinks-parent" href="javascript:void(0)">生活</a>
-              <div class="navlinks-children">
-                
-                
-                  <a href="http://magicluo.com/categories/cooking">美食</a>
-                
-                
-                  <a href="http://magicluo.com/categories/sports">杂谈</a>
-                
-              </div>
-            </li>
-          
-        
-          
-            <li>
-              <a title="关于" href="/about">关于</a>
-              
-              
-            </li>
-          
-        
 
-        
-
-        
-        
-      </ul>
-    </div>
-
-    <div class="avatar-container">
-      <div class="avatar-img-border">
-        
+          <li class="search-icon">
+            <a href="javascript:void(0)">
+              <i class="fa fa-search"></i>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-
+    
   </div>
+  
 </nav>
-
-
-
-
-
-
-    
+<script>
   
   
   
-  
+  var $body = document.body;
+  var $toggle = document.querySelector(".navbar-toggle");
+  var $navbar = document.querySelector("#huxblog_navbar");
+  var $collapse = document.querySelector(".navbar-collapse");
 
-
-
-
-  
-    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://res.cloudinary.com/jimmysong/image/upload/banners/great-wall-01.jpg" data-img-desc-1="Insight throught the Great Wall to the world"></div>
-  
-
-  <header class="header-section has-img">
-    
-      <div class="intro-header big-img">
-        
-        
-        <div class="container">
-          <div class="row">
-              <div class="col-lg-12 col-md-12 col-md-offset-0">
-                
-                <div class="page-heading">
-                
-                  
-                     <h1 align="center">Hi,I&#39;m Laurence</h1>
-                  
-                  
-                  
-                    <hr class="small">
-                    <span class="page-subheading">Foucus on Cloud Native/Docker/K8S/Microservices</span>
-                  
-                  
-                
-              </div>
-            </div>
-          </div>
-        </div>
-        <span class="img-desc" style="display: inline;"></span>
-      </div>
-    
-    <div class="intro-header no-img">
+  var __HuxNav__ = {
+    close: function () {
+      $navbar.className = " ";
       
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-md-offset-0">
-            <div class="page-heading">
-                <h1 align="center">Laurence&#39;s Blog</h1>
-                
-                  
-                    <hr class="small">
-                    <span class="page-subheading">Foucus on Cloud Native/Docker/K8S/Microservices</span>
-                  
-                
-                
-                  <span class="post-meta">
+      setTimeout(function () {
+        
+        if ($navbar.className.indexOf("in") < 0) {
+          $collapse.style.height = "0px";
+        }
+      }, 400);
+    },
+    open: function () {
+      $collapse.style.height = "auto";
+      $navbar.className += " in";
+    },
+  };
+
   
+  $toggle.addEventListener("click", function (e) {
+    if ($navbar.className.indexOf("in") > 0) {
+      __HuxNav__.close();
+    } else {
+      __HuxNav__.open();
+    }
+  });
+
   
-</span>
 
-
-                
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-
-    
-  <div role="main" class="container">
+  document.addEventListener("click", function (e) {
+    if (e.target == $toggle) return;
+    if (e.target.className == "icon-bar") return;
+    __HuxNav__.close();
+  });
+</script>
+  
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        
-        
-        
-        
-          <div class="well">
-            <p><a href="/about">Laurence Luo(老罗)</a> is a product manager working at <a href="https://www.apusic.com/">Aupsic Middware</a>(金蝶中间件), also a Javaer/Gopher, open source enthusiast, <a href="https://kubernetes.io">Kubernetes</a>, <a href="https://gohugo.io">Hugo</a> fans.</p>
-
-          </div>
-        
-        
-        <div class="posts-list">
-          
-          
-            <article class="post-preview">
-              <a href="http://magicluo.com/posts/introducing-cloud-native-programming-language-ballerina/">
-                <h2 class="post-title">云原生编程语言Ballerina介绍</h2>
-                
-                  <h3 class="post-subtitle">
-                  编译式强类型基于序列图理念的开源编程语言
-                  </h3>
-                
-              </a>
-
-              <span class="post-meta">
-  
-  发表于 May 12, 2018
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  备注：本文转自jimmysong.io 当我第一眼看到 Ballerina 还真有点惊艳的感觉。Ballerina 这个单词的意思是“芭蕾舞女演员”。我想他们之所以
-                  <a href="http://magicluo.com/posts/introducing-cloud-native-programming-language-ballerina/" class="post-read-more">[阅读全文]</a>
-                
-              </div>
-
-              
-                <span class="post-meta">
-                
-                  #<a href="http://magicluo.com/tags/cloud-native/">cloud-native</a>&nbsp;
-                
-                  #<a href="http://magicluo.com/tags/ballerina/">ballerina</a>&nbsp;
-                
-                </span>
-              
-            </article>
-          
-        </div>
-
-        
-      </div>
-      <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        
-
-        
-        
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
       </div>
     </div>
   </div>
+</div>
 
-    <footer>
+  
+  
+
+
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center footer-links">
-          
-              <li>
-                <a href="mailto:xqluo2004@163.com" title="Email me">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.facebook.com/magicluo0755" title="Facebook">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/magicluo0755" title="GitHub">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="https://twitter.com/magicluo0755" title="Twitter">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-          
-          <li>
-            <a href="http://magicluo.com/index.xml" title="RSS">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-        <p class="credits copyright text-muted">
-        &copy;2017-2018
-          
-            
-              <a href="https://magicluo.com">Laurence Luo(罗先桥)</a>
-            
+        
+        <div class="site-heading">
+        
+          <h1>Luo&#39;s Blog</h1>
           
           
           
-            &nbsp;&bull;&nbsp;
-            <a href="http://magicluo.com/">Laurence&#39;s Blog</a>
           
-        </p>
+          <span class="subheading">中年产品大叔的随笔</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+
+  
+  <div class="container">
+    <div class="row">
+      
+      
+      
+      <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12
+      col-xs-12 postlist-container">
+        
+
+
+   <div class="post-preview">
+  <a href="/posts/observability-overview/">
+      <h2 class="post-title">应用可观测性和监控</h2>
+      
+      <div class="post-content-preview">
+         介绍什么是可观测性，以及可观测性与监控，AIOps的关系
+         
+      </div>
+  </a>
+  <p class="post-meta">
+      Posted by  老罗  on Wed, Nov 15, 2023
+  </p>
+</div>
+<hr>
+
+
+
+
+      </div>
+      
+      <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12
+      col-xs-12 sidebar-container">
 
         
-        <p class="credits theme-by text-muted">
-          由 <a href="http://gohugo.io">Hugo v0.40.3</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
-          
+        <section>
+  
+  
+  <h5>标签</h5>
+  <div class="tags">
+    
+    <a href="/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/">可观测性</a>
+    
+  </div>
+</section>
+        
+<section class="visible-md visible-lg">
+  <hr>
+  
+  <h5><a href=/about/>关于本人</a></h5>
+  
+
+  
+  <div class="short-about">
+    
+    <img src="/img/avatar.jpg" />
+    
+    
+    <p>有代码洁癖的产品经理</p>
+    
+    
+    <ul class="list-inline">
+
+<li>
+  <a href="https://github.com/magicluo0755" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li>
+
+<li>
+  <a href="https://weibo.com/j#" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-weibo fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li>
+
+<li>
+  <a href="https://www.zhihu.com/people/#" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-stack-1x fa-inverse">知</i>
+    </span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/index.xml" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li></ul>
+
+  </div>
+</section>
+
+        
+        
+
+<hr>
+<h5>友情链接</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://magicluo.cn" target="_blank">Laurence</a></li>
+  
+</ul>
+
+
+      </div>
+      
+
+    </div>
+  </div>
+
+  
+
+  
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <ul class="list-inline text-center">
+
+<li>
+  <a href="https://github.com/magicluo0755" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li>
+
+<li>
+  <a href="https://weibo.com/j#" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-weibo fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li>
+
+<li>
+  <a href="https://www.zhihu.com/people/#" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-stack-1x fa-inverse">知</i>
+    </span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/index.xml" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li></ul>
+
+        <p class="copyright text-muted">
+          Copyright &copy; Luo&#39;s Blog 2023  
+          <br>
+          Powered by <a href="https://gohugo.io">Hugo</a>
         </p>
       </div>
     </div>
   </div>
 </footer>
 
-
-<script src="http://res.cloudinary.com/magicluo0755/raw/upload/v1527093091/upload/assets/bootstrap.min.js"></script>
-<script src="http://res.cloudinary.com/magicluo0755/raw/upload/v1527093092/upload/assets/photoswipe-ui-default.min.js"></script>
-<script src="http://res.cloudinary.com/magicluo0755/raw/upload/v1527093092/upload/assets/photoswipe.min.js"></script>
-<script src="http://res.cloudinary.com/magicluo0755/raw/upload/v1527093091/upload/assets/auto-render.min.js"></script>
-<script src="http://res.cloudinary.com/magicluo0755/raw/upload/v1527093091/upload/assets/main.js"></script>
-<script src="http://res.cloudinary.com/magicluo0755/raw/upload/v1527093092/upload/assets/prism.js"></script>
-<script src="http://res.cloudinary.com/magicluo0755/raw/upload/v1527093092/upload/assets/katex.min.js"></script>
-<script> renderMathInElement(document.body); </script>
+<script src=/js/jquery.min.js></script>
+<script src=/js/bootstrap.min.js crossorigin="anonymous"></script>
 
 
 
+<script src="/js/hux-blog.min.73a6a8d8df45293e042d15867416f603045bbeb98406731e5022d6c60388cd9d.js"></script>
+
+
+<script src=/js/simple-jekyll-search.min.js></script>
+
+
+<script src="/js/search.min.53bce5da475b4d362500e5ce5dddfa22e20e1b9018777411d2020b4b839c9310.js"></script>
 
 
 
 
-  </body>
+
+
+
+
+
+
+
+
+
+<script src="/zoomjs/zoom.min.js"></script>
+
+</body>
+
 </html>
-
