@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分布式技术 on Luo&#39;s Blog</title>
+    <link>http://localhost:1313/distributed-tech/</link>
+    <description>Recent content in 分布式技术 on Luo&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 27 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/distributed-tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title> [译]可观测性的必要性</title>
+      <link>http://localhost:1313/distributed-tech/the-need-for-observability/</link>
+      <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/distributed-tech/the-need-for-observability/</guid>
+      <description>本文翻译自上述Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第一章。 基础软件正</description>
+    </item>
+    
+    <item>
+      <title>应用可观测性和监控</title>
+      <link>http://localhost:1313/distributed-tech/observability-overview/</link>
+      <pubDate>Wed, 15 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/distributed-tech/observability-overview/</guid>
+      <description>什么是可观测性可观测性（Observability）是来自自动控制领域的一个术语。最初，它与可控制性（Controllability）一起，</description>
+    </item>
+    
+  </channel>
+</rss>
