@@ -11,7 +11,11 @@
   <title>Dell Wyse3040软路由介绍 | Luo&#39;s Blog</title>
   <meta name="author" content="Laurence Luo">
   <meta name="description" content="Dell Wyse3040作为软路由的新选择">
+<<<<<<< HEAD
   <meta name="keywords" content="middleware,unraid,openwrt,personal">
+=======
+  <meta name="keywords" content="blog,developer,personal">
+>>>>>>> 3225e121d15ea910072e0e16197dba9a58a7c673
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Dell Wyse3040软路由介绍"/>
@@ -275,6 +279,7 @@
 </tr>
 </tbody>
 </table>
+<<<<<<< HEAD
 <h2 id="快速开始使用">快速开始使用<a class="anchorjs-link" href="#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b%e4%bd%bf%e7%94%a8"></a></h2><p>本部分介绍软路由设置为旁路由工作模式，方便快速上手使用。</p>
 <h3 id="开箱检查">开箱检查<a class="anchorjs-link" href="#%e5%bc%80%e7%ae%b1%e6%a3%80%e6%9f%a5"></a></h3><p>开箱检查说明，wyse3040小主机一台，外加5v3A标准电源适配器。</p>
 <p><figure>
@@ -372,6 +377,20 @@
 </li>
 <li>
 <p>通过密码保护 BIOS 设置。提示时，输入密码 <code>Fireport</code>。</p>
+=======
+<h2 id="快速开始使用">快速开始使用<a class="anchorjs-link" href="#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b%e4%bd%bf%e7%94%a8"></a></h2><p>介绍快速使用。</p>
+<h3 id="开箱检查">开箱检查<a class="anchorjs-link" href="#%e5%bc%80%e7%ae%b1%e6%a3%80%e6%9f%a5"></a></h3><p>开箱检查说明，wyse3040小主机一台，外加5v3A标准电源适配器。</p>
+<h3 id="通电与连接">通电与连接<a class="anchorjs-link" href="#%e9%80%9a%e7%94%b5%e4%b8%8e%e8%bf%9e%e6%8e%a5"></a></h3><p>设备接口连接，hdmi接显示器，网口，电源线连接。</p>
+<h3 id="旁路由配置">旁路由配置<a class="anchorjs-link" href="#%e6%97%81%e8%b7%af%e7%94%b1%e9%85%8d%e7%bd%ae"></a></h3><p>设置电脑ip为软路由设备的网络段，wyse3040默认刷入的OP系统的ip为<code>192.168.1.1</code>，用户名<code>root</code>，密码<code>password</code>。</p>
+<h3 id="验证测试">验证测试<a class="anchorjs-link" href="#%e9%aa%8c%e8%af%81%e6%b5%8b%e8%af%95"></a></h3><p>测试使用旁路由代理上网功能。</p>
+<h3 id="访问bios设置">访问BIOS设置<a class="anchorjs-link" href="#%e8%ae%bf%e9%97%aebios%e8%ae%be%e7%bd%ae"></a></h3><p>本节介绍 Wyse 3040 瘦客户机 UEFI BIOS 设置。启动瘦客户机时，Dell 徽标会显示一小会。</p>
+<ol>
+<li>
+<p>在启动过程中，按 <strong>F2</strong> 键。默认密码是 Fireport</p>
+</li>
+<li>
+<p>通过密码保护 BIOS 设置。提示时，输入密码 Fireport。</p>
+>>>>>>> 3225e121d15ea910072e0e16197dba9a58a7c673
 <p>此时将显示<strong>BIOS</strong> 设置对话框。</p>
 </li>
 <li>
@@ -381,7 +400,17 @@
 <blockquote>
 <p>注:在 BIOS 菜单中，有一个选项可用于恢复 BIOS 默认值、出厂默认值和用户的自定义用户设置。BIOS 默认设置可还原属于 BIOS 文件一部分的值，而还原自定义用户设置会还原为默认设置。还原出厂默认值会将 BIOS 设置还原成在交付给客户之前，在工厂中配置的值。</p>
 </blockquote>
+<<<<<<< HEAD
 <p>要在启动过程中访问引导菜单，请按 <strong>F12</strong> 键。</p>
+=======
+<p>要在启动过程中访问引导菜单，请按 <strong>F12</strong> 键。使用引导选择菜单选择或查看引导顺序，如下所示：</p>
+<ul>
+<li>从 UEFI 引导：硬盘，分区 2（对于 ThinLinux 客户端），分区 4（对于 ThinOS 客户端）- 从内部 eMMC 存储引导。</li>
+<li>从 IP4 Realtek PCIe GBE 系列控制器引导 - 通过 PXE 从网络引导。</li>
+<li>从 IP6 Realtek PCIe GBE 系列控制器引导 - 通过 PXE 从网络引导</li>
+<li>从 USB 引导 - 从任何 USB 端口引导 USB 存储。如果插入了可引导的 USB 设备，则会显示此选项。</li>
+</ul>
+>>>>>>> 3225e121d15ea910072e0e16197dba9a58a7c673
 <h2 id="其他">其他<a class="anchorjs-link" href="#%e5%85%b6%e4%bb%96"></a></h2><p>wyse3040官方介绍文档</p>
 <ul>
 <li><a href="https://www.dell.com/support/manuals/zh-cn/wyse-3040-thin-client/3040_ug/%E7%89%88%E6%9D%83?guid=guid-089ffa4b-3a62-4b51-bde1-309c58a451d9&amp;lang=zh-cn" target="_blank">Dell Wyse3040瘦客户端 用户指南</a></li>
@@ -477,9 +506,13 @@
 <h5>友情链接</h5>
 <ul class="list-inline">
   
+<<<<<<< HEAD
   <li><a href="https://openwrt.org/" target="_blank">OpenWRT</a></li>
   
   <li><a href="https://unraid.net/" target="_blank">Unraid</a></li>
+=======
+  <li><a href="http://www.magicluo.com" target="_blank">Laurence</a></li>
+>>>>>>> 3225e121d15ea910072e0e16197dba9a58a7c673
   
 </ul>
 
