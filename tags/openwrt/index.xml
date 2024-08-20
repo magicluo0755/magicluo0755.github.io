@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenWRT on Luo&#39;s Blog</title>
+    <link>http://localhost:1313/tags/openwrt/</link>
+    <description>Recent content in OpenWRT on Luo&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 19 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/openwrt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dell Wyse3040软路由介绍</title>
+      <link>http://localhost:1313/nas/wyse3040-overview/</link>
+      <pubDate>Mon, 19 Aug 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/nas/wyse3040-overview/</guid>
+      <description>产品参数Dell Wyse 3040 瘦客户机是一种低成本的入门级云终端瘦客户机。瘦客户机具有 x86 处理器，并允许您运行 Wyse ThinOS、启用 PCoIP 的 Wyse ThinOS 和 Wyse ThinL</description>
+    </item>
+    
+    <item>
+      <title>什么是软路由</title>
+      <link>http://localhost:1313/nas/what-is-openwrt/</link>
+      <pubDate>Thu, 01 Aug 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/nas/what-is-openwrt/</guid>
+      <description>什么是软路由相对硬路由，介绍软路由，旁路由，单臂路由等。 以及他们的使用方式和场景。 几款路由的家用组网方式介绍几款路由的家用组网方式; 主流软路</description>
+    </item>
+    
+  </channel>
+</rss>
