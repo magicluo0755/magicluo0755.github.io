@@ -2,24 +2,27 @@
 <html lang="zh">
 
 <head>
-	<meta name="generator" content="Hugo 0.115.3">
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title></title>
+  
+    
+  <title>什么是软路由 | Luo&#39;s Blog</title>
   <meta name="author" content="Laurence Luo">
-  <meta name="description" content="Home Index Content">
+  <meta name="description" content="硬路由，软路由，单臂路由，旁路由都是啥？">
   <meta name="keywords" content="middleware,unraid,openwrt,personal">
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="IT技术与数码产品瞎折腾玩家"/>
+<meta name="twitter:title" content="什么是软路由"/>
+<meta name="twitter:description" content="硬路由，软路由，单臂路由，旁路由都是啥？"/>
 
-  <meta property="og:title" content="" />
-<meta property="og:description" content="IT技术与数码产品瞎折腾玩家" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://localhost:1313/" />
+  <meta property="og:title" content="什么是软路由" />
+<meta property="og:description" content="硬路由，软路由，单臂路由，旁路由都是啥？" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/nas/what-is-openwrt/" /><meta property="article:section" content="nas" />
+<meta property="article:published_time" content="2024-08-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-08-01T00:00:00+00:00" />
 
   <link rel="stylesheet" href="/css/bootstrap.min.css"  crossorigin="anonymous">
   
@@ -31,8 +34,6 @@
 
   <script src=/js/lazysizes.min.js></script>
 
-  <link rel="alternate" type="application/json" href="/index.json" title="Luo's Blog" />
-  <link rel="alternate" type="application/rss+xml" href="/index.xml" title="Luo's Blog" />
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -45,7 +46,9 @@
 
 
 <body ontouchstart="">
-  <nav class="navbar navbar-default navbar-custom navbar-fixed-top ">
+  
+  
+  <nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
   <div class="container-fluid">
     
     <div class="navbar-header page-scroll">
@@ -153,21 +156,31 @@
   
 
 
+<style type="text/css">
+  header.intro-header {
+    position: relative;
+    background-image: url('');
+  }
+</style>
 
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+<header class="intro-header style-text">
 
+  <div class="header-mask"></div>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        
-        <div class="site-heading">
-        
-          <h1>Luo&#39;s Blog</h1>
-          
-          
-          
-          
-          <span class="subheading">IT技术与数码产品瞎折腾玩家</span>
+        <div class="post-heading">
+          <div class="tags">
+            
+            <a class="tag" href="/tags/openwrt/" title="OpenWRT">OpenWRT</a>
+            
+          </div>
+          <h1>什么是软路由</h1>
+          <h2 class="subheading"></h2>
+          <span class="meta">
+            Posted by  Laurence 
+            on Thu, Aug 1, 2024
+          </span>
         </div>
       </div>
     </div>
@@ -177,88 +190,103 @@
 
   
 
-  
+
+<article>
   <div class="container">
     <div class="row">
+
       
-      
-      
-      <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12
-      col-xs-12 postlist-container">
+      <div class="
+              col-lg-8 col-lg-offset-2
+              col-md-10 col-md-offset-1
+              post-container">
+        <h2 id="什么是软路由">什么是软路由<a class="anchorjs-link" href="#%e4%bb%80%e4%b9%88%e6%98%af%e8%bd%af%e8%b7%af%e7%94%b1"></a></h2><p>相对硬路由，介绍软路由，旁路由，单臂路由等。</p>
+<p>以及他们的使用方式和场景。</p>
+<h2 id="几款路由的家用组网方式">几款路由的家用组网方式<a class="anchorjs-link" href="#%e5%87%a0%e6%ac%be%e8%b7%af%e7%94%b1%e7%9a%84%e5%ae%b6%e7%94%a8%e7%bb%84%e7%bd%91%e6%96%b9%e5%bc%8f"></a></h2><p>介绍几款路由的家用组网方式;</p>
+<h2 id="主流软路由操作系统">主流软路由操作系统<a class="anchorjs-link" href="#%e4%b8%bb%e6%b5%81%e8%bd%af%e8%b7%af%e7%94%b1%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f"></a></h2><ul>
+<li>OpenWRT</li>
+<li>ROS</li>
+<li>其他</li>
+</ul>
+
+
+        <hr style="visibility: hidden;" />
+        <ul class="pager">
+          
+          <li class="previous">
+            <a href="/distributed-tech/the-need-for-observability/" data-toggle="tooltip" data-placement="top" title=" [译]可观测性的必要性">
+              Previous<br>
+              <span> [译]可观测性的必要性</span>
+            </a>
+          </li>
+          
+          
+          <li class="next">
+            <a href="/nas/wyse3040-overview/" data-toggle="tooltip" data-placement="top" title="Dell Wyse3040软路由介绍">
+              Next<br>
+              <span>Dell Wyse3040软路由介绍</span>
+            </a>
+          </li>
+          
+        </ul>
+        <hr style="visibility: hidden;" />
+
+        
         
 
 
-   <div class="post-preview">
-  <a href="/nas/wyse3040-overview/">
-      <h2 class="post-title">Dell Wyse3040软路由介绍</h2>
-      
-      <div class="post-content-preview">
-         Dell Wyse3040作为软路由的新选择
-         
-      </div>
-  </a>
-  <p class="post-meta">
-      Posted by  Laurence  on Mon, Aug 19, 2024
-  </p>
-</div>
-<hr>
 
-   <div class="post-preview">
-  <a href="/nas/what-is-openwrt/">
-      <h2 class="post-title">什么是软路由</h2>
-      
-      <div class="post-content-preview">
-         硬路由，软路由，单臂路由，旁路由都是啥？
-         
-      </div>
-  </a>
-  <p class="post-meta">
-      Posted by  Laurence  on Thu, Aug 1, 2024
-  </p>
-</div>
-<hr>
-
-   <div class="post-preview">
-  <a href="/distributed-tech/the-need-for-observability/">
-      <h2 class="post-title"> [译]可观测性的必要性</h2>
-      
-      <div class="post-content-preview">
-         本文翻译自Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第一章
-         
-      </div>
-  </a>
-  <p class="post-meta">
-      Posted by  老罗  on Mon, Nov 27, 2023
-  </p>
-</div>
-<hr>
-
-   <div class="post-preview">
-  <a href="/distributed-tech/observability-overview/">
-      <h2 class="post-title">应用可观测性和监控</h2>
-      
-      <div class="post-content-preview">
-         介绍什么是可观测性，以及可观测性与监控，AIOps的关系
-         
-      </div>
-  </a>
-  <p class="post-meta">
-      Posted by  老罗  on Wed, Nov 15, 2023
-  </p>
-</div>
-<hr>
+<div class="giscus" id="comments"></div>
+<script src="https://giscus.app/client.js" 
+  data-repo="roninro/hugo-theme-puppet" 
+  data-repo-id="R_kgDOHuvyhw"
+  data-category="General"
+  data-category-id="DIC_kwDOHuvyh84CQjDo"
+  data-mapping="pathname"
+  data-strict="0" 
+  data-reactions-enabled="1" 
+  data-emit-metadata="0" 
+  data-input-position="top"
+  data-theme="light_tritanopia"
+  data-lang="en"
+  crossorigin="anonymous"
+  async>
+  </script>
 
 
 
 
       </div>
-      
-      <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12
-      col-xs-12 sidebar-container">
 
+      
+      
+      
+      <div class="
+              col-lg-2 col-lg-offset-0
+              visible-lg-block
+              sidebar-container
+              catalog-container">
+        <div class="side-catalog">
+          <hr class="hidden-sm hidden-xs">
+          <h5>
+            <a class="catalog-toggle" href="#">目录</a>
+          </h5>
+          <ul class="catalog-body"></ul>
+        </div>
+      </div>
+      
+      
+      <div class="
+              col-lg-8 col-lg-offset-2
+              col-md-10 col-md-offset-1
+              sidebar-container">
+
+        
         
         <section>
   
+  
+  <hr class="hidden-sm hidden-xs">
   
   <h5>标签</h5>
   <div class="tags">
@@ -267,44 +295,6 @@
     
     <a href="/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/">可观测性</a>
     
-  </div>
-</section>
-        
-<section class="visible-md visible-lg">
-  <hr>
-  
-  <h5><a href=/about/>关于本人</a></h5>
-  
-
-  
-  <div class="short-about">
-    
-    <img src="/img/avatar.jpg" />
-    
-    
-    <p>IT技术与数码产品瞎折腾玩家</p>
-    
-    
-    <ul class="list-inline">
-
-<li>
-  <a href="https://github.com/magicluo0755" target="_blank">
-    <span class="fa-stack fa-lg">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-    </span>
-  </a>
-</li>
-
-<li>
-  <a href="https://www.zhihu.com/people/#" target="_blank">
-    <span class="fa-stack fa-lg">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fab fa-stack-1x fa-inverse">知</i>
-    </span>
-  </a>
-</li></ul>
-
   </div>
 </section>
 
@@ -321,14 +311,12 @@
   
 </ul>
 
-
       </div>
-      
-
     </div>
   </div>
+</article>
 
-  
+
 
   
 <footer>
@@ -382,6 +370,56 @@
 
 
 
+
+
+<script type="text/javascript">
+  function generateCatalog(selector) {
+    _containerSelector = 'div.post-container'
+    
+    var P = $(_containerSelector), a, n, t, l, i, c;
+    a = P.find('h1,h2,h3,h4');
+    
+    $(selector).html('')
+    
+    a.each(function () {
+      n = $(this).prop('tagName').toLowerCase();
+      i = "#" + $(this).prop('id');
+      t = $(this).text();
+      c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+      l = $('<li class="' + n + '_nav"></li>').append(c);
+      $(selector).append(l);
+    });
+    return true;
+  }
+
+  generateCatalog(".catalog-body");
+
+  
+  $(".catalog-toggle").click((function (e) {
+    e.preventDefault();
+    $('.side-catalog').toggleClass("fold")
+  }))
+</script>
+
+
+<script type="text/javascript" src='/js/jquery.nav.min.ade6bde8f9fcc6a4b40852cb892e9f5912340ab8fe1305149d917fdd16fffd8d.js'></script>
+<script>
+   $(document).ready( function () {
+    $('.catalog-body').onePageNav({
+      currentClass: "active",
+      changeHash: !1,
+      easing: "swing",
+      filter: "",
+      scrollSpeed: 700,
+      scrollOffset: 0,
+      scrollThreshold: .2,
+      begin: null,
+      end: null,
+      scrollChange: null,
+      padding: 80
+    });
+  });
+</script>
 
 
 

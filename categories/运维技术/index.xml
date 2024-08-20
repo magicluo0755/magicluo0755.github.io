@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 15 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>应用可观测性和监控</title>
-      <link>http://localhost:1313/posts/observability-overview/</link>
+      <link>http://localhost:1313/distributed-tech/observability-overview/</link>
       <pubDate>Wed, 15 Nov 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/observability-overview/</guid>
+      <guid>http://localhost:1313/distributed-tech/observability-overview/</guid>
       <description>什么是可观测性可观测性（Observability）是来自自动控制领域的一个术语。最初，它与可控制性（Controllability）一起，</description>
     </item>
     
