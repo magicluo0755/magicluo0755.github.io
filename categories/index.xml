@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>民谣</title>
+      <link>http://localhost:1313/categories/%E6%B0%91%E8%B0%A3/</link>
+      <pubDate>Tue, 11 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/%E6%B0%91%E8%B0%A3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Observability</title>
       <link>http://localhost:1313/categories/observability/</link>
       <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>

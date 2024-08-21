@@ -26,6 +26,21 @@
     <loc>http://localhost:1313/nas/what-is-openwrt/</loc>
     <lastmod>2024-08-01T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/talk/music-spring-end-south-city/</loc>
+    <lastmod>2024-06-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/%E6%9D%8E%E5%BF%97/</loc>
+    <lastmod>2024-06-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/%E6%B0%91%E8%B0%A3/</loc>
+    <lastmod>2024-06-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/%E6%B0%91%E8%B0%A3/</loc>
+    <lastmod>2024-06-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/talk/</loc>
+    <lastmod>2024-06-11T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/distributed-tech/the-need-for-observability/</loc>
     <lastmod>2023-11-27T00:00:00+00:00</lastmod>
   </url><url>
@@ -52,7 +67,5 @@
     <loc>http://localhost:1313/product/</loc>
   </url><url>
     <loc>http://localhost:1313/solution/</loc>
-  </url><url>
-    <loc>http://localhost:1313/talk/</loc>
   </url>
 </urlset>

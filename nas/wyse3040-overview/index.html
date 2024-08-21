@@ -11,7 +11,7 @@
   <title>Dell Wyse3040软路由介绍 | Luo&#39;s Blog</title>
   <meta name="author" content="Laurence Luo">
   <meta name="description" content="Dell Wyse3040作为软路由的新选择">
-  <meta name="keywords" content="blog,developer,personal">
+  <meta name="keywords" content="middleware,unraid,openwrt,personal">
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Dell Wyse3040软路由介绍"/>
@@ -200,7 +200,8 @@
               col-lg-8 col-lg-offset-2
               col-md-10 col-md-offset-1
               post-container">
-        <h2 id="产品参数">产品参数<a class="anchorjs-link" href="#%e4%ba%a7%e5%93%81%e5%8f%82%e6%95%b0"></a></h2><p>Dell Wyse 3040 瘦客户机是一种低成本的入门级云终端瘦客户机。瘦客户机具有 x86 处理器，并允许您运行 Wyse ThinOS、启用 PCoIP 的 Wyse ThinOS 和 Wyse ThinLinux。平台通过连接到任何显示器用作瘦客户机，并允许您将远程访问客户机用于 VDI 或基于云的计算。</p>
+        <h2 id="产品参数">产品参数<a class="anchorjs-link" href="#%e4%ba%a7%e5%93%81%e5%8f%82%e6%95%b0"></a></h2><p>Dell Wyse 3040 瘦客户机是一种低成本的入门级云终端瘦客户机。具有 x86 处理器，默认运行 Wyse ThinOS、启用 PCoIP 的 Wyse ThinOS 和 Wyse ThinLinux。可通过连接到任何显示器用作瘦客户机，并允许将远程访问客户机用于 VDI 或基于云的计算。</p>
+<p>Wyse3040小主机大厂品牌出品，做工非常精致，尺寸小巧、功耗低。非常适合搭载软路由、数播系统等更多玩法。</p>
 <p>该小主机主要组件：</p>
 <p><figure>
   <a class="paragraph-image">
@@ -216,7 +217,7 @@
 <li>币形电池</li>
 <li>散热器</li>
 </ol>
-<p>Wyse3040瘦客户机做工非常精致，尺寸小巧，非常适合改装为软路由设备，其具体产品参数如下：</p>
+<p>其具体产品参数如下：</p>
 <table>
 <thead>
 <tr>
@@ -275,18 +276,190 @@
 </tr>
 </tbody>
 </table>
-<h2 id="快速开始使用">快速开始使用<a class="anchorjs-link" href="#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b%e4%bd%bf%e7%94%a8"></a></h2><p>介绍快速使用。</p>
-<h3 id="开箱检查">开箱检查<a class="anchorjs-link" href="#%e5%bc%80%e7%ae%b1%e6%a3%80%e6%9f%a5"></a></h3><p>开箱检查说明，wyse3040小主机一台，外加5v3A标准电源适配器。</p>
-<h3 id="通电与连接">通电与连接<a class="anchorjs-link" href="#%e9%80%9a%e7%94%b5%e4%b8%8e%e8%bf%9e%e6%8e%a5"></a></h3><p>设备接口连接，hdmi接显示器，网口，电源线连接。</p>
-<h3 id="旁路由配置">旁路由配置<a class="anchorjs-link" href="#%e6%97%81%e8%b7%af%e7%94%b1%e9%85%8d%e7%bd%ae"></a></h3><p>设置电脑ip为软路由设备的网络段，wyse3040默认刷入的OP系统的ip为<code>192.168.1.1</code>，用户名<code>root</code>，密码<code>password</code>。</p>
-<h3 id="验证测试">验证测试<a class="anchorjs-link" href="#%e9%aa%8c%e8%af%81%e6%b5%8b%e8%af%95"></a></h3><p>测试使用旁路由代理上网功能。</p>
-<h3 id="访问bios设置">访问BIOS设置<a class="anchorjs-link" href="#%e8%ae%bf%e9%97%aebios%e8%ae%be%e7%bd%ae"></a></h3><p>本节介绍 Wyse 3040 瘦客户机 UEFI BIOS 设置。启动瘦客户机时，Dell 徽标会显示一小会。</p>
-<ol>
+<h2 id="快速开始使用">快速开始使用<a class="anchorjs-link" href="#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b%e4%bd%bf%e7%94%a8"></a></h2><p>本部分介绍软路由设置为旁路由工作模式，方便快速上手使用。</p>
+<h3 id="开箱检查">开箱检查<a class="anchorjs-link" href="#%e5%bc%80%e7%ae%b1%e6%a3%80%e6%9f%a5"></a></h3><p>打开包装箱，Wyse3040小主机一台，外加5v3A标准电源适配器，就这两玩意儿。</p>
+<p><figure>
+  <a class="paragraph-image">
+    <img data-src="/assets/nas/wyse3040/wyse3040-product.jpg" data-action="zoom" alt="wyse3040-product"  class="lazyload">
+  </a>
+  
+</figure></p>
+<p>将设备I/O接口连接。</p>
+<p>千兆网口接家里主路由器LAN口或交换机LAN口，接好电源线连接。DP接口接显示器，USB鼠标键盘都接线上。</p>
+<blockquote>
+<p>显示器、键盘鼠标非必须接入。有条件接入的话可以更方便的在 软路由启动后再shell端进行旁路由IP地址修改，以便和主路由在同一个网段进行后续配置。</p>
+</blockquote>
+<h3 id="访问软路由">访问软路由<a class="anchorjs-link" href="#%e8%ae%bf%e9%97%ae%e8%bd%af%e8%b7%af%e7%94%b1"></a></h3><p>Wyse3040软路由小主机出厂刷入的OP系统的IP为<code>192.168.1.1</code>，用户名<code>root</code>，密码<code>password</code>。如果出厂配置与现有家庭或办公网络主路由IP段冲突或者不一致，需要配置软路由为主路由所在网段的IP地址。</p>
+<p>有2种方式进行修改：</p>
+<ul>
+<li><strong>web控制台修改</strong>：准备一台windows电脑临时修改ip为软路由<code>192.168.1.x</code>网段IP，访问软路web后台地址，修改软路由当前据网段实际IP后，再恢复windows的IP配置。操作简单，适合小白用户。</li>
+<li><strong>shell终端修改</strong>：软路由接显示器和鼠标键盘，直接在shell终端修改软路由IP地址信息，适合有一定Linux基础的用户。</li>
+</ul>
+<h4 id="web控制台修改">web控制台修改<a class="anchorjs-link" href="#web%e6%8e%a7%e5%88%b6%e5%8f%b0%e4%bf%ae%e6%94%b9"></a></h4><ol>
 <li>
-<p>在启动过程中，按 <strong>F2</strong> 键。默认密码是 Fireport</p>
+<p>查看当前网络的IP配置，同时按WIN+R 快捷键，运行<code>cmd</code>，进入windows控制台，继续执行<code>ipconfig/all</code>获取当前IP地址。</p>
+<p><figure>
+  <a class="paragraph-image">
+    <img data-src="/assets/nas/wyse3040/wyse3040-checkip.png" data-action="zoom" alt="wyse3040-checkip"  class="lazyload">
+  </a>
+  
+</figure></p>
+<p>如上图所示，当前本机及网络IP的主要配置信息如下（各自情况看具体输出，可能与此不一样）：</p>
+<ul>
+<li>使用的手工静态配置IP（没有使用DHCP自动分配）</li>
+<li>IP地址：<code>192.168.0.127</code></li>
+<li>子网掩码 <code>255.255.255.0</code></li>
+<li>默认网关（主路由）：<code>192.168.0.10</code></li>
+<li>DNS：也被设置为主路由的IP地址</li>
+</ul>
+<p>我们需要先记住上述网络配置信息。接下来先将该主机临时修改为 <code>192.168.1.x</code>网段以便可以访问软路由，然后将软路由IP修改为<code>192.168.0.x</code>网段的IP。</p>
 </li>
 <li>
-<p>通过密码保护 BIOS 设置。提示时，输入密码 Fireport。</p>
+<p>临时修改IP地址，选择【更改适配器选项】，选择以太网卡，如下图：</p>
+<p><figure>
+  <a class="paragraph-image">
+    <img data-src="/assets/nas/wyse3040/wyse3040-configip.png" data-action="zoom" alt="wyse3040-configip"  class="lazyload">
+  </a>
+  
+</figure></p>
+<p>右键选择【属性】-【Internet协议版本4（TCP/IP v4）】，配置IP为软路由当前IP段地址，例如配置为<code>192.168.1.10</code>。网关和DNS都可以指向wyse3040软路由<code>192.168.1.1</code></p>
+<p><figure>
+  <a class="paragraph-image">
+    <img data-src="/assets/nas/wyse3040/wyse3040-configip2.png" data-action="zoom" alt="wyse3040-configip2"  class="lazyload">
+  </a>
+  
+</figure></p>
+</li>
+<li>
+<p>点击【确定】，经过上述配置后，当前windows主机和软路由均在<code>192.168.1.x</code>网段，可以通过web进行访问和配置。</p>
+</li>
+<li>
+<p>访问软路由，浏览器地址栏输入： <code>https://192.168.1.1/cgi-bin/luci/</code>，可以显示如下登录页面。</p>
+<p><figure>
+  <a class="paragraph-image">
+    <img data-src="/assets/nas/wyse3040/openwrt-login.png" data-action="zoom" alt="openwrt-login"  class="lazyload">
+  </a>
+  
+</figure></p>
+<p>输入出厂默认用户名<code>root</code>和密码（<code>password</code>）即可访问到软路由。</p>
+</li>
+</ol>
+<h4 id="shell终端修改">shell终端修改<a class="anchorjs-link" href="#shell%e7%bb%88%e7%ab%af%e4%bf%ae%e6%94%b9"></a></h4><p>如果熟悉Linux操作，可以直接在shell终端过修改配置文件更改。</p>
+<ol>
+<li>
+<p>wyse3040软路由连接鼠标，键盘和显示器后，开机启动。启动代码刷完屏幕，按回车键。</p>
+</li>
+<li>
+<p>输入用户名<code>root</code>，密码 <code>password</code>，回车登录。</p>
+</li>
+<li>
+<p>编辑网络配置文件，修改IP：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4"># vi /etc/config/network</span>
+</span></span></code></pre></div><p>修改interface设备名为<code>lan</code> 的IP地址、子网掩码、网关和DNS为当前网络段的信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>config interface <span style="color:#f1fa8c">&#39;loopback&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>        option ifname <span style="color:#f1fa8c">&#39;lo&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        option proto <span style="color:#f1fa8c">&#39;static&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        option ipaddr <span style="color:#f1fa8c">&#39;127.0.0.1&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        option netmask <span style="color:#f1fa8c">&#39;255.0.0.0&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>config globals <span style="color:#f1fa8c">&#39;globals&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        option ula_prefix <span style="color:#f1fa8c">&#39;fdca:f2fa:9291::/48&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        option packet_steering <span style="color:#f1fa8c">&#39;1&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>config interface <span style="color:#f1fa8c">&#39;lan&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>        option <span style="color:#8be9fd;font-style:italic">type</span> <span style="color:#f1fa8c">&#39;bridge&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        option ifname <span style="color:#f1fa8c">&#39;eth0&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        option proto <span style="color:#f1fa8c">&#39;static&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>        option ipaddr <span style="color:#f1fa8c">&#39;192.168.0.100&#39;</span>  <span style="color:#6272a4">#软路由IP地址设置为主路由网络段的IP</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>        option netmask <span style="color:#f1fa8c">&#39;255.255.255.0&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>        option gateway <span style="color:#f1fa8c">&#39;192.168.0.10&#39;</span>  <span style="color:#6272a4">#网关设置为主路由IP</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>        option dns <span style="color:#f1fa8c">&#39;192.168.0.10&#39;</span>      <span style="color:#6272a4">#DNS设置为主路由IP</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>        option ip6assign <span style="color:#f1fa8c">&#39;60&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>config interface <span style="color:#f1fa8c">&#39;vpn0&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>        option ifname <span style="color:#f1fa8c">&#39;tun0&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>        option proto <span style="color:#f1fa8c">&#39;none&#39;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>保存，然后重启网络服务即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4"># /etc/init.d/network restart</span>
+</span></span></code></pre></div></li>
+<li>
+<p>然后同上，windows主机浏览器地址栏输入软路由IP地址，访问即可。</p>
+</li>
+</ol>
+<h3 id="配置旁路由模式">配置旁路由模式<a class="anchorjs-link" href="#%e9%85%8d%e7%bd%ae%e6%97%81%e8%b7%af%e7%94%b1%e6%a8%a1%e5%bc%8f"></a></h3><p>配置为旁路由，需要关闭软路由的DHCP服务，IP地址动态分配还是交给主路由完成，降低旁路由设备对现有网络架构的耦合影响。其次重点是将旁路由LAN口的网关指向主路由，以便进行网络数据包出口转发。</p>
+<ol>
+<li>
+<p>点击左侧菜单【网络】-【接口】，选择LAN接口设备，点击【修改】。</p>
+</li>
+<li>
+<p>在【一般配置】区域，相关配置：</p>
+<ol>
+<li>
+<p>【基本设置】：</p>
+<p><figure>
+  <a class="paragraph-image">
+    <img data-src="/assets/nas/wyse3040/wyse3040-openwrt-network-general.jpg" data-action="zoom" alt="wyse3040-openwrt-network-general"  class="lazyload">
+  </a>
+  
+</figure></p>
+<ol>
+<li>协议：修改为<code>静态地址</code>。</li>
+<li>IPv4地址：<code>192.168.0.100</code> 。注意需要修改为家庭或办公网络的IP段地址，参考前面记下的网络配置信息，配置同一个段的IP即可。</li>
+<li>IPv4子网掩码：`255.255.255.0 。</li>
+<li>IPv4网关：<code>192.168.0.10</code>，即本示例中的主路由器的IP地址，本例为<code>192.168.0.10</code>。</li>
+<li>使用自定义的DNS服务器，设置为本示例中主路由器的IP地址，同上。</li>
+<li>其他保持默认。</li>
+</ol>
+</li>
+<li>
+<p>【高级设置】：</p>
+<ol>
+<li>开机自动运行：勾选。</li>
+<li>使用内置的IPv6管理：不勾选。由主路由进行IPv6地址的分发和管理。</li>
+<li>其他保持默认。</li>
+</ol>
+</li>
+<li>
+<p>【物理设置】：</p>
+<ol>
+<li>桥接接口：取消勾选，不桥接。</li>
+<li>其他保持默认。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>在底部【DHCP服务器配置】，配置如下：</p>
+<p><figure>
+  <a class="paragraph-image">
+    <img data-src="/assets/nas%5cwyse3040/wyse3040-openwrt-dhcp.png" data-action="zoom" alt="wyse3040-openwrt-dhcp"  class="lazyload">
+  </a>
+  
+</figure></p>
+<ol>
+<li>【基本设置】，选择<code>忽略此接口</code>，即不由旁路由运行DHCP服务为网络分配IP地址，交由主路由管理。</li>
+<li>【IPv6设置】，路由通告服务、DHCPv6服务、NDP代理 全部选择<code>已禁用</code>。</li>
+<li>其他不变。</li>
+</ol>
+</li>
+<li>
+<p>点击【保存&amp;应用】，待配置生效。此时windows操作端无需耗时等待，因为旁路由IP地址已经变更无法访问。如果是使用web控制台修改，则此时复原windows主机的网路配置，访问<code>http://192.168.0.100/cgi-bin/luci/</code> 即可访问。</p>
+</li>
+</ol>
+<blockquote>
+<p>如果是采用shell终端修改过IP地址和DNS与网关等，则修改后可直接访问旁路由。</p>
+</blockquote>
+<h3 id="验证测试">验证测试<a class="anchorjs-link" href="#%e9%aa%8c%e8%af%81%e6%b5%8b%e8%af%95"></a></h3><p>局域网其他PC主机或者手机连WIFI获取的IP地址，修改为手工指定。需要将网关设置为旁路由的IP地址，例如本示例中为<code>192.168.0.100</code>，其他配置保持不变。</p>
+<p>此时访问浏览器访问网页和打开APP，即可通过旁路由代理上网，后续其他流控、插件及魔法上网等玩法，只需要再旁路由上开启相关配置，所有通过旁路由上网的PC、平板、手机设备均生效。</p>
+<h2 id="其他">其他<a class="anchorjs-link" href="#%e5%85%b6%e4%bb%96"></a></h2><h3 id="访问bios设置">访问BIOS设置<a class="anchorjs-link" href="#%e8%ae%bf%e9%97%aebios%e8%ae%be%e7%bd%ae"></a></h3><p>Wyse 3040 瘦客户机 UEFI BIOS 设置。启动瘦客户机时，Dell 徽标会显示一小会。</p>
+<ol>
+<li>
+<p>在启动过程中，按 <strong>F2</strong> 键。默认密码是 <code>Fireport</code>。</p>
+</li>
+<li>
+<p>通过密码保护 BIOS 设置。提示时，输入密码 <code>Fireport</code>。</p>
 <p>此时将显示<strong>BIOS</strong> 设置对话框。</p>
 </li>
 <li>
@@ -296,15 +469,8 @@
 <blockquote>
 <p>注:在 BIOS 菜单中，有一个选项可用于恢复 BIOS 默认值、出厂默认值和用户的自定义用户设置。BIOS 默认设置可还原属于 BIOS 文件一部分的值，而还原自定义用户设置会还原为默认设置。还原出厂默认值会将 BIOS 设置还原成在交付给客户之前，在工厂中配置的值。</p>
 </blockquote>
-<p>要在启动过程中访问引导菜单，请按 <strong>F12</strong> 键。使用引导选择菜单选择或查看引导顺序，如下所示：</p>
-<ul>
-<li>从 UEFI 引导：硬盘，分区 2（对于 ThinLinux 客户端），分区 4（对于 ThinOS 客户端）- 从内部 eMMC 存储引导。</li>
-<li>从 IP4 Realtek PCIe GBE 系列控制器引导 - 通过 PXE 从网络引导。</li>
-<li>从 IP6 Realtek PCIe GBE 系列控制器引导 - 通过 PXE 从网络引导</li>
-<li>从 USB 引导 - 从任何 USB 端口引导 USB 存储。如果插入了可引导的 USB 设备，则会显示此选项。</li>
-</ul>
-<h2 id="其他">其他<a class="anchorjs-link" href="#%e5%85%b6%e4%bb%96"></a></h2><p>wyse3040官方介绍文档</p>
-<ul>
+<p>要在启动过程中访问引导菜单，请按 <strong>F12</strong> 键。</p>
+<h3 id="wyse3040官方介绍文档">wyse3040官方介绍文档<a class="anchorjs-link" href="#wyse3040%e5%ae%98%e6%96%b9%e4%bb%8b%e7%bb%8d%e6%96%87%e6%a1%a3"></a></h3><ul>
 <li><a href="https://www.dell.com/support/manuals/zh-cn/wyse-3040-thin-client/3040_ug/%E7%89%88%E6%9D%83?guid=guid-089ffa4b-3a62-4b51-bde1-309c58a451d9&amp;lang=zh-cn" target="_blank">Dell Wyse3040瘦客户端 用户指南</a></li>
 <li><a href="/assests/pdf/wyse-3040-thin-client_setup-guide_zh-cn.pdf">Dell Wyse3040快速入门指南</a></li>
 </ul>
@@ -388,6 +554,10 @@
     
     <a href="/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/">可观测性</a>
     
+    <a href="/tags/%E6%9D%8E%E5%BF%97/">李志</a>
+    
+    <a href="/tags/%E6%B0%91%E8%B0%A3/">民谣</a>
+    
   </div>
 </section>
 
@@ -398,7 +568,9 @@
 <h5>友情链接</h5>
 <ul class="list-inline">
   
-  <li><a href="http://www.magicluo.com" target="_blank">Laurence</a></li>
+  <li><a href="https://openwrt.org/" target="_blank">OpenWRT</a></li>
+  
+  <li><a href="https://unraid.net/" target="_blank">Unraid</a></li>
   
 </ul>
 

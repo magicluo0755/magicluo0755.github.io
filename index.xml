@@ -13,7 +13,7 @@
       <pubDate>Mon, 19 Aug 2024 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/nas/wyse3040-overview/</guid>
-      <description>产品参数Dell Wyse 3040 瘦客户机是一种低成本的入门级云终端瘦客户机。瘦客户机具有 x86 处理器，并允许您运行 Wyse ThinOS、启用 PCoIP 的 Wyse ThinOS 和 Wyse ThinL</description>
+      <description>产品参数Dell Wyse 3040 瘦客户机是一种低成本的入门级云终端瘦客户机。具有 x86 处理器，默认运行 Wyse ThinOS、启用 PCoIP 的 Wyse ThinOS 和 Wyse ThinLinux。可</description>
     </item>
     
     <item>
@@ -23,6 +23,15 @@
       
       <guid>http://localhost:1313/nas/what-is-openwrt/</guid>
       <description>什么是软路由相对硬路由，介绍软路由，旁路由，单臂路由等。 以及他们的使用方式和场景。 几款路由的家用组网方式介绍几款路由的家用组网方式; 主流软路</description>
+    </item>
+    
+    <item>
+      <title>春末的南方城市</title>
+      <link>http://localhost:1313/talk/music-spring-end-south-city/</link>
+      <pubDate>Tue, 11 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/talk/music-spring-end-south-city/</guid>
+      <description>春末的南方城市李志收录在专辑《梵高先生》的一首歌，2007年发行。 李志与朋友分别后，看着车里熙熙攘攘的人们，有感而写。此时的李志处于人生的低</description>
     </item>
     
     <item>
