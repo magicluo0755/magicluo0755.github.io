@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Observability on Luo&#39;s Blog</title>
-    <link>http://localhost:1313/categories/observability/</link>
-    <description>Recent content in Observability on Luo&#39;s Blog</description>
+    <title>Observability on Laurence&#39;s Blog</title>
+    <link>http://www.magicluo.com/categories/observability/</link>
+    <description>Recent content in Observability on Laurence&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 27 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/observability/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://www.magicluo.com/categories/observability/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title> [译]可观测性的必要性</title>
-      <link>http://localhost:1313/distributed-tech/the-need-for-observability/</link>
+      <link>http://www.magicluo.com/distributed-tech/the-need-for-observability/</link>
       <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/distributed-tech/the-need-for-observability/</guid>
+      <guid>http://www.magicluo.com/distributed-tech/the-need-for-observability/</guid>
       <description>本文翻译自上述Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第一章。 基础软件正</description>
     </item>
     

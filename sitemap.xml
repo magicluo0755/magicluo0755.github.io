@@ -2,70 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://www.magicluo.com/</loc>
     <lastmod>2024-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://www.magicluo.com/categories/</loc>
     <lastmod>2024-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/nas/wyse3040-overview/</loc>
+    <loc>http://www.magicluo.com/nas/wyse3040-overview/</loc>
     <lastmod>2024-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/nas/</loc>
+    <loc>http://www.magicluo.com/nas/</loc>
     <lastmod>2024-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/openwrt/</loc>
+    <loc>http://www.magicluo.com/tags/openwrt/</loc>
     <lastmod>2024-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://www.magicluo.com/tags/</loc>
     <lastmod>2024-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/%E8%BD%AF%E8%B7%AF%E7%94%B1/</loc>
+    <loc>http://www.magicluo.com/categories/%E8%BD%AF%E8%B7%AF%E7%94%B1/</loc>
     <lastmod>2024-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/nas/what-is-openwrt/</loc>
+    <loc>http://www.magicluo.com/nas/what-is-openwrt/</loc>
     <lastmod>2024-08-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/talk/music-spring-end-south-city/</loc>
+    <loc>http://www.magicluo.com/talk/music-spring-end-south-city/</loc>
     <lastmod>2024-06-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/%E6%9D%8E%E5%BF%97/</loc>
+    <loc>http://www.magicluo.com/tags/%E6%9D%8E%E5%BF%97/</loc>
     <lastmod>2024-06-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/%E6%B0%91%E8%B0%A3/</loc>
+    <loc>http://www.magicluo.com/tags/%E6%B0%91%E8%B0%A3/</loc>
     <lastmod>2024-06-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/%E6%B0%91%E8%B0%A3/</loc>
+    <loc>http://www.magicluo.com/categories/%E6%B0%91%E8%B0%A3/</loc>
     <lastmod>2024-06-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/talk/</loc>
+    <loc>http://www.magicluo.com/talk/</loc>
     <lastmod>2024-06-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/distributed-tech/the-need-for-observability/</loc>
+    <loc>http://www.magicluo.com/distributed-tech/the-need-for-observability/</loc>
     <lastmod>2023-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/observability/</loc>
+    <loc>http://www.magicluo.com/categories/observability/</loc>
     <lastmod>2023-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/distributed-tech/</loc>
+    <loc>http://www.magicluo.com/distributed-tech/</loc>
     <lastmod>2023-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/</loc>
+    <loc>http://www.magicluo.com/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/</loc>
     <lastmod>2023-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/distributed-tech/observability-overview/</loc>
+    <loc>http://www.magicluo.com/distributed-tech/observability-overview/</loc>
     <lastmod>2023-11-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/</loc>
+    <loc>http://www.magicluo.com/categories/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2023-11-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>http://www.magicluo.com/about/</loc>
     <lastmod>2019-02-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>http://www.magicluo.com/series/</loc>
   </url><url>
-    <loc>http://localhost:1313/product/</loc>
+    <loc>http://www.magicluo.com/product/</loc>
   </url><url>
-    <loc>http://localhost:1313/solution/</loc>
+    <loc>http://www.magicluo.com/solution/</loc>
   </url>
 </urlset>
