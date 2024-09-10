@@ -277,6 +277,9 @@
 </tbody>
 </table>
 <h2 id="快速开始使用">快速开始使用<a class="anchorjs-link" href="#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b%e4%bd%bf%e7%94%a8"></a></h2><p>本部分介绍软路由设置为旁路由工作模式，方便快速上手使用。</p>
+<blockquote>
+<p>关于旁路由的概念和组网说明，参考<a href="/nas/what-is-bypass-gateway">什么是旁路由</a> 的文章说明。</p>
+</blockquote>
 <h3 id="开箱检查">开箱检查<a class="anchorjs-link" href="#%e5%bc%80%e7%ae%b1%e6%a3%80%e6%9f%a5"></a></h3><p>打开包装箱，Wyse3040小主机一台，外加5v3A标准电源适配器，就这两玩意儿。</p>
 <p><figure>
   <a class="paragraph-image">
@@ -289,7 +292,7 @@
 <blockquote>
 <p>显示器、键盘鼠标非必须接入。有条件接入的话可以更方便的在 软路由启动后再shell端进行旁路由IP地址修改，以便和主路由在同一个网段进行后续配置。</p>
 </blockquote>
-<h3 id="访问软路由">访问软路由<a class="anchorjs-link" href="#%e8%ae%bf%e9%97%ae%e8%bd%af%e8%b7%af%e7%94%b1"></a></h3><p>Wyse3040软路由小主机出厂刷入的OP系统的IP为<code>192.168.1.1</code>，用户名<code>root</code>，密码<code>password</code>。如果出厂配置与现有家庭或办公网络主路由IP段冲突或者不一致，需要配置软路由为主路由所在网段的IP地址。</p>
+<h3 id="访问软路由">访问软路由<a class="anchorjs-link" href="#%e8%ae%bf%e9%97%ae%e8%bd%af%e8%b7%af%e7%94%b1"></a></h3><p>Wyse3040软路由小主机出厂刷入的OpenWRT系统的IP为<code>192.168.1.1</code>，用户名<code>root</code>，密码<code>password</code>。如果出厂配置与现有家庭或办公网络主路由IP段冲突或者不一致，需要配置软路由为主路由所在网段的IP地址。</p>
 <p>有2种方式进行修改：</p>
 <ul>
 <li><strong>web控制台修改</strong>：准备一台windows电脑临时修改ip为软路由<code>192.168.1.x</code>网段IP，访问软路web后台地址，修改软路由当前据网段实际IP后，再恢复windows的IP配置。操作简单，适合小白用户。</li>
@@ -480,9 +483,9 @@
         <ul class="pager">
           
           <li class="previous">
-            <a href="/nas/what-is-openwrt/" data-toggle="tooltip" data-placement="top" title="什么是软路由">
+            <a href="/nas/what-is-bypass-gateway/" data-toggle="tooltip" data-placement="top" title="什么是旁路由">
               Previous<br>
-              <span>什么是软路由</span>
+              <span>什么是旁路由</span>
             </a>
           </li>
           
