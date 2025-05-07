@@ -3,10 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://www.magicluo.com/</loc>
-    <lastmod>2024-08-19T00:00:00+00:00</lastmod>
+    <lastmod>2025-05-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://www.magicluo.com/distributed-tech/camle-message-model/</loc>
+    <lastmod>2025-05-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://www.magicluo.com/distributed-tech/metting-camel/</loc>
+    <lastmod>2025-05-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://www.magicluo.com/tags/camel/</loc>
+    <lastmod>2025-05-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/categories/</loc>
-    <lastmod>2024-08-19T00:00:00+00:00</lastmod>
+    <lastmod>2025-05-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://www.magicluo.com/categories/ipaas/</loc>
+    <lastmod>2025-05-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://www.magicluo.com/tags/</loc>
+    <lastmod>2025-05-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://www.magicluo.com/distributed-tech/</loc>
+    <lastmod>2025-05-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/nas/wyse3040-overview/</loc>
     <lastmod>2024-08-19T00:00:00+00:00</lastmod>
@@ -15,9 +33,6 @@
     <lastmod>2024-08-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/tags/openwrt/</loc>
-    <lastmod>2024-08-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://www.magicluo.com/tags/</loc>
     <lastmod>2024-08-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/categories/%E8%BD%AF%E8%B7%AF%E7%94%B1/</loc>
@@ -45,9 +60,6 @@
     <lastmod>2023-11-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/categories/observability/</loc>
-    <lastmod>2023-11-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://www.magicluo.com/distributed-tech/</loc>
     <lastmod>2023-11-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/</loc>
