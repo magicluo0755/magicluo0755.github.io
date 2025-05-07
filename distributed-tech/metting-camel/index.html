@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+    
+  <title> 初识Camel | Laurence&#39;s Blog</title>
+  <meta name="author" content="Laurence Luo">
+  <meta name="description" content="Apache Camel in Action 2书籍的第1章1.1至1.4节中文翻译">
+  <meta name="keywords" content="middleware,unraid,openwrt,personal">
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=" 初识Camel"/>
+<meta name="twitter:description" content="Apache Camel in Action 2书籍的第1章1.1至1.4节中文翻译"/>
+
+  <meta property="og:title" content=" 初识Camel" />
+<meta property="og:description" content="Apache Camel in Action 2书籍的第1章1.1至1.4节中文翻译" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.magicluo.com/distributed-tech/metting-camel/" /><meta property="article:section" content="distributed-tech" />
+<meta property="article:published_time" content="2025-05-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-05-07T00:00:00+00:00" />
+
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css"  crossorigin="anonymous">
+  
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="/sass/main.css">
+
+  <link rel="stylesheet" href="/zoomjs/zoom.min.css">
+
+  <script src=/js/lazysizes.min.js></script>
+
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  
+
+</head>
+
+
+
+<body ontouchstart="">
+  
+  
+  <nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+  <div class="container-fluid">
+    
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.magicluo.com/">Laurence&#39;s Blog</a>
+    </div>
+    
+    <div id="huxblog_navbar">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          <li><a href="/" title="首页">首页</a></li>
+          
+          <li><a href="/distributed-tech/" title="分布式技术">分布式技术</a></li>
+          
+          <li><a href="/solution/" title="解决方案">解决方案</a></li>
+          
+          <li><a href="/nas/" title="NAS软路由">NAS软路由</a></li>
+          
+          <li><a href="/talk/" title="闲谈">闲谈</a></li>
+          
+          <li><a href="/about/" title="关于">关于</a></li>
+          
+
+          <li class="search-icon">
+            <a href="javascript:void(0)">
+              <i class="fa fa-search"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+  
+</nav>
+<script>
+  
+  
+  
+  var $body = document.body;
+  var $toggle = document.querySelector(".navbar-toggle");
+  var $navbar = document.querySelector("#huxblog_navbar");
+  var $collapse = document.querySelector(".navbar-collapse");
+
+  var __HuxNav__ = {
+    close: function () {
+      $navbar.className = " ";
+      
+      setTimeout(function () {
+        
+        if ($navbar.className.indexOf("in") < 0) {
+          $collapse.style.height = "0px";
+        }
+      }, 400);
+    },
+    open: function () {
+      $collapse.style.height = "auto";
+      $navbar.className += " in";
+    },
+  };
+
+  
+  $toggle.addEventListener("click", function (e) {
+    if ($navbar.className.indexOf("in") > 0) {
+      __HuxNav__.close();
+    } else {
+      __HuxNav__.open();
+    }
+  });
+
+  
+
+  document.addEventListener("click", function (e) {
+    if (e.target == $toggle) return;
+    if (e.target.className == "icon-bar") return;
+    __HuxNav__.close();
+  });
+</script>
+  
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  
+
+
+<style type="text/css">
+  header.intro-header {
+    position: relative;
+    background-image: url('');
+  }
+</style>
+
+<header class="intro-header style-text">
+
+  <div class="header-mask"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <div class="tags">
+            
+            <a class="tag" href="/tags/camel/" title="Camel">Camel</a>
+            
+          </div>
+          <h1> 初识Camel</h1>
+          <h2 class="subheading"></h2>
+          <span class="meta">
+            Posted by  老罗 
+            on Wed, May 7, 2025
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+
+
+<article>
+  <div class="container">
+    <div class="row">
+
+      
+      <div class="
+              col-lg-8 col-lg-offset-2
+              col-md-10 col-md-offset-1
+              post-container">
+        <blockquote>
+<p><strong>本章内容包括</strong>：</p>
+<ul>
+<li>Camel简介</li>
+<li>Camel的主要功能</li>
+<li>你的第一次Camel体验</li>
+<li>Camel的架构与概念</li>
+</ul>
+</blockquote>
+<p>从头构建复杂系统是一项成本高昂且几乎从不成功的任务。一个更有效且风险较低的替代方案是将系统像拼图一样从现有的、经过验证的组件中组装起来。我们每天依赖许多这样的集成系统，从电话通信、财务交易、医疗保健到旅行规划和娱乐，一切皆有可能。</p>
+<p>拼图游戏需要一整套能够简单、无缝且稳健地相互连接的拼图块，系统集成项目也是如此。然而，与拼图块天生适合相互连接不同，我们集成的系统很少是为此设计的。集成框架旨在填补这一差距。作为一名开发者，你不太关心集成的系统内部如何工作，而更专注于如何从外部与它交互。一个好的集成框架为复杂的系统提供简单、可管理的抽象，并提供将它们无缝连接在一起的“胶水”。</p>
+<p>Apache Camel 就是这样一个集成框架。在本书中，我们将帮助你理解 Camel 是什么、如何使用它，以及为什么我们认为它是最好的集成框架之一。本章首先介绍 Camel 并突出其核心功能。然后我们将介绍 Camel 的发行版，并解释如何运行本书中的 Camel 示例。我们将通过介绍核心 Camel 概念来结束本章，以便你能理解 Camel 的架构。</p>
+<p>准备好了吗？让我们来认识 Camel。</p>
+<h1 id="介绍camel">介绍Camel<a class="anchorjs-link" href="#%e4%bb%8b%e7%bb%8dcamel"></a></h1><p>Camel 是一个集成框架，旨在让你的集成项目高效且有趣。Camel 项目始于2007年初，现在是一个成熟的开源项目，采用宽松的 Apache 2 许可证，拥有强大的社区支持。</p>
+<p>Camel 的重点在于简化集成。我们相信当你读完本书后，你会欣赏 Camel 并将其列入你的必备工具清单。</p>
+<p>这个 Apache 项目被命名为 Camel，因为这个名字简短且易于记忆。有传言说，这个名字可能受到一位创始人曾经抽过的 Camel 香烟的启发。在 Camel 网站上的常见问题解答页面(<a href="http://camel.apache.org/why-the-name-camel.html" target="_blank">http://camel.apache.org/why-the-name-camel.html</a>)中，列出了其他一些关于命名的轻松理由。</p>
+<h2 id="什么是camel">什么是Camel<a class="anchorjs-link" href="#%e4%bb%80%e4%b9%88%e6%98%afcamel"></a></h2><p>Camel 框架的核心是一个路由引擎，或者更准确地说，是一个路由引擎构建器。它允许你定义自己的路由规则，决定从哪些源接受消息，以及如何处理这些消息并将其发送到其他目标。Camel 使用一种集成语言，让你可以定义复杂的路由规则，类似于业务流程。如图1.1所示，Camel 充当了不同系统之间的“胶水”。</p>
+<p>Camel 的一个基本原则是它不对需要处理的数据类型做任何假设。这是一个重要的特点，因为它为开发者提供了机会，可以集成任何类型的系统，而无需将数据转换为标准格式。</p>
+<p><figure>
+  <a class="paragraph-image">
+    <img data-src="/assets/camel/c01_01.png" data-action="zoom" alt="Camel is the glue between disparate systems"  class="lazyload">
+  </a>
+  
+</figure></p>
+<p>Camel 提供了更高层次的抽象，使你能够使用统一的 API 与各种系统交互，而无需考虑系统使用的协议或数据类型。Camel 中的组件提供了针对不同协议和数据类型的 API 具体实现。开箱即用，Camel 支持超过 280 种协议和数据类型。其可扩展和模块化的架构允许你实现并无缝插入对自定义协议的支持，无论是专有协议还是其他协议。这些架构选择消除了不必要的转换需求，使 Camel 不仅更快，而且更精简。因此，它适合嵌入到需要 Camel 丰富处理能力的其他项目中。其他开源项目，如 <code>Apache ServiceMix</code>、<code>Karaf</code> 和 <code>ActiveMQ</code>已经使用 Camel 作为集成手段。</p>
+<p>我们还应该澄清 Camel 不是什么。Camel 不是企业服务总线（ESB），尽管有些人因其支持路由、转换、编排、监控等功能而称其为轻量级 ESB。Camel 没有容器或可靠的消息总线，但它可以部署在这样的环境中，例如前面提到的 <code>Apache ServiceMix</code>。因此，我们更倾向于将 Camel 称为集成框架而非 ESB。</p>
+<p>如果提到 ESB 让你想起庞大而复杂的部署，不用担心。Camel 在小型部署中同样表现出色，例如微服务或物联网（IoT）网关。</p>
+<p>为了理解 Camel 是什么，让我们来看看它的主要功能。</p>
+<h2 id="为什么使用camel">为什么使用Camel<a class="anchorjs-link" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bd%bf%e7%94%a8camel"></a></h2><p>Camel 在集成领域引入了一些新颖的理念，这也是其创始人最初创建 Camel 的原因。我们将在本书中深入探讨 Camel 的丰富功能，以下是 Camel 的核心概念：</p>
+<ul>
+<li>
+<p>路由和中介引擎</p>
+</li>
+<li>
+<p>广泛的组件库</p>
+</li>
+<li>
+<p>企业集成模式（EIP）</p>
+</li>
+<li>
+<p>领域特定语言（DSL）</p>
+</li>
+<li>
+<p>与负载无关的路由器</p>
+</li>
+<li>
+<p>模块化和可插拔架构</p>
+</li>
+<li>
+<p>普通 Java 对象（POJO）模型</p>
+</li>
+<li>
+<p>简单配置</p>
+</li>
+<li>
+<p>自动类型转换器</p>
+</li>
+<li>
+<p>轻量级核心，适合微服务</p>
+</li>
+<li>
+<p>云就绪</p>
+</li>
+<li>
+<p>测试套件</p>
+</li>
+<li>
+<p>活跃的社区</p>
+</li>
+</ul>
+<p>我们将逐一详细探讨这些功能。</p>
+<p><strong>路由和中介引擎</strong></p>
+<p>Camel 的核心功能是其路由和中介引擎。路由引擎根据路由配置选择性地移动消息。在 Camel 中，路由通过企业集成模式和领域特定语言的组合进行配置，我们接下来将对此进行描述。</p>
+<p><strong>广泛的组件库</strong></p>
+<p>Camel 提供了超过 280 种组件的广泛库。这些组件使 Camel 能够通过传输协议进行连接、使用 API 并理解数据格式。尝试在图 1.2 中找出你过去使用过或未来想使用的技术。当然，本书无法涵盖所有这些组件，但我们会详细介绍大约 20 种最常用的组件。如果你对某个特定组件感兴趣，可以查阅索引。</p>
+<p><figure>
+  <a class="paragraph-image">
+    <img data-src="/assets/camel/c01_02.png" data-action="zoom" alt="Camel支持超过280个转换器"  class="lazyload">
+  </a>
+  
+</figure></p>
+<p><strong>企业集成模式</strong></p>
+<p>尽管集成问题各不相同，Gregor Hohpe 和 Bobby Woolf 注意到许多问题及其解决方案却非常相似。他们在《企业集成模式》（Addison-Wesley, 2003）一书中对这些问题进行了分类，这本书是每位集成专业人士的必读之作[www.enterpriseintegrationpatterns.com]（www.enterpriseintegrationpatterns.com）。如果你还没读过，我们强烈推荐你阅读。至少，它能帮助你更快、更轻松地理解 Camel 的概念。</p>
+<p>企业集成模式（EIPs）之所以有用，不仅因为它们为特定问题提供了经过验证的解决方案，还因为它们有助于定义和沟通问题本身。模式具有已知的语义，这使得问题沟通变得更加容易。Camel 高度基于 EIPs。尽管 EIPs 描述了集成问题和解决方案，并提供了通用词汇，但这些词汇并未形式化。Camel 试图通过提供一种描述集成解决方案的语言来弥补这一差距。《企业集成模式》中描述的模式与 Camel 的领域特定语言（DSL）几乎是一一对应的。</p>
+<p><strong>领域特定语言</strong></p>
+<p>在 Camel 诞生之初，其领域特定语言（DSL）是对集成领域的一大贡献。此后，其他几个集成框架也纷纷效仿，推出了基于 Java、XML 或自定义语言的 DSL。DSL 的目的是让开发者专注于集成问题，而不是工具——即编程语言本身。以下是一些使用不同格式但功能等价的 DSL 示例：</p>
+<ul>
+<li>Java DSL</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>from<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;file:data/inbox&#34;</span><span style="color:#ff79c6">).</span><span style="color:#50fa7b">to</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;jms:queue:order&#34;</span><span style="color:#ff79c6">);</span>
+</span></span></code></pre></div><ul>
+<li>XML DSL</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">&lt;route&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>  <span style="color:#ff79c6">&lt;from</span> <span style="color:#50fa7b">uri=</span><span style="color:#f1fa8c">&#34;file:data/inbox&#34;</span><span style="color:#ff79c6">/&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>  <span style="color:#ff79c6">&lt;to</span> <span style="color:#50fa7b">uri=</span><span style="color:#f1fa8c">&#34;jms:queue:order&#34;</span><span style="color:#ff79c6">/&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#ff79c6">&lt;/route&gt;</span>
+</span></span></code></pre></div><p>这些示例是真实的代码，它们展示了如何轻松地将文件从一个文件夹路由到 Java 消息服务（JMS）队列。由于底层是一个真正的编程语言，你可以使用现有的工具支持，例如代码补全和编译器错误检测，如图1.3所示。</p>
+<p><figure>
+  <a class="paragraph-image">
+    <img data-src="/assets/camel/c01_03.png" data-action="zoom" alt="Camel Java DSL"  class="lazyload">
+  </a>
+  
+</figure></p>
+<p>在这里，你可以看到 Eclipse IDE 的自动补全功能如何提供一个可用的 DSL 术语列表。</p>
+<p><strong>与负载无关的路由器</strong></p>
+<p>Camel 可以路由任何类型的负载，你不受限于传输标准化的格式，如 XML 负载。这种自由意味着你无需将负载转换为标准格式来简化路由。</p>
+<p><strong>模块化和可插拔架构</strong></p>
+<p>Camel 拥有模块化架构，允许将任何组件加载到 Camel 中，无论该组件是 Camel 自带的、第三方的，还是你自己创建的自定义组件。你还可以配置 Camel 中的几乎所有内容。许多功能都是可插拔和可配置的——从 ID 生成、线程管理、关闭序列器到流缓存等等。</p>
+<p><strong>POJO模型</strong></p>
+<p>Java Bean（或普通 Java 对象，POJO）在 Camel 中被视为一等公民，Camel 致力于让你在集成项目中随时随地使用 Bean。在许多地方，你都可以用自己的自定义代码扩展 Camel 的内置功能。第 4 章将详细讨论在 Camel 中使用 Bean。</p>
+<p><strong>简单易配置</strong></p>
+<p>Camel 尽可能遵循“约定优于配置”的范式，以最小化配置需求。为了在路由中直接配置端点，Camel 使用了一种简单且直观的 URI 配置方式。</p>
+<p>例如，你可以配置一个 Camel 路由，从一个文件端点开始，递归扫描子文件夹并仅包含 .txt 文件，如下所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>from<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;file:data/inbox?recursive=true&amp;include=.*txt$&#34;</span><span style="color:#ff79c6">)...</span>
+</span></span></code></pre></div><p><strong>自动类型转换器</strong></p>
+<p>Camel 内置了一个类型转换机制，提供了超过 350 种转换器。例如，你无需配置类型转换规则即可从字节数组转换为字符串。如果需要转换到 Camel 不支持的类型，你可以创建自己的类型转换器。最棒的是，这一功能在幕后自动工作，你无需为此操心。</p>
+<p>Camel 组件也利用了这一特性；它们可以接受大多数类型的数据，并将其转换为它们能够使用的类型。这一功能是 Camel 社区中最受欢迎的功能之一。你甚至可能开始疑惑为什么 Java 本身没有提供这样的功能！第 3 章将更详细地介绍类型转换器。</p>
+<p><strong>轻量级核心，适合微服务</strong></p>
+<p>Camel 的核心可以视为轻量级，总库大小约为 4.9 MB，运行时依赖仅为 1.3 MB。这使得 Camel 易于嵌入或部署到任何地方，例如独立应用程序、微服务、Web 应用程序、Spring 应用程序、Java EE 应用程序、OSGi、Spring Boot、WildFly 以及云平台（如 AWS、Kubernetes 和 Cloud Foundry）。Camel 的设计初衷不是作为服务器或 ESB，而是嵌入到你选择的任何运行时环境中。你只需要 Java。</p>
+<p><strong>云就绪</strong></p>
+<p>除了 Camel 本身支持云原生（在第 18 章中介绍），Camel 还提供了许多与 SaaS 提供商连接的组件。例如，通过 Camel 你可以连接到以下服务：</p>
+<ul>
+<li>
+<p>Amazon DynamoDB、EC2、Kinesis、SimpleDB、SES、SNS、SQS、SWF 和 S3</p>
+</li>
+<li>
+<p>Braintree（PayPal、Apple Pay、Android Pay 等）</p>
+</li>
+<li>
+<p>Dropbox</p>
+</li>
+<li>
+<p>Facebook</p>
+</li>
+<li>
+<p>GitHub</p>
+</li>
+<li>
+<p>Google Big Query、Calendar、Drive、Mail 和 Pub Sub</p>
+</li>
+<li>
+<p>HipChat</p>
+</li>
+<li>
+<p>LinkedIn</p>
+</li>
+<li>
+<p>Salesforce</p>
+</li>
+<li>
+<p>Twitter</p>
+</li>
+<li>
+<p>……</p>
+</li>
+</ul>
+<p><strong>测试套件</strong></p>
+<p>Camel 提供了一个测试套件，方便你测试自己的 Camel 应用程序。Camel 自身也广泛使用这个测试套件，包含超过 18,000 个单元测试。测试套件包含特定于测试的组件，例如可以帮助你模拟真实端点。它还允许你设置预期，Camel 可以根据这些预期判断应用程序是否满足要求或失败。第 9 章将介绍 Camel 的测试内容。</p>
+<p><strong>活跃的社区</strong></p>
+<p>Camel 拥有一个活跃的社区，而且这个社区历史悠久。截至撰写本书时，它已经活跃（并不断增长）超过 10 年。对于任何希望在应用程序中使用开源项目的用户来说，拥有强大的社区支持至关重要。不活跃的项目社区支持有限，如果你遇到问题，只能靠自己解决。而使用 Camel 时，如果遇到任何困难，用户和开发者都会提供帮助。有关 Camel 社区的更多信息，请参阅附录 B。</p>
+<p>现在你已经了解了构成 Camel 的主要功能，接下来我们将通过查看 Camel 发行版并尝试一个示例来进行更多实践操作。</p>
+<h1 id="快速开始">快速开始<a class="anchorjs-link" href="#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b"></a></h1><p>本节将向你展示如何获取 Camel 发行版并解释其内容。然后，你将使用 Apache Maven 运行一个示例。完成这些后，你将知道如何运行本书源代码中的任何示例。</p>
+<p>首先，我们来获取 Camel 发行版。</p>
+<h2 id="获取camel">获取Camel<a class="anchorjs-link" href="#%e8%8e%b7%e5%8f%96camel"></a></h2><p>Camel 可从 Apache Camel 官方网站<a href="http://camel.apache.org/download.html" target="_blank">http://camel.apache.org/download.html</a> 下载。在此页面上，你会看到所有 Camel 版本的列表以及最新版本的下载链接。</p>
+<p>为了本书的目的，我们将使用 Camel 2.20.1。要获取此版本，请点击 Camel 2.20.1 Release 链接。在页面底部附近，你会找到两种二进制发行版：zip 发行版适用于 Windows 用户，tar.gz 发行版适用于 macOS/Linux 用户。下载其中一个发行版后，将其解压到你硬盘上的某个位置。</p>
+<p>打开命令提示符，进入你解压 Camel 发行版的位置。在这里执行目录列表命令，你会看到类似以下内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">[</span>janstey@ghost apache-camel-2.20.1<span style="color:#ff79c6">]</span>$ ls
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>doc  examples  lib  LICENSE.txt  NOTICE.txt  README.txt
+</span></span></code></pre></div><p>正如你所见，发行版体积很小，你可能已经能猜到每个目录包含的内容。以下是详细信息：</p>
+<ul>
+<li>
+<p><strong>doc</strong>：包含 HTML 格式的 Camel 手册。该手册是发行时 Apache Camel 网站大部分内容的下载版本。因此，对于无法访问 Camel 网站的用户（或者如果你弄丢了《Camel in Action》这本书），这是一个不错的参考资料。</p>
+</li>
+<li>
+<p><strong>examples</strong>：包含 97 个 Camel 示例。</p>
+</li>
+<li>
+<p><strong>lib</strong>：包含所有 Camel 库。本章稍后将介绍如何使用 Maven 轻松下载核心之外的组件依赖。</p>
+</li>
+<li>
+<p><strong>LICENSE.txt</strong>：包含 Camel 发行版的许可证信息。因为这是一个 Apache 项目，许可证采用 Apache 许可证 2.0 版。</p>
+</li>
+<li>
+<p><strong>NOTICE.txt</strong>：包含 Camel 发行版中包含的第三方依赖的版权信息。</p>
+</li>
+<li>
+<p><strong>README.txt</strong>：包含 Camel 的简短介绍以及帮助新用户快速上手的链接列表。</p>
+</li>
+</ul>
+<p>现在，让我们来尝试本书中的第一个 Camel 示例。</p>
+<h2 id="第一个camel体验">第一个Camel体验<a class="anchorjs-link" href="#%e7%ac%ac%e4%b8%80%e4%b8%aacamel%e4%bd%93%e9%aa%8c"></a></h2><p>到目前为止，我们已经向你展示了如何获取 Camel 发行版并初步了解了其内容。此时，你可以自由探索发行版；所有示例都附有说明，帮助你理解它们。</p>
+<p>不过，从现在开始，我们将完全不使用发行版。本书源代码中的所有示例都使用 Apache Maven，这意味着 Camel 库会自动为你下载——无需确保 Camel 发行版的库在类路径上。</p>
+<p>你可以通过托管源代码的 GitHub 项目[https://github.com/camelinaction/camelinaction2]（https://github.com/camelinaction/camelinaction2）获取本书的源代码。</p>
+<p>你将查看的第一个示例可以视为集成的“hello world”：文件路由。假设你需要从一个目录（data/inbox）读取文件，以某种方式处理它们，然后将结果写入另一个目录（data/outbox）。为了简单起见，你将跳过处理步骤，因此输出仅仅是原始文件的副本。图 1.4 展示了这一过程。</p>
+<p><figure>
+  <a class="paragraph-image">
+    <img data-src="/assets/camel/c01_04.png" data-action="zoom" alt="FileCopier Demo"  class="lazyload">
+  </a>
+  
+</figure></p>
+<p>看起来很简单，对吧？下面是一个使用纯 Java（不使用 Camel）的可能解决方案。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> java.io.File<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">import</span> java.io.FileInputStream<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">import</span> java.io.FileOutputStream<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">import</span> java.io.IOException<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#ff79c6">import</span> java.io.OutputStream<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">FileCopier</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String args<span style="color:#ff79c6">[])</span> <span style="color:#8be9fd;font-style:italic">throws</span> Exception <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        File inboxDirectory <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> File<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;data/inbox&#34;</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>        File outboxDirectory <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> File<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;data/outbox&#34;</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>        outboxDirectory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">mkdir</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        File<span style="color:#ff79c6">[]</span> files <span style="color:#ff79c6">=</span> inboxDirectory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">listFiles</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        <span style="color:#ff79c6">for</span> <span style="color:#ff79c6">(</span>File source <span style="color:#ff79c6">:</span> files<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>            <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>source<span style="color:#ff79c6">.</span><span style="color:#50fa7b">isFile</span><span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>               File dest <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> File<span style="color:#ff79c6">(</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>                    outboxDirectory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getPath</span><span style="color:#ff79c6">()</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>                    <span style="color:#ff79c6">+</span> File<span style="color:#ff79c6">.</span><span style="color:#50fa7b">separator</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>                    <span style="color:#ff79c6">+</span> source<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getName</span><span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>               copyFile<span style="color:#ff79c6">(</span>source<span style="color:#ff79c6">,</span> dest<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>            <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">copyFile</span><span style="color:#ff79c6">(</span>File source<span style="color:#ff79c6">,</span> File dest<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>        <span style="color:#8be9fd;font-style:italic">throws</span> IOException <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>        OutputStream out <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> FileOutputStream<span style="color:#ff79c6">(</span>dest<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>        <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> buffer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[(</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">)</span> source<span style="color:#ff79c6">.</span><span style="color:#50fa7b">length</span><span style="color:#ff79c6">()];</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>        FileInputStream in <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> FileInputStream<span style="color:#ff79c6">(</span>source<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>        in<span style="color:#ff79c6">.</span><span style="color:#50fa7b">read</span><span style="color:#ff79c6">(</span>buffer<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>        <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>            out<span style="color:#ff79c6">.</span><span style="color:#50fa7b">write</span><span style="color:#ff79c6">(</span>buffer<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>        <span style="color:#ff79c6">}</span> <span style="color:#ff79c6">finally</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>            out<span style="color:#ff79c6">.</span><span style="color:#50fa7b">close</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>            in<span style="color:#ff79c6">.</span><span style="color:#50fa7b">close</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><p>这个 FileCopier 示例是一个简单的用例，但仍然需要 37 行代码。你必须使用低级的文件 API，并确保资源被正确关闭——这是一项很容易出错的任务。此外，如果你要轮询 data/inbox 目录以查找新文件，你需要设置一个定时器，并跟踪哪些文件已经复制过。这个简单的示例正变得越来越复杂。</p>
+<p>像这样的集成任务已经被完成过成千上万次；你不应该每次都需要手动编写这样的代码。我们无需重新发明轮子。让我们看看如果使用 Apache Camel 这样的集成框架，轮询解决方案会是什么样子。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> org.apache.camel.CamelContext<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">import</span> org.apache.camel.builder.RouteBuilder<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">import</span> org.apache.camel.impl.DefaultCamelContext<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">FileCopierWithCamel</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String args<span style="color:#ff79c6">[])</span> <span style="color:#8be9fd;font-style:italic">throws</span> Exception <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        CamelContext context <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> DefaultCamelContext<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">addRoutes</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> RouteBuilder<span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>            <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">configure</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>                from<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;file:data/inbox?noop=true&#34;</span><span style="color:#ff79c6">)</span>     #1
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">to</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;file:data/outbox&#34;</span><span style="color:#ff79c6">);</span>                       
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>            <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        <span style="color:#ff79c6">});</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>        context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">start</span><span style="color:#ff79c6">();</span>                         
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>        Thread<span style="color:#ff79c6">.</span><span style="color:#50fa7b">sleep</span><span style="color:#ff79c6">(</span>10000<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>        context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">stop</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>#1 Routes files from inbox to outbox
+</span></span></code></pre></div><p>这段代码的大部分是使用 Camel 时的样板代码。每个 Camel 应用程序都会使用一个 CamelContext，随后启动并停止。你还添加了一个 sleep 方法，以便让这个简单的 Camel 应用程序有时间复制文件。你应该关注的是清单 1.2 中的路由 ❶。</p>
+<p>Camel 中的路由定义方式使其在阅读时流畅易懂。这个路由可以这样理解：从文件位置 data/inbox 消费消息，设置 noop 选项，然后发送到文件位置 data/outbox。noop 选项告诉 Camel 保持源文件不变。如果不使用此选项，文件将被移动。大多数从未见过 Camel 的人都能理解这个路由的作用。你可能还想注意，排除样板代码后，你仅用两行 Java 代码就创建了一个文件轮询路由 ❶。</p>
+<p>要运行这个示例，你需要从 Maven 网站 <a href="http://maven.apache.org/download.html" target="_blank">http://maven.apache.org/download.html</a> 下载并安装 Apache Maven。安装并配置好 Maven 后，打开终端，进入本书源代码的 chapter1/file-copy 目录。如果在这里执行目录列表命令，你会看到以下内容：</p>
+<ul>
+<li>
+<p><strong>data</strong>：包含 inbox 目录，里面有一个名为 message1.xml 的文件。</p>
+</li>
+<li>
+<p><strong>src</strong>：包含本章中展示的清单的源代码。</p>
+</li>
+<li>
+<p><strong>pom.xml</strong>：包含构建示例所需的信息。这是 Maven 项目对象模型（POM）XML 文件。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>注意：</strong></p>
+<p>我们在本书开发过程中使用了 Maven 3.5.0。不同版本的 Maven 可能无法完全按照我们展示的方式工作或显示。</p>
+</blockquote>
+<p>POM文件如下所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">&lt;project</span> <span style="color:#50fa7b">xmlns=</span><span style="color:#f1fa8c">&#34;http://maven.apache.org/POM/4.0.0&#34;</span>  <span style="color:#50fa7b">xmlns:xsi=</span><span style="color:#f1fa8c">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> <span style="color:#50fa7b">xsi:schemaLocation=</span><span style="color:#f1fa8c">&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  <span style="color:#ff79c6">&lt;modelVersion&gt;</span>4.0.0<span style="color:#ff79c6">&lt;/modelVersion&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>  <span style="color:#ff79c6">&lt;parent&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>com.camelinaction<span style="color:#ff79c6">&lt;/groupId&gt;</span>     #1
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>chapter1<span style="color:#ff79c6">&lt;/artifactId&gt;</span>          
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#ff79c6">&lt;version&gt;</span>2.0.0<span style="color:#ff79c6">&lt;/version&gt;</span>                   
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  <span style="color:#ff79c6">&lt;/parent&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  <span style="color:#ff79c6">&lt;artifactId&gt;</span>chapter1-file-copy<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  <span style="color:#ff79c6">&lt;name&gt;</span>Camel in Action 2 :: Chapter 1 :: File Copy Example<span style="color:#ff79c6">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>  <span style="color:#ff79c6">&lt;dependencies&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>      <span style="color:#ff79c6">&lt;groupId&gt;</span>org.apache.camel<span style="color:#ff79c6">&lt;/groupId&gt;</span>     #2
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>      <span style="color:#ff79c6">&lt;artifactId&gt;</span>camel-core<span style="color:#ff79c6">&lt;/artifactId&gt;</span>     #2
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>      <span style="color:#ff79c6">&lt;groupId&gt;</span>org.slf4j<span style="color:#ff79c6">&lt;/groupId&gt;</span>     #3
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>      <span style="color:#ff79c6">&lt;artifactId&gt;</span>slf4j-log4j12<span style="color:#ff79c6">&lt;/artifactId&gt;</span>     #3 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    <span style="color:#ff79c6">&lt;/dependency&gt;</span>                              
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>  <span style="color:#ff79c6">&lt;/dependencies&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span><span style="color:#ff79c6">&lt;/project&gt;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>#1 Parent POM
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>#2 Camel’s core library
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>#3 Logging support
+</span></span></code></pre></div><p>Maven 本身是一个复杂的主题，我们在此不做深入探讨。我们将提供足够的信息，让你能够高效地运行本书中的示例。第 8 章还将介绍使用 Maven 开发 Camel 应用程序，因此那里也有大量相关信息。</p>
+<p>清单 1.3 中的 Maven POM 可能是你见过的最短的 POM 之一——几乎所有内容都使用了 Maven 提供的默认设置。除了这些默认设置外，父 POM ❶ 中还配置了一些设置。这里最需要指出的可能是对 Camel 库的依赖 ❷。这个依赖元素告诉 Maven 执行以下操作：</p>
+<ul>
+<li>
+<p>根据 groupId、artifactId 和 version 创建搜索路径。version 元素设置为 camel-version 属性，该属性在父元素 ❶ 引用的 POM 中定义，解析为 2.20.1。未指定依赖类型，因此假定为 JAR 文件类型。搜索路径为 org/apache/camel/camel-core/2.20.1/camel-core-2.20.1.jar。</p>
+</li>
+<li>
+<p>由于清单 1.3 未定义 Maven 查找 Camel 依赖的特殊位置，Maven 将在 Maven 中央仓库（位于 <a href="http://repo1.maven.org/maven2" target="_blank">http://repo1.maven.org/maven2</a>）中查找。</p>
+</li>
+<li>
+<p>结合搜索路径和仓库 URL，Maven 尝试下载 <a href="http://repo1.maven.org/maven2/org/apache/camel/camel-core/2.20.1/camel-core-2.20.1.jar" target="_blank">http://repo1.maven.org/maven2/org/apache/camel/camel-core/2.20.1/camel-core-2.20.1.jar</a>。</p>
+</li>
+<li>
+<p>此 JAR 文件将被保存到 Maven 的本地下载缓存中，通常位于家目录下的 .m2/repository。在 Linux/macOS 上为 ~/.m2/repository，在最新版本的 Windows 上为 C:\Users&lt;用户名&gt;.m2\repository。</p>
+</li>
+<li>
+<p>当启动清单 1.2 中的应用程序代码时，Camel JAR 将被添加到类路径中。</p>
+</li>
+</ul>
+<p>要运行清单 1.2 中的示例，进入 chapter1/file-copy 目录并使用以下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>mvn compile exec:java
+</span></span></code></pre></div><p>这条命令指示 Maven 编译 src 目录中的源代码，并执行 FileCopierWithCamel 类，同时将 camel-core JAR 添加到类路径中。</p>
+<blockquote>
+<p><strong>注意</strong>:</p>
+<p>要运行本书中的任何示例，你需要连接到互联网。Apache Maven 将下载示例所需的许多 JAR 依赖。整个示例集合将下载数百兆字节的库文件。</p>
+</blockquote>
+<p>从 chapter1/file-copy 目录运行 Maven 命令，完成后，浏览到 data/outbox 文件夹，你将看到刚刚复制的文件。恭喜你——你已经运行了第一个 Camel 示例！这是一个简单的示例，但了解它的设置方式将使你能够运行本书中的几乎所有示例。</p>
+<p>现在，我们需要介绍 Camel 的基础知识和集成领域的概况，以确保你为使用 Camel 做好充分准备。我们将重点探讨消息模型、架构以及其他一些 Camel 概念。大多数抽象概念基于已知的企业集成模式（EIP），并保留了它们的名称和语义。我们将从 Camel 的消息模型开始。</p>
+<h1 id="camel的消息模型">Camel的消息模型<a class="anchorjs-link" href="#camel%e7%9a%84%e6%b6%88%e6%81%af%e6%a8%a1%e5%9e%8b"></a></h1><h2 id="message">Message<a class="anchorjs-link" href="#message"></a></h2><h2 id="exchage">Exchage<a class="anchorjs-link" href="#exchage"></a></h2><h1 id="camel的架构">Camel的架构<a class="anchorjs-link" href="#camel%e7%9a%84%e6%9e%b6%e6%9e%84"></a></h1><h2 id="俯瞰架构">俯瞰架构<a class="anchorjs-link" href="#%e4%bf%af%e7%9e%b0%e6%9e%b6%e6%9e%84"></a></h2><h2 id="camel">Camel<a class="anchorjs-link" href="#camel"></a></h2>
+
+        <hr style="visibility: hidden;" />
+        <ul class="pager">
+          
+          <li class="previous">
+            <a href="/nas/wyse3040-overview/" data-toggle="tooltip" data-placement="top" title="Dell Wyse3040软路由介绍">
+              Previous<br>
+              <span>Dell Wyse3040软路由介绍</span>
+            </a>
+          </li>
+          
+          
+          <li class="next">
+            <a href="/distributed-tech/camel-message-model/" data-toggle="tooltip" data-placement="top" title=" Camel的消息模型">
+              Next<br>
+              <span> Camel的消息模型</span>
+            </a>
+          </li>
+          
+        </ul>
+        <hr style="visibility: hidden;" />
+
+        
+        
+
+
+
+<div class="giscus" id="comments"></div>
+<script src="https://giscus.app/client.js" 
+  data-repo="roninro/hugo-theme-puppet" 
+  data-repo-id="R_kgDOHuvyhw"
+  data-category="General"
+  data-category-id="DIC_kwDOHuvyh84CQjDo"
+  data-mapping="pathname"
+  data-strict="0" 
+  data-reactions-enabled="1" 
+  data-emit-metadata="0" 
+  data-input-position="top"
+  data-theme="light_tritanopia"
+  data-lang="en"
+  crossorigin="anonymous"
+  async>
+  </script>
+
+
+
+
+      </div>
+
+      
+      
+      
+      <div class="
+              col-lg-2 col-lg-offset-0
+              visible-lg-block
+              sidebar-container
+              catalog-container">
+        <div class="side-catalog">
+          <hr class="hidden-sm hidden-xs">
+          <h5>
+            <a class="catalog-toggle" href="#">目录</a>
+          </h5>
+          <ul class="catalog-body"></ul>
+        </div>
+      </div>
+      
+      
+      <div class="
+              col-lg-8 col-lg-offset-2
+              col-md-10 col-md-offset-1
+              sidebar-container">
+
+        
+        
+        <section>
+  
+  
+  <hr class="hidden-sm hidden-xs">
+  
+  <h5>标签</h5>
+  <div class="tags">
+    
+    <a href="/tags/camel/">Camel</a>
+    
+    <a href="/tags/openwrt/">OpenWRT</a>
+    
+    <a href="/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/">可观测性</a>
+    
+    <a href="/tags/%E6%9D%8E%E5%BF%97/">李志</a>
+    
+    <a href="/tags/%E6%B0%91%E8%B0%A3/">民谣</a>
+    
+  </div>
+</section>
+
+        
+        
+
+<hr>
+<h5>友情链接</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://openwrt.org/" target="_blank">OpenWRT</a></li>
+  
+  <li><a href="https://unraid.net/" target="_blank">Unraid</a></li>
+  
+</ul>
+
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+  
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <ul class="list-inline text-center">
+
+<li>
+  <a href="https://github.com/magicluo0755" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li>
+
+<li>
+  <a href="https://www.zhihu.com/people/#" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-stack-1x fa-inverse">知</i>
+    </span>
+  </a>
+</li></ul>
+
+        <p class="copyright text-muted">
+          Copyright &copy; Laurence&#39;s Blog 2025  
+          <br>
+          Powered by <a href="https://gohugo.io">Hugo</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src=/js/jquery.min.js></script>
+<script src=/js/bootstrap.min.js crossorigin="anonymous"></script>
+
+
+
+<script src="/js/hux-blog.min.73a6a8d8df45293e042d15867416f603045bbeb98406731e5022d6c60388cd9d.js"></script>
+
+
+<script src=/js/simple-jekyll-search.min.js></script>
+
+
+<script src="/js/search.min.53bce5da475b4d362500e5ce5dddfa22e20e1b9018777411d2020b4b839c9310.js"></script>
+
+
+
+
+
+
+<script type="text/javascript">
+  function generateCatalog(selector) {
+    _containerSelector = 'div.post-container'
+    
+    var P = $(_containerSelector), a, n, t, l, i, c;
+    a = P.find('h1,h2,h3,h4');
+    
+    $(selector).html('')
+    
+    a.each(function () {
+      n = $(this).prop('tagName').toLowerCase();
+      i = "#" + $(this).prop('id');
+      t = $(this).text();
+      c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+      l = $('<li class="' + n + '_nav"></li>').append(c);
+      $(selector).append(l);
+    });
+    return true;
+  }
+
+  generateCatalog(".catalog-body");
+
+  
+  $(".catalog-toggle").click((function (e) {
+    e.preventDefault();
+    $('.side-catalog').toggleClass("fold")
+  }))
+</script>
+
+
+<script type="text/javascript" src='/js/jquery.nav.min.ade6bde8f9fcc6a4b40852cb892e9f5912340ab8fe1305149d917fdd16fffd8d.js'></script>
+<script>
+   $(document).ready( function () {
+    $('.catalog-body').onePageNav({
+      currentClass: "active",
+      changeHash: !1,
+      easing: "swing",
+      filter: "",
+      scrollSpeed: 700,
+      scrollOffset: 0,
+      scrollThreshold: .2,
+      begin: null,
+      end: null,
+      scrollChange: null,
+      padding: 80
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+<script src="/zoomjs/zoom.min.js"></script>
+
+</body>
+
+</html>
