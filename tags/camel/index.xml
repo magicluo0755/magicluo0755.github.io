@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Camel on Laurence&#39;s Blog</title>
+    <link>http://www.magicluo.com/tags/camel/</link>
+    <description>Recent content in Camel on Laurence&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 07 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://www.magicluo.com/tags/camel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title> Camel的消息模型</title>
+      <link>http://www.magicluo.com/distributed-tech/camel-message-model/</link>
+      <pubDate>Wed, 07 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.magicluo.com/distributed-tech/camel-message-model/</guid>
+      <description>Camel 使用两种抽象来建模消息，我们将在本节中介绍： org.apache.camel.Message：Camel 中承载和路由数据的基本实体。 org</description>
+    </item>
+    
+    <item>
+      <title> 初识Camel</title>
+      <link>http://www.magicluo.com/distributed-tech/metting-camel/</link>
+      <pubDate>Wed, 07 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.magicluo.com/distributed-tech/metting-camel/</guid>
+      <description>本章内容包括： Camel简介 Camel的主要功能 你的第一次Camel体验 Camel的架构与概念 从头构建复杂系统是一项成本高昂且几乎从不成功的</description>
+    </item>
+    
+  </channel>
+</rss>
