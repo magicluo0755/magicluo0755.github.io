@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>企业集成 on Laurence Blog</title>
+    <link>https://zhaohuabing.com/tags/%E4%BC%81%E4%B8%9A%E9%9B%86%E6%88%90/</link>
+    <description>Recent content in 企业集成 on Laurence Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 07 May 2025 14:00:00 +0000</lastBuildDate><atom:link href="https://zhaohuabing.com/tags/%E4%BC%81%E4%B8%9A%E9%9B%86%E6%88%90/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title> 1.4 Camel的架构</title>
+      <link>https://zhaohuabing.com/post/2025-05-07-camel-architecture/</link>
+      <pubDate>Wed, 07 May 2025 14:00:00 +0000</pubDate>
+      
+      <guid>https://zhaohuabing.com/post/2025-05-07-camel-architecture/</guid>
+      <description>你将首先了解高层架构，然后深入探讨具体概念。读完本节后，你应该已经熟悉了集成领域的术语，并为第2章做好准备，在那里你将探索 Camel 的路由功能。 整体</description>
+    </item>
+    
+    <item>
+      <title>1.3 Camel的消息模型</title>
+      <link>https://zhaohuabing.com/post/2025-05-07-camel-message-model/</link>
+      <pubDate>Wed, 07 May 2025 09:00:00 +0000</pubDate>
+      
+      <guid>https://zhaohuabing.com/post/2025-05-07-camel-message-model/</guid>
+      <description>Camel 使用两种抽象来建模消息，我们将在本节中介绍： org.apache.camel.Message：Camel 中承载和路由数据的基本实体。 org</description>
+    </item>
+    
+    <item>
+      <title> 1.初识Camel</title>
+      <link>https://zhaohuabing.com/post/2025-05-06-metting-camel/</link>
+      <pubDate>Tue, 06 May 2025 09:00:00 +0000</pubDate>
+      
+      <guid>https://zhaohuabing.com/post/2025-05-06-metting-camel/</guid>
+      <description>本章内容包括： Camel简介 Camel的主要功能 你的第一次Camel体验 Camel的架构与概念 从头构建复杂系统是一项成本高昂且几乎从不成功的</description>
+    </item>
+    
+  </channel>
+</rss>

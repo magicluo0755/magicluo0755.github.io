@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta name="generator" content="Hugo 0.115.3">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Laurence Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://zhaohuabing.com/img/home-bg.jpg">
+    <meta property="twitter:image" content="https://zhaohuabing.com/img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="" />
+    <meta property="og:title" content="" />
+    <meta property="twitter:title" content="" />
+    
+
+    
+    <meta name="description" content="Laurence，数字化转型背景下的IT民工, 开源爱好者，IT数码与摄影爱好者 | 这里是 Laurence 的博客，与你分享趣闻。">
+    <meta property="og:description" content="Laurence，数字化转型背景下的IT民工, 开源爱好者，IT数码与摄影爱好者 | 这里是 Laurence 的博客，与你分享趣闻。" />
+    <meta property="twitter:description" content="Laurence，数字化转型背景下的IT民工, 开源爱好者，IT数码与摄影爱好者 | 这里是 Laurence 的博客，与你分享趣闻。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Laurence, Laurence的网络日志, Laurence的博客, Laurence Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, 企业集成, EAI, 微服务, Microservice，iPaaS">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Laurence Blog | Laurence 博客 | Laurence Blog</title>
+
+    <link rel="canonical" href="/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Laurence Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">全部文章</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/%E4%B9%A6%E7%B1%8D%E7%BF%BB%E8%AF%91/">书籍翻译</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/">分布式架构</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E6%B0%91%E8%B0%A3/">民谣</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E8%BD%AF%E8%B7%AF%E7%94%B1/">软路由</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">存档</a></li>
+                    
+                        <li><a href="/about//">关于我</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Laurence Blog </h1>
+                    
+		    <span class="subheading"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+  
+<div data-pagefind-ignore="all" class="container">
+    <div class="row">
+        
+        
+   	    <div class="
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container
+        ">
+            
+<div data-pagefind-ignore="all">
+
+<div class="post-preview">
+    <a href="https://zhaohuabing.com/post/2025-05-07-camel-architecture/">
+        <h2 class="post-title">
+             1.4 Camel的架构
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            《Apache Camel in Action 2nd》第1章1.4至1.6节全部的中文翻译
+        
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by Laurence(译) on Wednesday, May 7, 2025
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zhaohuabing.com/post/2025-05-07-camel-message-model/">
+        <h2 class="post-title">
+            1.3 Camel的消息模型
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            《Apache Camel in Action 2nd》第1章1.3节的中文翻译
+        
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by Laurence on Wednesday, May 7, 2025
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zhaohuabing.com/post/2025-05-06-metting-camel/">
+        <h2 class="post-title">
+             1.初识Camel
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            Apache Camel in Action 2书籍的第1章1.1至1.4节中文翻译
+        
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by Laurence on Tuesday, May 6, 2025
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zhaohuabing.com/post/2024-08-19-wyse3040-overview/">
+        <h2 class="post-title">
+            Dell Wyse3040软路由介绍
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            Dell Wyse3040作为软路由的新选择
+        
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by Laurence on Monday, August 19, 2024
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zhaohuabing.com/post/2024-08-01-what-is-bypass-gateway/">
+        <h2 class="post-title">
+            什么是旁路由
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            旁路由是对现有网络主路由的补充，提供网络流量管理的增强和可扩展性
+        
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by Laurence on Thursday, August 1, 2024
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zhaohuabing.com/post/2024-06-11-music-spring-end-south-city/">
+        <h2 class="post-title">
+            春末的南方城市
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            2016 北京不插电现场
+        
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by Laurence on Tuesday, June 11, 2024
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zhaohuabing.com/post/2023-11-27-the-need-for-observability/">
+        <h2 class="post-title">
+             可观测性的必要性(译文)
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            本文翻译自Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第一章
+        
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by Laurence on Monday, November 27, 2023
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zhaohuabing.com/post/2023-11-15-observability-overview/">
+        <h2 class="post-title">
+            应用可观测性和监控
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            介绍什么是可观测性，以及可观测性与监控，AIOps的关系
+        
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by Laurence on Wednesday, November 15, 2023
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+</div>
+
+            
+
+
+
+       	</div>
+        
+
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+	
+    <section class="visible-md visible-lg">
+	
+        <div class="short-about">
+            
+            <a href="/about">
+               <img src="/img/avatar.jpg" alt="avatar" style="cursor: pointer" />
+            </a>
+            
+            
+                <p>IT技术与数码产品瞎折腾玩家</p>
+            
+           
+           <ul class="list-inline">
+               
+               <li>
+                   <a href="mailto:luo.xianq@gmail.com">
+                      <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                      </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               <li>
+                   <a target="_blank" href="https://github.com/magicluo0755">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               
+               
+            
+            
+               
+               
+               
+               
+                </ul>
+            </div>
+    </section>
+	
+    
+    
+    
+    
+    <section>
+        <hr class="hidden-sm hidden-xs">
+        <h5>FEATURED TAGS</h5>
+        <div class="tags">
+            
+            
+               
+                    <a href="/tags/camel" title="camel">
+                        camel
+                    </a>
+               
+            
+               
+                    <a href="/tags/nas" title="nas">
+                        nas
+                    </a>
+               
+            
+               
+                    <a href="/tags/%E4%BC%81%E4%B8%9A%E9%9B%86%E6%88%90" title="企业集成">
+                        企业集成
+                    </a>
+               
+            
+               
+                    <a href="/tags/%E5%8E%9F%E5%88%9B" title="原创">
+                        原创
+                    </a>
+               
+            
+               
+                    <a href="/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7" title="可观测性">
+                        可观测性
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/%E8%AF%91%E6%96%87" title="译文">
+                        译文
+                    </a>
+               
+            
+        </div>
+    </section>
+    
+
+    
+    
+    <section>
+        <hr class="hidden-sm hidden-xs">
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
+            
+            <li><a target="_blank" href="https://openwrt.org/">openWRT</a></li>
+            
+            <li><a target="_blank" href="https://unraid.net/">Unraid</a></li>
+            
+        </ul>
+    </section>
+    
+    
+</div>
+
+	</div>
+</div>
+
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:luo.xianq@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/magicluo0755">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='/index.xml' rel="alternate" type="application/rss+xml" title="Laurence Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Laurence Blog 2025
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

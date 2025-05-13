@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Laurence Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="img/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="img/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content=" 可观测性的必要性(译文)" />
+    <meta property="og:title" content=" 可观测性的必要性(译文)" />
+    <meta property="twitter:title" content=" 可观测性的必要性(译文)" />
+    
+
+    
+    <meta name="description" content="本文翻译自Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第一章">
+    <meta property="og:description" content="本文翻译自Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第一章" />
+    <meta property="twitter:description" content="本文翻译自Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第一章" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Laurence, Laurence的网络日志, Laurence的博客, Laurence Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, 企业集成, EAI, 微服务, Microservice，iPaaS">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title> 可观测性的必要性(译文) | Laurence 博客 | Laurence Blog</title>
+
+    <link rel="canonical" href="/post/2023-11-27-the-need-for-observability/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Laurence Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">全部文章</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/%E4%B9%A6%E7%B1%8D%E7%BF%BB%E8%AF%91/">书籍翻译</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/">分布式架构</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E6%B0%91%E8%B0%A3/">民谣</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E8%BD%AF%E8%B7%AF%E7%94%B1/">软路由</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">存档</a></li>
+                    
+                        <li><a href="/about//">关于我</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7" title="可观测性">
+                            可观测性
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E8%AF%91%E6%96%87" title="译文">
+                            译文
+                        </a>
+                        
+                    </div>
+                    <h1> 可观测性的必要性(译文)</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Laurence
+                             
+                            on 
+                            Monday, November 27, 2023
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>
+  <img src="/Distributed-Systems-Observability.jpg" alt="Distributed-Systems-Observability">
+
+</p>
+<blockquote>
+<p>本文翻译自上述Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第一章。</p>
+</blockquote>
+<p>基础软件正在经历范式转移。 容器、编排、微服务架构、服务网格、不可变基础设施和函数即服务（也称为 <code>Serverless</code>）都是非常有前景的想法，它们从根本上改变了软件的构建和操作方式。 由于这些进步，大大小小公司正在全面构建的系统变得更加分散，而在容器下，系统更加短暂。</p>
+<p>正在构建的系统具有不同的可靠性目标、要求和保证。很快，若暂时还没有，网络和底层的硬件故障将会从软件开发人员中完全抽象出来。这使得软件开发团队专注于确保所负责的应用程序足够好，并从最新且最最重要的网络和调度等技术抽象中获益。</p>
+<p>换句话说，现有组件拥有更好弹性和故障容错能力，这意味着（假定上述现有组件被正确理解和配置）在应用层的调用栈中无法寻址定位的绝大多数故障，将在各种应用程序之间产生复杂的影响。</p>
+<p>以往的监控是运维工程师的专利，但是可观测性并不完全是一个运维问题。本书由软件工程师所编写，目标读者首先是其他软件工程师，不仅仅是运维工程师和网站可靠性工程师（<code>SREs</code>）。本书介绍了可观测性的概念，解释了它与以监控和告警为中心的传统运维的不同，最重要的是，为什么它是构建分布式系统软件工程师的热门话题。</p>
+<h3 id="什么是可观测性">什么是可观测性</h3>
+<p><strong>可观测性</strong>，不同的人有不同理解。一些人认为它就是日志、指标和链路，有一些则认为是监控这个概念的新瓶装旧酒。然而，不同思想流派关于可观测性的总体目标仍然是一致的—为系统带来更好的可见性。</p>
+<p><strong>可观测性不只是日志、指标和追踪</strong></p>
+<blockquote>
+<p>日志、指标和链路是非常有用的工具，有助于测试、理解和调试系统。然而需要注意的是，显然拥有日志、度量标准和跟踪并不会具有可观测性的系统。</p>
+</blockquote>
+<p>在完整的意义上，可观测性是作为系统的一项特性，系统经过设计、构建、测试、部署、运维、监控、维护，发展，并承认以下事实：</p>
+<ul>
+<li>复杂系统没有一个是完全健康的</li>
+<li>分布式系统根本具有病态的不可预测性</li>
+<li>不可能预测系统的各个部分最终可能出现的无数种局部故障状态</li>
+<li>每个阶段都可能失败，从系统的设计到实现、测试、部署以及运维</li>
+<li>易于调试是稳固系统可维护和发展的基石</li>
+</ul>
+<p><strong>可观测性的更多面孔</strong></p>
+<p>本文的重点是日志、指标和追踪信息，然而这些并不是唯一的可观测性信号。像开源 <a href="https://github.com/getsentry/sentry">Sentry</a>这样的异常追踪器是非常有价值的，因为它们除了在UI中分组和去重复删除类似的错误或异常之外，它们还提供了关于线程-本地变量和执行堆栈跟踪的信息。</p>
+<p>调试时有时需要进程的详细配置文件（如CPU配置文件或互斥竞争配置文件）。本文不包含诸如 <a href="https://en.wikipedia.org/wiki/SystemTap">SystemTap</a> 或 <a href="https://en.wikipedia.org/wiki/DTrace">DTrace</a>这些在单独主机上的运行单机程序的调试工具的相关技术，因为这些技术通常在调试整体的分布式系统时显得不足。</p>
+<p>同样在本文范围之外的还有正式的性能建模定律，如<a href="http://bit.ly/2sa2QpX">通用的可扩展性定律</a>、<a href="https://en.wikipedia.org/wiki/Amdahl's_law">Amdahl定律</a>，或者是<a href="https://speakerdeck.com/emfree/queueing-theory">队列论</a>中的概念，比如<a href="http://bit.ly/2KO6pLb">利特尔定律</a>。<a href="https://www.kernel.org/doc/Documentation/kprobes.txt">内核级检测技术</a>、二进制文件<a href="https://llvm.org/docs/XRay.html">编译器插入的桩点</a>等也不在本文的范围之内。</p>
+<h3 id="可观测性不完全是运维问题">可观测性不完全是运维问题</h3>
+<p>一个可观测的系统不是通过明确的监控来实现的，也不是通过让一个SRE团队仔细部署和运维它来实现的。可观测性作为一个特性需要在系统设计之初就内置其中，诸如：</p>
+<ul>
+<li>系统可以通过一种易于在realistic manner测试（包括在生产环境中一定程度的测试）的方式进行构建</li>
+<li>系统可以以这样一种方式进行测试：任何困难的、可操作的故障模式（一旦系统部署后经常导致警报的类型都可以在测试期间出现）</li>
+<li>系统可迭代部署，在一定程度上诸如一些关键指标集偏离基线，就可以触发回滚（或前滚）</li>
+<li>最后，在发布后，当系统处理真实流量时候，可以报告最够多的数据表明其健康和运行状况，因此该系统可以被了解，调试和发展演变</li>
+</ul>
+<p>这些都不是割裂的，它们彼此之间相互融合。因此，可观察性并不纯粹是一个运维问题</p>
+<h3 id="结论">结论</h3>
+<p>可观测性与监控并不相同，但是是否意味着监控已死？在下一章，我们将讨论为什么可观测性不能排除监控的需要，以及监控的一些最佳实践。</p>
+<blockquote>
+<p>附原文:<a href="https://learning.oreilly.com/library/view/distributed-systems-observability/9781492033431/ch01.html"> https://learning.oreilly.com/library/view/distributed-systems-observability/9781492033431/ch01.html</a></p>
+</blockquote>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2023-11-15-observability-overview/" data-toggle="tooltip" data-placement="top" title="应用可观测性和监控">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2024-06-11-music-spring-end-south-city/" data-toggle="tooltip" data-placement="top" title="春末的南方城市">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+
+
+<link href="https://xxx.xxx.com/dist/Artalk.css" rel="stylesheet" />
+<script src="https://xxx.xxx.com/dist/Artalk.js"></script>
+
+
+<div id="Comments"></div>
+
+<script>
+    Artalk.init({
+        el: '#Comments',
+        pageKey: 'https:\/\/zhaohuabing.com\/post\/2023-11-27-the-need-for-observability\/',
+        pageTitle: ' 可观测性的必要性(译文)',
+        server: 'https:\/\/xxx.xxx.com',
+        site: 'xxx blog',
+    })
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/camel" title="camel">
+                            camel
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/nas" title="nas">
+                            nas
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%81%E4%B8%9A%E9%9B%86%E6%88%90" title="企业集成">
+                            企业集成
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E5%8E%9F%E5%88%9B" title="原创">
+                            原创
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7" title="可观测性">
+                            可观测性
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AF%91%E6%96%87" title="译文">
+                            译文
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://openwrt.org/">openWRT</a></li>
+                        
+                        <li><a target="_blank" href="https://unraid.net/">Unraid</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:luo.xianq@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/magicluo0755">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Laurence Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Laurence Blog 2025
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

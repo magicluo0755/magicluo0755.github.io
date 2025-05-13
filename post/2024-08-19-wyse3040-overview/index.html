@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Laurence Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="img/home-bg-jeep.jpg">
+    <meta property="twitter:image" content="img/home-bg-jeep.jpg" />
+    
+
+    
+    <meta name="title" content="Dell Wyse3040软路由介绍" />
+    <meta property="og:title" content="Dell Wyse3040软路由介绍" />
+    <meta property="twitter:title" content="Dell Wyse3040软路由介绍" />
+    
+
+    
+    <meta name="description" content="Dell Wyse3040作为软路由的新选择">
+    <meta property="og:description" content="Dell Wyse3040作为软路由的新选择" />
+    <meta property="twitter:description" content="Dell Wyse3040作为软路由的新选择" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Laurence, Laurence的网络日志, Laurence的博客, Laurence Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, 企业集成, EAI, 微服务, Microservice，iPaaS">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Dell Wyse3040软路由介绍 | Laurence 博客 | Laurence Blog</title>
+
+    <link rel="canonical" href="/post/2024-08-19-wyse3040-overview/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Laurence Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">全部文章</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/%E4%B9%A6%E7%B1%8D%E7%BF%BB%E8%AF%91/">书籍翻译</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/">分布式架构</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E6%B0%91%E8%B0%A3/">民谣</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E8%BD%AF%E8%B7%AF%E7%94%B1/">软路由</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">存档</a></li>
+                    
+                        <li><a href="/about//">关于我</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg-jeep.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/nas" title="NAS">
+                            NAS
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E5%8E%9F%E5%88%9B" title="原创">
+                            原创
+                        </a>
+                        
+                    </div>
+                    <h1>Dell Wyse3040软路由介绍</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Laurence
+                             
+                            on 
+                            Monday, August 19, 2024
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="产品参数">产品参数</h2>
+<p>Dell Wyse 3040 瘦客户机是一种低成本的入门级云终端瘦客户机。具有 x86 处理器，默认运行 Wyse ThinOS、启用 PCoIP 的 Wyse ThinOS 和 Wyse ThinLinux。可通过连接到任何显示器用作瘦客户机，并允许将远程访问客户机用于 VDI 或基于云的计算。</p>
+<p>Wyse3040小主机大厂品牌出品，做工非常精致，尺寸小巧、功耗低。非常适合搭载软路由、数播系统等更多玩法。</p>
+<p>该小主机主要组件：</p>
+<p>
+  <img src="/assets/nas/wyse3040/wyse3040-component.jpg" alt="wyse3040-component">
+
+</p>
+<ol>
+<li>机箱盖</li>
+<li>WLAN 卡 (部分配置没有网卡)</li>
+<li>系统板</li>
+<li>机箱</li>
+<li>币形电池</li>
+<li>散热器</li>
+</ol>
+<p>其具体产品参数如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th>配置说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">处理器类型</td>
+<td>Intel(R) Atom(TM) x5-Z8350 1600MHz ，四核四线程</td>
+</tr>
+<tr>
+<td style="text-align:left">处理器主频</td>
+<td><code>1.44GHz</code></td>
+</tr>
+<tr>
+<td style="text-align:left">操作系统</td>
+<td>-  OP R23.6.6 (默认)<br />-  Daphile 24.06<br />-  Volumio3.7.42<br />-  Windows 10 LTSC</td>
+</tr>
+<tr>
+<td style="text-align:left">标配内存</td>
+<td><code>2GB</code> RAM（焊入式）</td>
+</tr>
+<tr>
+<td style="text-align:left">标配闪存</td>
+<td><code>8GB</code> emmc存储，可选择64G/128G扩容版本</td>
+</tr>
+<tr>
+<td style="text-align:left">显卡芯片</td>
+<td>无显卡适配器</td>
+</tr>
+<tr>
+<td style="text-align:left">显示器描述</td>
+<td>双显示器支持：2560×1600@60Hz</td>
+</tr>
+<tr>
+<td style="text-align:left">网络</td>
+<td>10Mb/100MB/1Gb铜线RJ45（有线以太网）。<br />部分可选内置的无线通讯模块，符合802.11a/b/g无线协议标准</td>
+</tr>
+<tr>
+<td style="text-align:left">I/O外设</td>
+<td>3个USB 2.0端口，1个USB 3.0端口<br />1个RJ45 1Gbps，2个DisplayPort端口 ，1个复合音频插孔</td>
+</tr>
+<tr>
+<td style="text-align:left">产品电源</td>
+<td>15W（5V，3A） AC适配器 ，耗电量≤<code>5W</code></td>
+</tr>
+<tr>
+<td style="text-align:left">产品尺寸</td>
+<td>27.94×101.6×101.6mm</td>
+</tr>
+<tr>
+<td style="text-align:left">产品重量</td>
+<td>0.24kg</td>
+</tr>
+</tbody>
+</table>
+<h2 id="快速开始使用">快速开始使用</h2>
+<p>本部分介绍软路由设置为旁路由工作模式，方便快速上手使用。</p>
+<blockquote>
+<p>关于旁路由的概念和组网说明，参考<a href="/nas/what-is-bypass-gateway">什么是旁路由</a> 的文章说明。</p>
+</blockquote>
+<h3 id="开箱检查">开箱检查</h3>
+<p>打开包装箱，Wyse3040小主机一台，外加5v3A标准电源适配器，就这两玩意儿。</p>
+<p>
+  <img src="/assets/nas/wyse3040/wyse3040-product.jpg" alt="wyse3040-product">
+
+</p>
+<p>将设备I/O接口连接。</p>
+<p>千兆网口接家里主路由器LAN口或交换机LAN口，接好电源线连接。DP接口接显示器，USB鼠标键盘都接线上。</p>
+<blockquote>
+<p>显示器、键盘鼠标非必须接入。有条件接入的话可以更方便的在 软路由启动后再shell端进行旁路由IP地址修改，以便和主路由在同一个网段进行后续配置。</p>
+</blockquote>
+<h3 id="访问软路由">访问软路由</h3>
+<p>Wyse3040软路由小主机出厂刷入的OpenWRT系统的IP为<code>192.168.1.1</code>，用户名<code>root</code>，密码<code>password</code>。如果出厂配置与现有家庭或办公网络主路由IP段冲突或者不一致，需要配置软路由为主路由所在网段的IP地址。</p>
+<p>有2种方式进行修改：</p>
+<ul>
+<li><strong>web控制台修改</strong>：准备一台windows电脑临时修改ip为软路由<code>192.168.1.x</code>网段IP，访问软路web后台地址，修改软路由当前据网段实际IP后，再恢复windows的IP配置。操作简单，适合小白用户。</li>
+<li><strong>shell终端修改</strong>：软路由接显示器和鼠标键盘，直接在shell终端修改软路由IP地址信息，适合有一定Linux基础的用户。</li>
+</ul>
+<h4 id="web控制台修改">web控制台修改</h4>
+<ol>
+<li>
+<p>查看当前网络的IP配置，同时按WIN+R 快捷键，运行<code>cmd</code>，进入windows控制台，继续执行<code>ipconfig/all</code>获取当前IP地址。</p>
+<p>
+  <img src="/assets/nas/wyse3040/wyse3040-checkip.png" alt="wyse3040-checkip">
+
+</p>
+<p>如上图所示，当前本机及网络IP的主要配置信息如下（各自情况看具体输出，可能与此不一样）：</p>
+<ul>
+<li>使用的手工静态配置IP（没有使用DHCP自动分配）</li>
+<li>IP地址：<code>192.168.0.127</code></li>
+<li>子网掩码 <code>255.255.255.0</code></li>
+<li>默认网关（主路由）：<code>192.168.0.10</code></li>
+<li>DNS：也被设置为主路由的IP地址</li>
+</ul>
+<p>我们需要先记住上述网络配置信息。接下来先将该主机临时修改为 <code>192.168.1.x</code>网段以便可以访问软路由，然后将软路由IP修改为<code>192.168.0.x</code>网段的IP。</p>
+</li>
+<li>
+<p>临时修改IP地址，选择【更改适配器选项】，选择以太网卡，如下图：</p>
+<p>
+  <img src="/assets/nas/wyse3040/wyse3040-configip.png" alt="wyse3040-configip">
+
+</p>
+<p>右键选择【属性】-【Internet协议版本4（TCP/IP v4）】，配置IP为软路由当前IP段地址，例如配置为<code>192.168.1.10</code>。网关和DNS都可以指向wyse3040软路由<code>192.168.1.1</code></p>
+<p>
+  <img src="/assets/nas/wyse3040/wyse3040-configip2.png" alt="wyse3040-configip2">
+
+</p>
+</li>
+<li>
+<p>点击【确定】，经过上述配置后，当前windows主机和软路由均在<code>192.168.1.x</code>网段，可以通过web进行访问和配置。</p>
+</li>
+<li>
+<p>访问软路由，浏览器地址栏输入： <code>https://192.168.1.1/cgi-bin/luci/</code>，可以显示如下登录页面。</p>
+<p>
+  <img src="/assets/nas/wyse3040/openwrt-login.png" alt="openwrt-login">
+
+</p>
+<p>输入出厂默认用户名<code>root</code>和密码（<code>password</code>）即可访问到软路由。</p>
+</li>
+</ol>
+<h4 id="shell终端修改">shell终端修改</h4>
+<p>如果熟悉Linux操作，可以直接在shell终端过修改配置文件更改。</p>
+<ol>
+<li>
+<p>wyse3040软路由连接鼠标，键盘和显示器后，开机启动。启动代码刷完屏幕，按回车键。</p>
+</li>
+<li>
+<p>输入用户名<code>root</code>，密码 <code>password</code>，回车登录。</p>
+</li>
+<li>
+<p>编辑网络配置文件，修改IP：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#6272a4"># vi /etc/config/network</span>
+</span></span></code></pre></div><p>修改interface设备名为<code>lan</code> 的IP地址、子网掩码、网关和DNS为当前网络段的信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>config interface <span style="color:#f1fa8c">&#39;loopback&#39;</span>
+</span></span><span style="display:flex;"><span>        option ifname <span style="color:#f1fa8c">&#39;lo&#39;</span>
+</span></span><span style="display:flex;"><span>        option proto <span style="color:#f1fa8c">&#39;static&#39;</span>
+</span></span><span style="display:flex;"><span>        option ipaddr <span style="color:#f1fa8c">&#39;127.0.0.1&#39;</span>
+</span></span><span style="display:flex;"><span>        option netmask <span style="color:#f1fa8c">&#39;255.0.0.0&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>config globals <span style="color:#f1fa8c">&#39;globals&#39;</span>
+</span></span><span style="display:flex;"><span>        option ula_prefix <span style="color:#f1fa8c">&#39;fdca:f2fa:9291::/48&#39;</span>
+</span></span><span style="display:flex;"><span>        option packet_steering <span style="color:#f1fa8c">&#39;1&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>config interface <span style="color:#f1fa8c">&#39;lan&#39;</span>
+</span></span><span style="display:flex;"><span>        option <span style="color:#8be9fd;font-style:italic">type</span> <span style="color:#f1fa8c">&#39;bridge&#39;</span>
+</span></span><span style="display:flex;"><span>        option ifname <span style="color:#f1fa8c">&#39;eth0&#39;</span>
+</span></span><span style="display:flex;"><span>        option proto <span style="color:#f1fa8c">&#39;static&#39;</span>
+</span></span><span style="display:flex;"><span>        option ipaddr <span style="color:#f1fa8c">&#39;192.168.0.100&#39;</span>  <span style="color:#6272a4">#软路由IP地址设置为主路由网络段的IP</span>
+</span></span><span style="display:flex;"><span>        option netmask <span style="color:#f1fa8c">&#39;255.255.255.0&#39;</span>
+</span></span><span style="display:flex;"><span>        option gateway <span style="color:#f1fa8c">&#39;192.168.0.10&#39;</span>  <span style="color:#6272a4">#网关设置为主路由IP</span>
+</span></span><span style="display:flex;"><span>        option dns <span style="color:#f1fa8c">&#39;192.168.0.10&#39;</span>      <span style="color:#6272a4">#DNS设置为主路由IP</span>
+</span></span><span style="display:flex;"><span>        option ip6assign <span style="color:#f1fa8c">&#39;60&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>config interface <span style="color:#f1fa8c">&#39;vpn0&#39;</span>
+</span></span><span style="display:flex;"><span>        option ifname <span style="color:#f1fa8c">&#39;tun0&#39;</span>
+</span></span><span style="display:flex;"><span>        option proto <span style="color:#f1fa8c">&#39;none&#39;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>保存，然后重启网络服务即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#6272a4"># /etc/init.d/network restart</span>
+</span></span></code></pre></div></li>
+<li>
+<p>然后同上，windows主机浏览器地址栏输入软路由IP地址，访问即可。</p>
+</li>
+</ol>
+<h3 id="配置旁路由模式">配置旁路由模式</h3>
+<p>配置为旁路由，需要关闭软路由的DHCP服务，IP地址动态分配还是交给主路由完成，降低旁路由设备对现有网络架构的耦合影响。其次重点是将旁路由LAN口的网关指向主路由，以便进行网络数据包出口转发。</p>
+<ol>
+<li>
+<p>点击左侧菜单【网络】-【接口】，选择LAN接口设备，点击【修改】。</p>
+</li>
+<li>
+<p>在【一般配置】区域，相关配置：</p>
+<ol>
+<li>
+<p>【基本设置】：</p>
+<p>
+  <img src="/assets/nas/wyse3040/wyse3040-openwrt-network-general.jpg" alt="wyse3040-openwrt-network-general">
+
+</p>
+<ol>
+<li>协议：修改为<code>静态地址</code>。</li>
+<li>IPv4地址：<code>192.168.0.100</code> 。注意需要修改为家庭或办公网络的IP段地址，参考前面记下的网络配置信息，配置同一个段的IP即可。</li>
+<li>IPv4子网掩码：`255.255.255.0 。</li>
+<li>IPv4网关：<code>192.168.0.10</code>，即本示例中的主路由器的IP地址，本例为<code>192.168.0.10</code>。</li>
+<li>使用自定义的DNS服务器，设置为本示例中主路由器的IP地址，同上。</li>
+<li>其他保持默认。</li>
+</ol>
+</li>
+<li>
+<p>【高级设置】：</p>
+<ol>
+<li>开机自动运行：勾选。</li>
+<li>使用内置的IPv6管理：不勾选。由主路由进行IPv6地址的分发和管理。</li>
+<li>其他保持默认。</li>
+</ol>
+</li>
+<li>
+<p>【物理设置】：</p>
+<ol>
+<li>桥接接口：取消勾选，不桥接。</li>
+<li>其他保持默认。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>在底部【DHCP服务器配置】，配置如下：</p>
+<p>
+  <img src="/assets/nas/wyse3040/wyse3040-openwrt-dhcp.png" alt="wyse3040-openwrt-dhcp">
+
+</p>
+<ol>
+<li>【基本设置】，选择<code>忽略此接口</code>，即不由旁路由运行DHCP服务为网络分配IP地址，交由主路由管理。</li>
+<li>【IPv6设置】，路由通告服务、DHCPv6服务、NDP代理 全部选择<code>已禁用</code>。</li>
+<li>其他不变。</li>
+</ol>
+</li>
+<li>
+<p>点击【保存&amp;应用】，待配置生效。此时windows操作端无需耗时等待，因为旁路由IP地址已经变更无法访问。如果是使用web控制台修改，则此时复原windows主机的网路配置，访问<code>http://192.168.0.100/cgi-bin/luci/</code> 即可访问。</p>
+</li>
+</ol>
+<blockquote>
+<p>如果是采用shell终端修改过IP地址和DNS与网关等，则修改后可直接访问旁路由。</p>
+</blockquote>
+<h3 id="验证测试">验证测试</h3>
+<p>局域网其他PC主机或者手机连WIFI获取的IP地址，修改为手工指定。需要将网关设置为旁路由的IP地址，例如本示例中为<code>192.168.0.100</code>，其他配置保持不变。</p>
+<p>此时访问浏览器访问网页和打开APP，即可通过旁路由代理上网，后续其他流控、插件及魔法上网等玩法，只需要再旁路由上开启相关配置，所有通过旁路由上网的PC、平板、手机设备均生效。</p>
+<h2 id="其他">其他</h2>
+<h3 id="访问bios设置">访问BIOS设置</h3>
+<p>Wyse 3040 瘦客户机 UEFI BIOS 设置。启动瘦客户机时，Dell 徽标会显示一小会。</p>
+<ol>
+<li>
+<p>在启动过程中，按 <strong>F2</strong> 键。默认密码是 <code>Fireport</code>。</p>
+</li>
+<li>
+<p>通过密码保护 BIOS 设置。提示时，输入密码 <code>Fireport</code>。</p>
+<p>此时将显示<strong>BIOS</strong> 设置对话框。</p>
+</li>
+<li>
+<p>使用系统设置程序设置来更改 BIOS 设置。</p>
+</li>
+</ol>
+<blockquote>
+<p>注:在 BIOS 菜单中，有一个选项可用于恢复 BIOS 默认值、出厂默认值和用户的自定义用户设置。BIOS 默认设置可还原属于 BIOS 文件一部分的值，而还原自定义用户设置会还原为默认设置。还原出厂默认值会将 BIOS 设置还原成在交付给客户之前，在工厂中配置的值。</p>
+</blockquote>
+<p>要在启动过程中访问引导菜单，请按 <strong>F12</strong> 键。</p>
+<h3 id="wyse3040官方介绍文档">wyse3040官方介绍文档</h3>
+<ul>
+<li><a href="https://www.dell.com/support/manuals/zh-cn/wyse-3040-thin-client/3040_ug/%E7%89%88%E6%9D%83?guid=guid-089ffa4b-3a62-4b51-bde1-309c58a451d9&amp;lang=zh-cn">Dell Wyse3040瘦客户端 用户指南</a></li>
+<li><a href="/assests/pdf/wyse-3040-thin-client_setup-guide_zh-cn.pdf">Dell Wyse3040快速入门指南</a></li>
+</ul>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2024-08-01-what-is-bypass-gateway/" data-toggle="tooltip" data-placement="top" title="什么是旁路由">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2025-05-06-metting-camel/" data-toggle="tooltip" data-placement="top" title=" 1.初识Camel">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+
+
+<link href="https://xxx.xxx.com/dist/Artalk.css" rel="stylesheet" />
+<script src="https://xxx.xxx.com/dist/Artalk.js"></script>
+
+
+<div id="Comments"></div>
+
+<script>
+    Artalk.init({
+        el: '#Comments',
+        pageKey: 'https:\/\/zhaohuabing.com\/post\/2024-08-19-wyse3040-overview\/',
+        pageTitle: 'Dell Wyse3040软路由介绍',
+        server: 'https:\/\/xxx.xxx.com',
+        site: 'xxx blog',
+    })
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/camel" title="camel">
+                            camel
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/nas" title="nas">
+                            nas
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%81%E4%B8%9A%E9%9B%86%E6%88%90" title="企业集成">
+                            企业集成
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E5%8E%9F%E5%88%9B" title="原创">
+                            原创
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7" title="可观测性">
+                            可观测性
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AF%91%E6%96%87" title="译文">
+                            译文
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://openwrt.org/">openWRT</a></li>
+                        
+                        <li><a target="_blank" href="https://unraid.net/">Unraid</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:luo.xianq@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/magicluo0755">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Laurence Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Laurence Blog 2025
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
