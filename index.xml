@@ -6,7 +6,16 @@
     <description>Recent content on Laurence Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 12 May 2025 18:49:13 +0800</lastBuildDate><atom:link href="http://www.magicluo.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 May 2025 14:00:00 +0000</lastBuildDate><atom:link href="http://www.magicluo.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title> 监控与可观测行性(译文)</title>
+      <link>http://www.magicluo.com/post/2025-05-14-monitoring-and-observability-/</link>
+      <pubDate>Tue, 13 May 2025 14:00:00 +0000</pubDate>
+      
+      <guid>http://www.magicluo.com/post/2025-05-14-monitoring-and-observability-/</guid>
+      <description>本文翻译自上述Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第二章。 任何关于可</description>
+    </item>
+    
     <item>
       <title></title>
       <link>http://www.magicluo.com/about/</link>

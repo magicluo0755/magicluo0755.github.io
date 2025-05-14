@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Laurence Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="img/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="img/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content=" 监控与可观测行性(译文)" />
+    <meta property="og:title" content=" 监控与可观测行性(译文)" />
+    <meta property="twitter:title" content=" 监控与可观测行性(译文)" />
+    
+
+    
+    <meta name="description" content="本文翻译自Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第二章">
+    <meta property="og:description" content="本文翻译自Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第二章" />
+    <meta property="twitter:description" content="本文翻译自Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第二章" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Laurence, Laurence的网络日志, Laurence的博客, Laurence Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, 企业集成, EAI, 微服务, Microservice，iPaaS">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title> 监控与可观测行性(译文) | Laurence 博客 | Laurence Blog</title>
+
+    <link rel="canonical" href="/post/2025-05-14-monitoring-and-observability-/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Laurence Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">全部文章</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/%E4%B9%A6%E7%B1%8D%E7%BF%BB%E8%AF%91/">书籍翻译</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/">分布式架构</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E6%B0%91%E8%B0%A3/">民谣</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E8%BD%AF%E8%B7%AF%E7%94%B1/">软路由</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">存档</a></li>
+                    
+                        <li><a href="/about//">关于我</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7" title="可观测性">
+                            可观测性
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E8%AF%91%E6%96%87" title="译文">
+                            译文
+                        </a>
+                        
+                    </div>
+                    <h1> 监控与可观测行性(译文)</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Laurence
+                             
+                            on 
+                            Tuesday, May 13, 2025
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>
+  <img src="/assets/tech/Distributed-Systems-Observability.jpg" alt="Distributed-Systems-Observability">
+
+</p>
+<blockquote>
+<p>本文翻译自上述Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第二章。</p>
+</blockquote>
+<p>任何关于可观测性的讨论都离不开与监控的对比。可观测性既不能替代监控，也不意味着监控不再必要——二者是互补关系。如图2-1所示，监控与可观测性的目标截然不同。
+
+  <img src="/assets/tech/c02_01_monitoring-and-observability.png" alt="monitoring and observability">
+
+</p>
+<div style="text-align:center">图2-1 可观测性是监控与测试的超集，它能揭示那些无法通过监控或测试预见的故障模式信息。</div>
+<p>可观测性是监控的超集。它不仅提供系统健康状况的高层概览，还能深入揭示系统潜在的故障模式。此外，可观测系统会提供丰富的内部运作上下文，从而帮助发现更深层次的系统性问题。</p>
+<p>而监控最擅长的则是报告系统整体健康状况并触发告警。</p>
+<h2 id="基于监控数据的告警">基于监控数据的告警</h2>
+<p>告警本质上是以故障和人为核心的。过去，针对以下特征的系统故障症状进行&quot;监控&quot;和告警是合理的：</p>
+<ul>
+<li>具有可预测性</li>
+<li>会严重影响用户</li>
+<li>需要人工尽快干预修复</li>
+</ul>
+<p>随着系统日益分布式化，先进工具和平台的出现抽象掉了许多传统人工故障监控所发现的问题。Kubernetes等平台开箱即用的健康检查、负载均衡和故障服务自动剔除功能，使运维人员无需再为此类故障接收告警。</p>
+<h2 id="黑盒与白盒监控">黑盒与白盒监控</h2>
+<p>传统上，大多数告警源自黑盒监控。黑盒监控指从外部观察系统（例如Nagios式检查）。这类监控能有效识别问题症状（如&quot;错误率上升&quot;或&quot;DNS解析失败&quot;），但无法追踪分布式系统中导致症状的跨组件诱因。</p>
+<p>白盒监控则指从系统内部报告数据的技术。对于组织内部系统而言，源自黑盒监控的告警正逐渐被淘汰，因为系统内部报告的数据能产生比外部探测更有价值、更具操作性的告警。不过黑盒监控仍有用武之地，特别是当基础设施（甚至全部）外包给第三方软件时，外部监控成为唯一选择。</p>
+<p>但这里存在悖论：虽然基础设施管理日益自动化，但理解应用生命周期却变得更困难。现代故障模式往往具有以下特征：</p>
+<ul>
+<li>可容忍（通过最终一致性、多级缓存等机制放宽一致性保证）</li>
+<li>可缓解（通过背压、重试、超时、熔断、限流等优雅降级机制）</li>
+<li>可主动触发（如负载激增时通过主动降级避免服务完全崩溃）</li>
+</ul>
+<p>基于宽松保证构建的系统在设计上就注定不会始终保持100%健康状态。试图预测所有可能导致功能降级的情况并触发人工告警变得不再必要。现代系统设计中，只有极小部分的故障领域属于需要紧急人工干预的硬性故障。这引出了核心问题：告警的定位何在？</p>
+<h2 id="告警最佳实践">告警最佳实践</h2>
+<p>告警仍应聚焦硬性故障和人工干预。即便告警范围缩小，利用监控数据进行告警的目标始终未变。</p>
+<p>监控数据应持续提供分布式系统的鸟瞰图，记录并展示所有组件（负载均衡器、缓存、队列、数据库和无状态服务）随时间变化的高层指标。告警附带的监控数据应支持快速钻取系统组件单元，作为故障响应时诊断影响范围和粗略性质的第一入口。</p>
+<p>此外，故障发生时，监控数据须立即呈现故障影响范围及修复措施效果。</p>
+<p>最后，为确保值班体验人性化且可持续，所有告警（及其衍生监控信号）必须具可操作性。</p>
+<h2 id="选择哪些监控指标进行告警">选择哪些监控指标进行告警</h2>
+<p>优秀的监控指标包括USE指标和RED指标。《站点可靠性工程》一书中，Rob Ewaschuk提出四大黄金信号（<strong>延迟</strong>、<strong>错误</strong>、<strong>流量</strong>、<strong>饱和度</strong>）作为告警监控的最小可行集。</p>
+<p><code>USE方法</code>由Brendan Gregg提出，要求测量系统资源的利用率（如可用内存）、饱和度（如CPU运行队列长度）和错误率（如设备错误）。</p>
+<p><code>RED方法</code>由Tom Wilkie提出，主张监控请求速率、错误率和请求持续时间（通常以直方图表示），这对请求驱动的应用层指标监控至关重要。</p>
+<h2 id="调试不可监控的故障">调试“不可监控”的故障</h2>
+<p>理解持续处于弹性与熵增状态的分布式系统病理，关键在于基于证据而非假设进行调试。系统的可观测程度直接决定其可调试性。</p>
+<p>调试通常是迭代过程，包含以下步骤：</p>
+<ul>
+<li>从高层级指标入手</li>
+<li>通过系统各部分的细粒度上下文观察进行深入探查</li>
+<li>做出正确推断</li>
+<li>验证理论合理性</li>
+</ul>
+<p>证据无法凭空产生，也不能从聚合数据、平均值、百分位数或历史模式中推断。当系统以无法预监控的方式故障时，不可观测的系统可能根本无法调试。</p>
+<h2 id="可观测性不是万能药">可观测性不是万能药</h2>
+<p>Brian Kernighan在1979年《Unix入门》中写道：</p>
+<blockquote>
+<p>&ldquo;最有效的调试工具仍是缜密的思考，辅以精心布置的打印语句。&rdquo;</p>
+</blockquote>
+<p>调试单机单进程时，GDB等工具能帮助观察给定输入下的应用状态。而对于分布式系统，在缺乏分布式调试器的情况下，必须依赖系统各组件的可观测数据才能有效调试。</p>
+<p><strong>必须强调</strong>：可观测性不能取代深入思考。虽然可观测数据能指引答案，但决定暴露哪些信息、如何分析现有证据（观测结果）以推断生产环境系统异常的原因，仍需要开发者具备扎实的系统知识、领域理解和敏锐直觉。</p>
+<p>更重要的是，亟需更高级的抽象（如优秀的可视化工具）来整合海量异构数据源。</p>
+<h2 id="结论">结论</h2>
+<p>可观测性≠监控，也不仅是运维关注点。下一章我们将探讨如何在系统设计、编码和测试阶段构建可观测性。</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2025-05-07-camel-architecture/" data-toggle="tooltip" data-placement="top" title=" 1.4 Camel的架构">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+
+
+<link href="https://xxx.xxx.com/dist/Artalk.css" rel="stylesheet" />
+<script src="https://xxx.xxx.com/dist/Artalk.js"></script>
+
+
+<div id="Comments"></div>
+
+<script>
+    Artalk.init({
+        el: '#Comments',
+        pageKey: 'http:\/\/www.magicluo.com\/post\/2025-05-14-monitoring-and-observability-\/',
+        pageTitle: ' 监控与可观测行性(译文)',
+        server: 'https:\/\/xxx.xxx.com',
+        site: 'xxx blog',
+    })
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">内容目录</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/camel" title="camel">
+                            camel
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/nas" title="nas">
+                            nas
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%81%E4%B8%9A%E9%9B%86%E6%88%90" title="企业集成">
+                            企业集成
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E5%8E%9F%E5%88%9B" title="原创">
+                            原创
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7" title="可观测性">
+                            可观测性
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AF%91%E6%96%87" title="译文">
+                            译文
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://openwrt.org/">openWRT</a></li>
+                        
+                        <li><a target="_blank" href="https://unraid.net/">Unraid</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:luo.xianq@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/magicluo0755">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Laurence Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Laurence Blog 2025
+                    
+                    <br>
+                    本博客站点由<a href="https://gohugo.io/">Hugo</a>驱动，使用主题 <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a>
+
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
