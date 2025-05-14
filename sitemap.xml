@@ -2,6 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://www.magicluo.com/about/</loc>
+  </url><url>
+    <loc>http://www.magicluo.com/archive/</loc>
+  </url><url>
+    <loc>http://www.magicluo.com/search/placeholder/</loc>
+  </url><url>
+    <loc>http://www.magicluo.com/</loc>
+    <lastmod>2025-05-07T14:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://www.magicluo.com/search/</loc>
+  </url><url>
     <loc>http://www.magicluo.com/post/2025-05-07-camel-architecture/</loc>
     <lastmod>2025-05-07T14:00:00+00:00</lastmod>
   </url><url>
@@ -9,9 +20,6 @@
     <lastmod>2025-05-07T14:00:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/categories/</loc>
-    <lastmod>2025-05-07T14:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://www.magicluo.com/</loc>
     <lastmod>2025-05-07T14:00:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/post/</loc>
@@ -73,13 +81,5 @@
   </url><url>
     <loc>http://www.magicluo.com/post/2023-11-15-observability-overview/</loc>
     <lastmod>2023-11-15T09:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://www.magicluo.com/about/</loc>
-  </url><url>
-    <loc>http://www.magicluo.com/search/placeholder/</loc>
-  </url><url>
-    <loc>http://www.magicluo.com/search/</loc>
-  </url><url>
-    <loc>http://www.magicluo.com/archive/</loc>
   </url>
 </urlset>

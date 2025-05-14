@@ -6,7 +6,34 @@
     <description>Recent content on Laurence Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 07 May 2025 14:00:00 +0000</lastBuildDate><atom:link href="http://www.magicluo.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 May 2025 18:49:13 +0800</lastBuildDate><atom:link href="http://www.magicluo.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://www.magicluo.com/about/</link>
+      <pubDate>Tue, 13 May 2025 18:39:31 +0800</pubDate>
+      
+      <guid>http://www.magicluo.com/about/</guid>
+      <description>Laurence，解决方案架构师。 拥有15年以上的中间件软件研发、架构设计、平台产品管理经验。曾在中科院深圳研究院任职，目前从事中间件产品研</description>
+    </item>
+    
+    <item>
+      <title>存档</title>
+      <link>http://www.magicluo.com/archive/</link>
+      <pubDate>Tue, 13 May 2025 16:03:34 +0800</pubDate>
+      
+      <guid>http://www.magicluo.com/archive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://www.magicluo.com/search/placeholder/</link>
+      <pubDate>Mon, 12 May 2025 18:49:13 +0800</pubDate>
+      
+      <guid>http://www.magicluo.com/search/placeholder/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title> 1.4 Camel的架构</title>
       <link>http://www.magicluo.com/post/2025-05-07-camel-architecture/</link>
@@ -77,33 +104,6 @@
       
       <guid>http://www.magicluo.com/post/2023-11-15-observability-overview/</guid>
       <description>什么是可观测性 可观测性（Observability）是来自自动控制领域的一个术语。最初，它与可控制性（Controllability）一起，</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://www.magicluo.com/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.magicluo.com/about/</guid>
-      <description>Laurence，解决方案架构师。 拥有15年以上的中间件软件研发、架构设计、平台产品管理经验。曾在中科院深圳研究院任职，目前从事中间件产品研</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://www.magicluo.com/search/placeholder/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.magicluo.com/search/placeholder/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>存档</title>
-      <link>http://www.magicluo.com/archive/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.magicluo.com/archive/</guid>
-      <description></description>
     </item>
     
   </channel>
