@@ -6,11 +6,11 @@
     <description>Recent content on Laurence Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 14 May 2025 17:14:00 +0800</lastBuildDate><atom:link href="http://www.magicluo.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 May 2025 09:14:00 +0000</lastBuildDate><atom:link href="http://www.magicluo.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>可观测性的三大支柱</title>
       <link>http://www.magicluo.com/post/2025-05-14-three-pillars-of-observability/</link>
-      <pubDate>Wed, 14 May 2025 17:14:00 +0800</pubDate>
+      <pubDate>Wed, 14 May 2025 09:14:00 +0000</pubDate>
       
       <guid>http://www.magicluo.com/post/2025-05-14-three-pillars-of-observability/</guid>
       <description>本文翻译自上述Oreilly出版的电子书《Distributed systems Observability》(By Cindy Sridharan)第四章。 日志、指标</description>
@@ -37,27 +37,27 @@
     <item>
       <title></title>
       <link>http://www.magicluo.com/about/</link>
-      <pubDate>Tue, 13 May 2025 18:39:31 +0800</pubDate>
+      <pubDate>Tue, 13 May 2025 21:31:50 +0800</pubDate>
       
       <guid>http://www.magicluo.com/about/</guid>
       <description>Laurence，解决方案架构师。 拥有15年以上的中间件软件研发、架构设计、平台产品管理经验。曾在中科院深圳研究院任职，目前从事中间件产品研</description>
     </item>
     
     <item>
-      <title>存档</title>
-      <link>http://www.magicluo.com/archive/</link>
-      <pubDate>Tue, 13 May 2025 16:03:34 +0800</pubDate>
+      <title></title>
+      <link>http://www.magicluo.com/search/placeholder/</link>
+      <pubDate>Tue, 13 May 2025 21:31:50 +0800</pubDate>
       
-      <guid>http://www.magicluo.com/archive/</guid>
+      <guid>http://www.magicluo.com/search/placeholder/</guid>
       <description></description>
     </item>
     
     <item>
-      <title></title>
-      <link>http://www.magicluo.com/search/placeholder/</link>
-      <pubDate>Mon, 12 May 2025 18:49:13 +0800</pubDate>
+      <title>存档</title>
+      <link>http://www.magicluo.com/archive/</link>
+      <pubDate>Tue, 13 May 2025 21:31:50 +0800</pubDate>
       
-      <guid>http://www.magicluo.com/search/placeholder/</guid>
+      <guid>http://www.magicluo.com/archive/</guid>
       <description></description>
     </item>
     

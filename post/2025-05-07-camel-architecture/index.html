@@ -407,16 +407,16 @@ Camel 有两种消费者：事件驱动消费者（<code>event-driven consumers<
 </span></span><span style="display:flex;"><span>        CamelContext context <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> DefaultCamelContext<span style="color:#ff79c6">();</span>
 </span></span><span style="display:flex;"><span>        context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">addRoutes</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> RouteBuilder<span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">configure</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>                from<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;file:data/inbox?noop=true&#34;</span><span style="color:#ff79c6">).</span><span style="color:#50fa7b">to</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;file:data/outbox&#34;</span><span style="color:#ff79c6">);</span>     #1
+</span></span><span style="display:flex;"><span>                from<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;file:data/inbox?noop=true&#34;</span><span style="color:#ff79c6">).</span><span style="color:#50fa7b">to</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;file:data/outbox&#34;</span><span style="color:#ff79c6">);</span>     #<span style="color:#bd93f9">1</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">}</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">});</span>
 </span></span><span style="display:flex;"><span>        context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">start</span><span style="color:#ff79c6">();</span>                         
-</span></span><span style="display:flex;"><span>        Thread<span style="color:#ff79c6">.</span><span style="color:#50fa7b">sleep</span><span style="color:#ff79c6">(</span>10000<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        Thread<span style="color:#ff79c6">.</span><span style="color:#50fa7b">sleep</span><span style="color:#ff79c6">(</span><span style="color:#bd93f9">10000</span><span style="color:#ff79c6">);</span>
 </span></span><span style="display:flex;"><span>        context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">stop</span><span style="color:#ff79c6">();</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>#1 Java DSL route
+</span></span><span style="display:flex;"><span>#<span style="color:#bd93f9">1</span> Java DSL route
 </span></span></code></pre></div><p>在这个示例中，您首先创建了CamelContext——这是Camel的运行时环境。然后通过RouteBuilder和Java DSL（如标注❶所示）添加路由逻辑。使用DSL可以让您以清晰简洁的方式，让Camel自动实例化组件、端点、消费者、生产者等对象。您只需专注于定义对集成项目至关重要的路由规则即可。</p>
 <p>不过底层实现上，Camel会访问FileComponent，并将其作为工厂来创建端点及其生产者。同样的FileComponent也会被用来创建消费者端的实例。</p>
 <h2 id="总结">总结</h2>
