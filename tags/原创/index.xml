@@ -25,5 +25,14 @@
       <description>什么是旁路由 旁路由这并不是一个严谨的词汇，在官方的技术用语里，正确的叫法应该是旁路网关（为了方便，本文继续沿用旁路由的叫法）。而所谓的旁路由</description>
     </item>
     
+    <item>
+      <title>应用可观测性和监控</title>
+      <link>http://www.magicluo.com/post/2023-11-15-observability-overview/</link>
+      <pubDate>Wed, 15 Nov 2023 09:00:00 +0000</pubDate>
+      
+      <guid>http://www.magicluo.com/post/2023-11-15-observability-overview/</guid>
+      <description>什么是可观测性 可观测性（Observability）是来自自动控制领域的一个术语。最初，它与可控制性（Controllability）一起，</description>
+    </item>
+    
   </channel>
 </rss>
