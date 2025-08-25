@@ -2,10 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://www.magicluo.com/categories/</loc>
-    <lastmod>2025-08-24T15:57:00+00:00</lastmod>
+    <loc>http://www.magicluo.com/about/</loc>
+  </url><url>
+    <loc>http://www.magicluo.com/search/placeholder/</loc>
   </url><url>
     <loc>http://www.magicluo.com/</loc>
+    <lastmod>2025-08-24T15:57:00+00:00</lastmod>
+  </url><url>
+    <loc>http://www.magicluo.com/search/</loc>
+  </url><url>
+    <loc>http://www.magicluo.com/archive/</loc>
+  </url><url>
+    <loc>http://www.magicluo.com/categories/</loc>
     <lastmod>2025-08-24T15:57:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/post/</loc>
@@ -40,14 +48,6 @@
   </url><url>
     <loc>http://www.magicluo.com/post/2025-05-14-monitoring-and-observability-/</loc>
     <lastmod>2025-05-14T14:30:00+08:00</lastmod>
-  </url><url>
-    <loc>http://www.magicluo.com/about/</loc>
-  </url><url>
-    <loc>http://www.magicluo.com/archive/</loc>
-  </url><url>
-    <loc>http://www.magicluo.com/search/placeholder/</loc>
-  </url><url>
-    <loc>http://www.magicluo.com/search/</loc>
   </url><url>
     <loc>http://www.magicluo.com/post/2025-05-07-camel-architecture/</loc>
     <lastmod>2025-05-07T14:00:00+00:00</lastmod>

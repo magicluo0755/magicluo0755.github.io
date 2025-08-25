@@ -478,17 +478,17 @@
 </span></span><span style="display:flex;"><span>        CamelContext context <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> DefaultCamelContext<span style="color:#ff79c6">();</span>
 </span></span><span style="display:flex;"><span>        context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">addRoutes</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> RouteBuilder<span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">configure</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>                from<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;file:data/inbox?noop=true&#34;</span><span style="color:#ff79c6">)</span>     #1
+</span></span><span style="display:flex;"><span>                from<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;file:data/inbox?noop=true&#34;</span><span style="color:#ff79c6">)</span>     #<span style="color:#bd93f9">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">to</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;file:data/outbox&#34;</span><span style="color:#ff79c6">);</span>                       
 </span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">}</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">});</span>
 </span></span><span style="display:flex;"><span>        context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">start</span><span style="color:#ff79c6">();</span>                         
-</span></span><span style="display:flex;"><span>        Thread<span style="color:#ff79c6">.</span><span style="color:#50fa7b">sleep</span><span style="color:#ff79c6">(</span>10000<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        Thread<span style="color:#ff79c6">.</span><span style="color:#50fa7b">sleep</span><span style="color:#ff79c6">(</span><span style="color:#bd93f9">10000</span><span style="color:#ff79c6">);</span>
 </span></span><span style="display:flex;"><span>        context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">stop</span><span style="color:#ff79c6">();</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>#1 Routes files from inbox to outbox
+</span></span><span style="display:flex;"><span>#<span style="color:#bd93f9">1</span> Routes files from inbox to outbox
 </span></span></code></pre></div><p>这段代码的大部分是使用 Camel 时的样板代码。每个 Camel 应用程序都会使用一个 CamelContext，随后启动并停止。你还添加了一个 sleep 方法，以便让这个简单的 Camel 应用程序有时间复制文件。你应该关注的是清单 1.2 中的路由 ❶。</p>
 <p>Camel 中的路由定义方式使其在阅读时流畅易懂。这个路由可以这样理解：从文件位置 data/inbox 消费消息，设置 noop 选项，然后发送到文件位置 data/outbox。noop 选项告诉 Camel 保持源文件不变。如果不使用此选项，文件将被移动。大多数从未见过 Camel 的人都能理解这个路由的作用。你可能还想注意，排除样板代码后，你仅用两行 Java 代码就创建了一个文件轮询路由 ❶。</p>
 <p>要运行这个示例，你需要从Maven网站 <a href="http://maven.apache.org/download.html">http://maven.apache.org/download.html</a> 下载并安装 Apache Maven。安装并配置好 Maven 后，打开终端，进入本书源代码的 chapter1/file-copy 目录。如果在这里执行目录列表命令，你会看到以下内容：</p>
