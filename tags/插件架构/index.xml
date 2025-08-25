@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>插件架构 on Laurence Blog</title>
+    <link>http://www.magicluo.com/tags/%E6%8F%92%E4%BB%B6%E6%9E%B6%E6%9E%84/</link>
+    <description>Recent content in 插件架构 on Laurence Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 24 Aug 2025 15:57:00 +0000</lastBuildDate><atom:link href="http://www.magicluo.com/tags/%E6%8F%92%E4%BB%B6%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于Java SPI构建可扩展的插件架构</title>
+      <link>http://www.magicluo.com/post/2025-08-25-whats-the-serviceloader/</link>
+      <pubDate>Sun, 24 Aug 2025 15:57:00 +0000</pubDate>
+      
+      <guid>http://www.magicluo.com/post/2025-08-25-whats-the-serviceloader/</guid>
+      <description>SPI概述 什么是SPI SPI 即 Service Provider Interface ，也就是“服务提供者的接口”。SPI 将服务接口和具体的服务实现分离开来，将服务调用方和服务实现者解耦，能够提</description>
+    </item>
+    
+  </channel>
+</rss>

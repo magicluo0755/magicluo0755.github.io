@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Laurence Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="img/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="img/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content="基于Java SPI构建可扩展的插件架构" />
+    <meta property="og:title" content="基于Java SPI构建可扩展的插件架构" />
+    <meta property="twitter:title" content="基于Java SPI构建可扩展的插件架构" />
+    
+
+    
+    <meta name="description" content="解读JDK 17中`ServiceLoader`的源码实现，深入剖析其核心逻辑">
+    <meta property="og:description" content="解读JDK 17中`ServiceLoader`的源码实现，深入剖析其核心逻辑" />
+    <meta property="twitter:description" content="解读JDK 17中`ServiceLoader`的源码实现，深入剖析其核心逻辑" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Laurence, Laurence的网络日志, Laurence的博客, Laurence Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, 企业集成, EAI, 微服务, Microservice，iPaaS">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>基于Java SPI构建可扩展的插件架构 | Laurence 博客 | Laurence Blog</title>
+
+    <link rel="canonical" href="/post/2025-08-25-whats-the-serviceloader/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Laurence Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">全部文章</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/%E4%B9%A6%E7%B1%8D%E7%BF%BB%E8%AF%91/">书籍翻译</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/">分布式架构</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E6%B0%91%E8%B0%A3/">民谣</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E8%BD%AF%E8%B7%AF%E7%94%B1/">软路由</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">存档</a></li>
+                    
+                        <li><a href="/about//">关于我</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/%E6%8F%92%E4%BB%B6%E6%9E%B6%E6%9E%84" title="插件架构">
+                            插件架构
+                        </a>
+                        
+                        <a class="tag" href="/tags/spi" title="SPI">
+                            SPI
+                        </a>
+                        
+                    </div>
+                    <h1>基于Java SPI构建可扩展的插件架构</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Laurence
+                             
+                            on 
+                            Sunday, August 24, 2025
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h3 id="spi概述">SPI概述</h3>
+<h4 id="什么是spi">什么是SPI</h4>
+<p><code>SPI</code> 即 <code>Service Provider Interface</code> ，也就是“服务提供者的接口”。<code>SPI</code> 将服务接口和具体的服务实现分离开来，将服务调用方和服务实现者解耦，能够提升程序的扩展性、可维护性。同时，修改或者替换服务的实现不需要修改调用方。Java中有许多地方都使用到了SPI机制，比如数据库加载驱动JDBC、Spring、以及Dubbo的扩展实现等。</p>
+<h4 id="对比api的区别">对比API的区别</h4>
+<p>
+  <img src="/assets/tech/spi_vs_api.png" alt="spi_vs_api">
+
+</p>
+<ul>
+<li>
+<p><strong>API</strong>：接口实现方同时负责接口定义和接口实现，接口控制权在服务提供方。</p>
+</li>
+<li>
+<p><strong>SPI</strong>：服务调用方负责接口定义，不同的接口实现方根据接口定义可以有不同的实现，能够在运行时动态的加载不用实现类，接口控制权在服务调用方。</p>
+</li>
+</ul>
+<h4 id="spi作用及使用场景">SPI作用及使用场景</h4>
+<ul>
+<li>
+<p><strong>解耦</strong>：在框架开发中，通常需要依赖一些可插拔的功能，但不希望实现具体的适配（能够保持灵活性）。SPI机制通过定义接口和动态加载实现 ，可以让框架与服务实现解耦。</p>
+<p>典型场景：</p>
+<ul>
+<li>
+<p>数据库连接池库需要支持多个数据库实现（如 MySQL、PostgreSQL），可以通过 SPI 机制动态加载这些数据库驱动。</p>
+</li>
+<li>
+<p>日志框架（比如 SLF4J）的具体实现，可以通过 SPI 机制加载不同的日志库（如 Log4j、Logback）。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>扩展性</strong>：SPI机制提供了动态发现和加载服务的能力，可以让应用程序非常方便地实现扩展，而不需要修改现有代码。</p>
+<p>典型场景：</p>
+<ul>
+<li>一个文件处理系统需要支持不同的文件格式（如 JSON 或 XML）。通过 SPI 机制可以动态发现不同的文件解析器插件，无需提前硬编码支持的格式。。</li>
+</ul>
+</li>
+<li>
+<p><strong>动态加载</strong>：SPI 可以用来实现插件化架构，通过动态加载具体的服务实现增减模块，而无需重新发布整个系统。</p>
+<p>典型场景：</p>
+<ul>
+<li>
+<p>Web服务器（如 Tomcat）可以通过 SPI 机制动态加载不同的 HTTP 处理器或过滤器。</p>
+</li>
+<li>
+<p>数据分析系统可以通过 SPI 机制动态加载新的分析算法。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="spi的工作机制">SPI的工作机制</h4>
+<p>
+  <img src="/assets/tech/spi_principle.png" alt="spi_principle">
+
+</p>
+<h3 id="serviceloader">ServiceLoader</h3>
+<p><code>ServiceLoader</code>是位于<code>java.util</code>包中的一个类，用于加载服务提供者（实现特定接口或类的服务），是实现SPI机制的核心。它的典型使用场景是模块化系统中，通过配置文件（<code>META-INF/services</code>目录下的服务配置文件）动态发现和加载实现类。</p>
+<p><strong>核心功能</strong>：</p>
+<ul>
+<li>
+<p>根据服务接口（或抽象类）查找其实现类</p>
+</li>
+<li>
+<p>懒加载（Lazy Loading）服务提供者</p>
+</li>
+<li>
+<p>支持线程安全</p>
+</li>
+<li>
+<p>支持模块化系统（Java Platform Module System, JPMS）</p>
+</li>
+</ul>
+<p><strong>典型用法</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ServiceLoader<span style="color:#ff79c6">&lt;</span>MyService<span style="color:#ff79c6">&gt;</span> loader <span style="color:#ff79c6">=</span> ServiceLoader<span style="color:#ff79c6">.</span><span style="color:#50fa7b">load</span><span style="color:#ff79c6">(</span>MyService<span style="color:#ff79c6">.</span><span style="color:#50fa7b">class</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> <span style="color:#ff79c6">(</span>MyService service <span style="color:#ff79c6">:</span> loader<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    service<span style="color:#ff79c6">.</span><span style="color:#50fa7b">doSomething</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><hr>
+<h4 id="源码实现">源码实现</h4>
+<p><code>ServiceLoader</code>的源码位于<code>java.util.ServiceLoader</code>，其加载服务的完整流程：</p>
+<ol>
+<li>通过<code>ServiceLoader.load</code>创建实例，指定服务接口和类加载器。</li>
+<li>初始化<code>LazyIterator</code>，准备懒加载。</li>
+<li>调用<code>iterator()</code>获取迭代器，迭代时触发<code>hasNext</code>和<code>next</code>：
+<ul>
+<li><code>hasNext</code>：加载<code>META-INF/services</code>配置文件，解析实现类名。</li>
+<li><code>next</code>：通过反射加载类并实例化，缓存到<code>providers</code>。</li>
+</ul>
+</li>
+<li>返回服务实例，供调用者使用。</li>
+</ol>
+<h4 id="核心字段">核心字段</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ServiceLoader</span><span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> <span style="color:#8be9fd;font-style:italic">implements</span> Iterable<span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 服务接口类型
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Class<span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> service<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 类加载器
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> ClassLoader loader<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 访问控制上下文
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> AccessControlContext acc<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 已加载的服务提供者缓存
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">private</span> LinkedHashMap<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">,</span>S<span style="color:#ff79c6">&gt;</span> providers <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> LinkedHashMap<span style="color:#ff79c6">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 懒加载迭代器
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">private</span> LazyIterator lookupIterator<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 模块层（用于JPMS）
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> ModuleLayer layer<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><ul>
+<li><code>service</code>：表示要加载的服务接口类型（泛型<code>S</code>）。</li>
+<li><code>loader</code>：用于加载服务的<code>ClassLoader</code>，默认是上下文类加载器。</li>
+<li><code>acc</code>：访问控制上下文，用于安全管理。</li>
+<li><code>providers</code>：缓存已实例化的服务提供者，<code>LinkedHashMap</code>保证顺序。</li>
+<li><code>lookupIterator</code>：懒加载迭代器，负责按需加载服务。</li>
+<li><code>layer</code>：支持模块化系统，指向模块层。</li>
+</ul>
+<p><code>ServiceLoader</code>不能直接通过<code>new</code>创建实例，而是通过静态工厂方法<code>load</code>创建：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> ServiceLoader<span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">load</span><span style="color:#ff79c6">(</span>Class<span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> service<span style="color:#ff79c6">,</span> ClassLoader loader<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> ServiceLoader<span style="color:#ff79c6">&lt;&gt;(</span>service<span style="color:#ff79c6">,</span> loader<span style="color:#ff79c6">,</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> ServiceLoader<span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">load</span><span style="color:#ff79c6">(</span>Class<span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> service<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    ClassLoader cl <span style="color:#ff79c6">=</span> Thread<span style="color:#ff79c6">.</span><span style="color:#50fa7b">currentThread</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">getContextClassLoader</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> ServiceLoader<span style="color:#ff79c6">&lt;&gt;(</span>service<span style="color:#ff79c6">,</span> cl<span style="color:#ff79c6">,</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> ServiceLoader<span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">load</span><span style="color:#ff79c6">(</span>ModuleLayer layer<span style="color:#ff79c6">,</span> Class<span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> service<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> ServiceLoader<span style="color:#ff79c6">&lt;&gt;(</span>service<span style="color:#ff79c6">,</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">,</span> layer<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><ul>
+<li><code>load</code>方法支持指定<code>ClassLoader</code>或<code>ModuleLayer</code>，默认使用线程上下文类加载器。</li>
+<li>构造时会校验<code>service</code>是否为<code>null</code>，并初始化<code>lookupIterator</code>。</li>
+</ul>
+<h4 id="服务配置文件解析">服务配置文件解析</h4>
+<p><code>ServiceLoader</code>依赖<code>META-INF/services</code>目录下的配置文件，文件名是服务接口的全限定名，内容是实现类的全限定名列表。例如：</p>
+<pre tabindex="0"><code>META-INF/services/com.example.MyService
+</code></pre><p>示例内容：</p>
+<pre tabindex="0"><code>com.example.impl.ServiceImpl1
+com.example.impl.ServiceImpl2
+</code></pre><p><strong>解析逻辑</strong>：</p>
+<ul>
+<li><code>ServiceLoader</code>通过<code>ClassLoader.getResources</code>方法查找所有<code>META-INF/services/接口名</code>资源。</li>
+<li>每个资源是一个配置文件，逐行读取实现类的全限定名。</li>
+<li>使用<code>Class.forName</code>加载实现类，并通过反射创建实例。</li>
+</ul>
+<h4 id="懒加载迭代器lazyiterator">懒加载迭代器（LazyIterator）</h4>
+<p><code>ServiceLoader</code>的核心是其懒加载机制，通过内部类<code>LazyIterator</code>实现：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">LazyIterator</span> <span style="color:#8be9fd;font-style:italic">implements</span> Iterator<span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    Class<span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> service<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    ClassLoader loader<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    Enumeration<span style="color:#ff79c6">&lt;</span>URL<span style="color:#ff79c6">&gt;</span> configs <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    Iterator<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> pending <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    String nextName <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    LazyIterator<span style="color:#ff79c6">(</span>Class<span style="color:#ff79c6">&lt;</span>S<span style="color:#ff79c6">&gt;</span> service<span style="color:#ff79c6">,</span> ClassLoader loader<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">service</span> <span style="color:#ff79c6">=</span> service<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">loader</span> <span style="color:#ff79c6">=</span> loader<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Override
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">hasNext</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>nextName <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">true</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>configs <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 加载配置文件
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            String fullName <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;META-INF/services/&#34;</span> <span style="color:#ff79c6">+</span> service<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getName</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>            configs <span style="color:#ff79c6">=</span> loader<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getResources</span><span style="color:#ff79c6">(</span>fullName<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> <span style="color:#ff79c6">(</span>pending <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">!</span>pending<span style="color:#ff79c6">.</span><span style="color:#50fa7b">hasNext</span><span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(!</span>configs<span style="color:#ff79c6">.</span><span style="color:#50fa7b">hasMoreElements</span><span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 解析下一个配置文件
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            pending <span style="color:#ff79c6">=</span> parse<span style="color:#ff79c6">(</span>configs<span style="color:#ff79c6">.</span><span style="color:#50fa7b">nextElement</span><span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        nextName <span style="color:#ff79c6">=</span> pending<span style="color:#ff79c6">.</span><span style="color:#50fa7b">next</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">true</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Override
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> S <span style="color:#50fa7b">next</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(!</span>hasNext<span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> NoSuchElementException<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        String cn <span style="color:#ff79c6">=</span> nextName<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>        nextName <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 加载并实例化服务类
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            Class<span style="color:#ff79c6">&lt;?&gt;</span> c <span style="color:#ff79c6">=</span> Class<span style="color:#ff79c6">.</span><span style="color:#50fa7b">forName</span><span style="color:#ff79c6">(</span>cn<span style="color:#ff79c6">,</span> <span style="color:#ff79c6">false</span><span style="color:#ff79c6">,</span> loader<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(!</span>service<span style="color:#ff79c6">.</span><span style="color:#50fa7b">isAssignableFrom</span><span style="color:#ff79c6">(</span>c<span style="color:#ff79c6">))</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> ServiceConfigurationError<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;Provider &#34;</span> <span style="color:#ff79c6">+</span> cn <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34; not a subtype&#34;</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>            S p <span style="color:#ff79c6">=</span> service<span style="color:#ff79c6">.</span><span style="color:#50fa7b">cast</span><span style="color:#ff79c6">(</span>c<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getConstructor</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">newInstance</span><span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>            providers<span style="color:#ff79c6">.</span><span style="color:#50fa7b">put</span><span style="color:#ff79c6">(</span>cn<span style="color:#ff79c6">,</span> p<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> p<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span> <span style="color:#ff79c6">catch</span> <span style="color:#ff79c6">(</span>Exception x<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> ServiceConfigurationError<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;Provider &#34;</span> <span style="color:#ff79c6">+</span> cn <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34; could not be instantiated&#34;</span><span style="color:#ff79c6">,</span> x<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><ul>
+<li><code>hasNext</code>：检查是否有下一个服务提供者，懒加载配置文件并解析实现类名。</li>
+<li><code>next</code>：加载并实例化服务类，缓存到<code>providers</code>中。</li>
+<li>懒加载：只有在迭代时才会加载配置文件和实例化服务，避免一次性加载所有实现。</li>
+</ul>
+<h4 id="模块化支持jpms">模块化支持（JPMS）</h4>
+<p>JDK 17支持Java模块化系统（JPMS），<code>ServiceLoader</code>通过<code>ModuleLayer</code>处理模块化的服务发现：</p>
+<ul>
+<li>如果通过<code>load(ModuleLayer, Class)</code>创建，会优先从指定模块层查找服务。</li>
+<li>使用<code>ModuleLayer.findModule</code>和<code>ModuleLayer.configuration</code>解析模块中的服务声明。</li>
+<li>配置文件依然位于<code>META-INF/services</code>，但模块系统会优先检查<code>provides</code>指令。</li>
+</ul>
+<h4 id="线程安全">线程安全</h4>
+<p><code>ServiceLoader</code>是线程安全的，<code>providers</code>使用<code>LinkedHashMap</code>存储已加载的服务，访问时通过同步机制保护。</p>
+<h4 id="异常处理">异常处理</h4>
+<ul>
+<li><code>ServiceConfigurationError</code>：服务加载过程中的异常，例如配置文件格式错误、类加载失败、实例化失败等。</li>
+<li>配置文件中的无效行（空行、注释等）会被忽略。</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p><code>ServiceLoader</code>是Java SPI机制的核心实现，基于配置文件和反射实现服务发现。其源码设计体现了懒加载、线程安全和模块化支持的核心思想。通过<code>LazyIterator</code>实现按需加载，<code>LinkedHashMap</code>缓存已加载服务，结合JPMS支持，提供了灵活且高效的服务加载机制。</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2025-05-14-three-pillars-of-observability/" data-toggle="tooltip" data-placement="top" title="可观测性的三大支柱">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+
+
+<link href="https://xxx.xxx.com/dist/Artalk.css" rel="stylesheet" />
+<script src="https://xxx.xxx.com/dist/Artalk.js"></script>
+
+
+<div id="Comments"></div>
+
+<script>
+    Artalk.init({
+        el: '#Comments',
+        pageKey: 'http:\/\/www.magicluo.com\/post\/2025-08-25-whats-the-serviceloader\/',
+        pageTitle: '基于Java SPI构建可扩展的插件架构',
+        server: 'https:\/\/xxx.xxx.com',
+        site: 'xxx blog',
+    })
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">内容目录</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/camel" title="camel">
+                            camel
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/nas" title="nas">
+                            nas
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%81%E4%B8%9A%E9%9B%86%E6%88%90" title="企业集成">
+                            企业集成
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E5%8E%9F%E5%88%9B" title="原创">
+                            原创
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7" title="可观测性">
+                            可观测性
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AF%91%E6%96%87" title="译文">
+                            译文
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://openwrt.org/">openWRT</a></li>
+                        
+                        <li><a target="_blank" href="https://unraid.net/">Unraid</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:luo.xianq@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/img/wechat_qrcode.jpg">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/magicluo0755">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Laurence Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Laurence Blog 2025
+                    
+                    <br>
+                    本博客站点由<a href="https://gohugo.io/">Hugo</a>驱动，使用 <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite</a>主题
+
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

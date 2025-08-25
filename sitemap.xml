@@ -3,19 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://www.magicluo.com/categories/</loc>
-    <lastmod>2025-05-14T09:14:00+00:00</lastmod>
+    <lastmod>2025-08-24T15:57:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/</loc>
-    <lastmod>2025-05-14T09:14:00+00:00</lastmod>
+    <lastmod>2025-08-24T15:57:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/post/</loc>
-    <lastmod>2025-05-14T09:14:00+00:00</lastmod>
+    <lastmod>2025-08-24T15:57:00+00:00</lastmod>
+  </url><url>
+    <loc>http://www.magicluo.com/tags/spi/</loc>
+    <lastmod>2025-08-24T15:57:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/tags/</loc>
-    <lastmod>2025-05-14T09:14:00+00:00</lastmod>
+    <lastmod>2025-08-24T15:57:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/</loc>
-    <lastmod>2025-05-14T09:14:00+00:00</lastmod>
+    <lastmod>2025-08-24T15:57:00+00:00</lastmod>
+  </url><url>
+    <loc>http://www.magicluo.com/post/2025-08-25-whats-the-serviceloader/</loc>
+    <lastmod>2025-08-24T15:57:00+00:00</lastmod>
+  </url><url>
+    <loc>http://www.magicluo.com/tags/%E6%8F%92%E4%BB%B6%E6%9E%B6%E6%9E%84/</loc>
+    <lastmod>2025-08-24T15:57:00+00:00</lastmod>
   </url><url>
     <loc>http://www.magicluo.com/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/</loc>
     <lastmod>2025-05-14T09:14:00+00:00</lastmod>
@@ -34,11 +43,11 @@
   </url><url>
     <loc>http://www.magicluo.com/about/</loc>
   </url><url>
+    <loc>http://www.magicluo.com/archive/</loc>
+  </url><url>
     <loc>http://www.magicluo.com/search/placeholder/</loc>
   </url><url>
     <loc>http://www.magicluo.com/search/</loc>
-  </url><url>
-    <loc>http://www.magicluo.com/archive/</loc>
   </url><url>
     <loc>http://www.magicluo.com/post/2025-05-07-camel-architecture/</loc>
     <lastmod>2025-05-07T14:00:00+00:00</lastmod>
